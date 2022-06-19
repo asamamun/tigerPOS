@@ -35,7 +35,15 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'TestCOntroller::index');
+$routes->get('/', 'Home::index');
+$routes->get('/users', 'UsersController::index');
+$routes->get('/customers', 'CustomersController::index');
+$routes->get('/products', 'ProductsController::index');
+$routes->get('/suppliers', 'SuppliersController::index');
+$routes->get('/purchase', 'PurchaseController::index');
+$routes->get('/sales', 'SalesController::index');
+$routes->get('/expenses', 'ExpensesController::index');
+$routes->get('/accounts', 'AccountsController::index');
 
 /*
  * --------------------------------------------------------------------
