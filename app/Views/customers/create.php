@@ -32,7 +32,7 @@
     <label for="expense">Expense</label>
     <input type="text" class="form-control" id="expense" name="expense" placeholder="Enter expense">
 </div>
-<button type="submit" class="btn btn-primary">Submit</button>
+<button type="submit" class="btn btn-primary mt-2">Submit</button>
 <?php echo form_close(); ?>
 
 <?= $this->endSection(); ?>

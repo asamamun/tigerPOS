@@ -14,7 +14,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title">Customers</h3>
                 <div class="card-options">
                     <a href="<?= base_url('customers/create'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add Customer</a>
@@ -41,8 +41,8 @@
                                     <td><?= $customer['mobile']; ?></td>
                                     <td><?= $customer['address']; ?></td>
                                     <td><?= $customer['expense']; ?></td>
-                                    <td>
-                                        <a href="<?= base_url('customers/edit/' . $customer['id']); ?>" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                                    <td class="d-flex justify-content-center">
+                                        <a href="<?= base_url('customers/edit/' . $customer['id']); ?>" class="btn btn-sm btn-warning me-1"><i class="fa fa-edit"></i></a>
                                         <!-- onsubmit="return confirm('Are you sure you want to submit this form?');" -->
                                         <?php echo form_open("customers/delete/".$customer['id'],['onsubmit'=>"return confirm('Are you sure you want to submit this form?');"]) ?>
                                             <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
