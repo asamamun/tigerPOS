@@ -85,12 +85,5 @@ class CustomersController extends BaseController
             $session->setFlashdata('message', 'Customer delete failed');
             return redirect()->to(base_url('/customers'));
         }
-/*         if($customer->delete($id)) {
-            $session->setFlashdata('message', 'Customer deleted successfully');
-            return redirect()->to(base_url('/customers'));
-        } else {
-            $session->setFlashdata('message', 'Customer deletion failed');
-            return redirect()->to(base_url('/customers'));
-        } */
     }
 }

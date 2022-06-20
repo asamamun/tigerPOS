@@ -44,6 +44,31 @@ $routes->post('/customers/create', 'CustomersController::store');
 $routes->get('/customers/edit/(:num)', 'CustomersController::edit/$1');
 $routes->post('/customers/edit/(:num)', 'CustomersController::update/$1');
 $routes->post('/customers/delete/(:num)', 'CustomersController::delete/$1');
+
+//suppliers
+$routes->get('/suppliers', 'SuppliersController::index');
+$routes->get('/suppliers/create', 'SuppliersController::create');
+$routes->post('/suppliers/create', 'SuppliersController::store');
+$routes->get('/suppliers/edit/(:num)', 'SuppliersController::edit/$1');
+$routes->post('/suppliers/edit/(:num)', 'SuppliersController::update/$1');
+$routes->post('/suppliers/delete/(:num)', 'SuppliersController::delete/$1');
+
+//users
+$routes->get('/users', 'UsersController::index');
+$routes->get('/users/create', 'UsersController::create');
+$routes->post('/users/create', 'UsersController::store');
+$routes->get('/users/edit/(:num)', 'UsersController::edit/$1');
+$routes->post('/users/edit/(:num)', 'UsersController::update/$1');
+$routes->post('/users/delete/(:num)', 'UsersController::delete/$1');
+
+//expenses
+$routes->get('/expenses', 'ExpensesController::index');
+$routes->get('/expenses/create', 'ExpensesController::create');
+$routes->post('/expenses/create', 'ExpensesController::store');
+$routes->get('/expenses/edit/(:num)', 'ExpensesController::edit/$1');
+$routes->post('/expenses/edit/(:num)', 'ExpensesController::update/$1');
+$routes->post('/expenses/delete/(:num)', 'ExpensesController::delete/$1');
+
 /* 
 $routes->get('/customers/delete/(:num)', 'CustomersController::delete');
 $routes->post('/customers/delete/(:num)', 'CustomersController::delete');
