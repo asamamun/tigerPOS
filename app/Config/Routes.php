@@ -37,7 +37,33 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('/users', 'UsersController::index');
+//customers
 $routes->get('/customers', 'CustomersController::index');
+$routes->get('/customers/create', 'CustomersController::create');
+$routes->post('/customers/create', 'CustomersController::store');
+$routes->get('/customers/edit/(:num)', 'CustomersController::edit/$1');
+$routes->post('/customers/edit/(:num)', 'CustomersController::update/$1');
+$routes->post('/customers/delete/(:num)', 'CustomersController::delete/$1');
+/* 
+$routes->get('/customers/delete/(:num)', 'CustomersController::delete');
+$routes->post('/customers/delete/(:num)', 'CustomersController::delete');
+$routes->get('/customers/view/(:num)', 'CustomersController::view');
+$routes->post('/customers/view/(:num)', 'CustomersController::view');
+$routes->get('/customers/search', 'CustomersController::search');
+$routes->post('/customers/search', 'CustomersController::search');
+$routes->get('/customers/export', 'CustomersController::export');
+$routes->post('/customers/export', 'CustomersController::export');
+$routes->get('/customers/import', 'CustomersController::import');
+$routes->post('/customers/import', 'CustomersController::import');
+$routes->get('/customers/import_example', 'CustomersController::import_example');
+$routes->post('/customers/import_example', 'CustomersController::import_example');
+$routes->get('/customers/import_example_download', 'CustomersController::import_example_download');
+$routes->post('/customers/import_example_download', 'CustomersController::import_example_download');
+$routes->get('/customers/import_example_download_sample', 'CustomersController::import_example_download_sample');
+$routes->post('/customers/import_example_download_sample', 'CustomersController::import_example_download_sample');
+$routes->get('/customers/import_example_download_sample_csv', 'CustomersController::import_example_download_sample_csv');
+$routes->post('/customers/import_example_download_sample_csv', 'CustomersController::import_example_download_sample_csv'); */
+//products
 $routes->get('/products', 'ProductsController::index');
 $routes->get('/suppliers', 'SuppliersController::index');
 $routes->get('/purchase', 'PurchaseController::index');
