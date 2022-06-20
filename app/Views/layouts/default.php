@@ -63,40 +63,18 @@
               <?php echo anchor('/purchase','<span class="me-2"><i class="fa-solid fa-cart-arrow-down"></i></span><span>Purchase</span>',['class'=>'nav-link px-3']); ?>
             </li>
             <li>
-              <?php echo anchor('/sales','<span class="me-2"><i class="fa-solid fa-cart-arrow-down"></i></span><span>Sales</span>',['class'=>'nav-link px-3']); ?>
+              <?php echo anchor('/sales','<span class="me-2"><i class="fa-solid fa-cart-shopping"></i></span><span>Sales</span>',['class'=>'nav-link px-3']); ?>
             </li>
             <li>
-              <?php echo anchor('/expenses','<span class="me-2"><i class="fa-solid fa-cart-arrow-down"></i></span><span>Expenses</span>',['class'=>'nav-link px-3']); ?>
+              <?php echo anchor('/expenses','<span class="me-2"><i class="fa-solid fa-money-check-dollar"></i></span><span>Expenses</span>',['class'=>'nav-link px-3']); ?>
             </li>
             <li>
-              <?php echo anchor('/accounts','<span class="me-2"><i class="fa-solid fa-cart-arrow-down"></i></span><span>Payment Accounts</span>',['class'=>'nav-link px-3']); ?>
+              <?php echo anchor('/accounts','<span class="me-2"><i class="fa-solid fa-money-bill-1"></i></span><span>Payment Accounts</span>',['class'=>'nav-link px-3']); ?>
             </li>
             <li>
-              <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#layouts">
-                <span class="me-2"><i class="bi bi-people"></i></span>
-                <span>User Management</span>
-                <span class="ms-auto">
-                  <span class="right-icon">
-                    <i class="bi bi-chevron-down"></i>
-                  </span>
-                </span>
-              </a>
-              <div class="collapse" id="layouts">
-                <ul class="navbar-nav ps-3">
-                  <li>
-                    <?php echo anchor('/users','<span class="me-2"><i class="bi bi-person"></i></span><span>Users</span>',['class'=>'nav-link px-3']); ?>
-                  </li>
-                </ul>
-                <ul class="navbar-nav ps-3">
-                  <li>
-                    <a href="#" class="nav-link px-3">
-                      <span class="me-2"><i class="bi bi-person-check"></i></span>
-                      <span>Role</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <?php echo anchor('/users','<span class="me-2"><i class="bi bi-person"></i></span><span>Users Management</span>',['class'=>'nav-link px-3']); ?>
             </li>
+
             <li>
               <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#layouts2">
                 <span class="me-2"><i class="fa-regular fa-flag"></i></span>

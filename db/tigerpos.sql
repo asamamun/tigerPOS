@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2022 at 06:25 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Jun 20, 2022 at 07:40 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,11 +47,24 @@ INSERT INTO `customers` (`id`, `name`, `email`, `mobile`, `address`, `expense`, 
 (2, 'Tamimul Islam', 'tamimislam732@gmail.com', '01911151732', 'Savar, Dhaka', '0.00', '2022-06-19 21:08:52', NULL),
 (3, 'Syed Zayed Hosssain', 'php.zayed@gmail.com', '01629999666', 'Manikdi, Dhaka Cantonment, Dhaka-1206', '0.00', '2022-06-19 21:10:34', NULL),
 (4, 'Tasnim Al Rahman', 'tasnim333@gmail.com', '01712345678', 'Mirpur, Dhaka-1216', '0.00', '2022-06-19 21:10:34', NULL),
-(5, 'ASA Al-Mamun', 'asamamun.web@gmail.com', '01911039525', 'Dhaka', '123.00', '2022-06-20 10:18:12', NULL),
-(6, 'admin123 admin', 'test@gmail.com', '0195465656', 'Taltola', '666.00', '2022-06-20 10:19:01', '2022-06-20 00:25:15'),
-(8, 'ASA Al-Mamun456', 'asamamun.web456@gmail.com', '01911039527', 'Dhaka', '777777.00', '2022-06-20 10:20:56', NULL),
-(9, 'Xioami MI', 'mi@mi.com', '0123123123', 'Dhaka', '333.00', '2022-06-20 10:25:26', NULL),
-(10, 'admin1277', 'admin@idbbisew.com', '01911039529', 'Taltola', '111111.00', '2022-06-20 10:52:10', '2022-06-20 00:25:20');
+(5, 'Al-Amin', 'alamin@gmail.com', '01912345678', 'Mirpur', '1200000.00', '2022-06-20 16:38:47', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `mobile` varchar(20) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `role` tinyint(4) NOT NULL DEFAULT 1,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `deleted` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -65,6 +78,13 @@ ALTER TABLE `customers`
   ADD UNIQUE KEY `mobile` (`mobile`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -72,7 +92,13 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

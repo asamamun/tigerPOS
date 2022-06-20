@@ -15,6 +15,57 @@ CREATE TABLE `customers` (
   `address` varchar(255) NOT NULL,
   `expense` decimal(20,2) NOT NULL,
   `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `deleted` timestamp NULL DEFAULT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+--
+-- Table structure for table `products`
+--
+
+id
+barcode
+product name
+
+
+
+--
+-- Table structure for table `productcategories`
+--
+
+id
+name
+created
+deleted
+
+
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(150) NOT NULL UNIQUE,
+  `mobile` varchar(20) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `role` tinyint NOT NULL DEFAULT 1,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `deleted` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+--
+-- Table structure for table `usersales`
+--
+
+id
+sales
+user id
+
+created
+deleted
