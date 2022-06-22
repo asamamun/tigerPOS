@@ -32,10 +32,15 @@ $routes->set404Override();
  * Route Definitions
  * --------------------------------------------------------------------
  */
+$routes->get('/register', 'RegisterController::index');
+$routes->post('/register', 'RegisterController::store');
+$routes->get('/login', 'LoginController::index');
+$routes->post('/login', 'LoginController::check');
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get('/dashboard', 'Home::index');
 $routes->get('/users', 'UsersController::index');
 //customers
 $routes->get('/customers', 'CustomersController::index');
