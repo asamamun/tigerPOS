@@ -15,59 +15,67 @@ class LoginController extends BaseController
     {
         return view("auth/login");
     }
-    public function check(){
-// validate request
-$rules = [
-    'email'		=> 'required|valid_email',
-    'password' 	=> 'required|min_length[5]',
-];
+    public function check()
+    {
+        // validate request
+        $rules = [
+            'email'        => 'required|valid_email',
+            'password'     => 'required|min_length[5]',
+        ];
 
-if (! $this->validate($rules)) {
-    return redirect()->to('login')
-        ->withInput()
-        ->with('errors', $this->validator->getErrors());
-}
+        if (!$this->validate($rules)) {
+            return redirect()->to('login')
+                ->withInput()
+                ->with('errors', $this->validator->getErrors());
+        }
 
 
         $email = $this->request->getPost('email');
-        
+
         $pass = $this->request->getPost('password');
         $user = new UserModel();
-        $info = $user->where("email",$email)->first();
+        $info = $user->where("email", $email)->first();
         // var_dump($info);
         // exit;
-        if($info){
-            if(password_verify($pass,$info['password'])){
+        if ($info) {
+            if (password_verify($pass, $info['password'])) {
 
-//set user info into session
-$userd = [
-    'username'  => $info['name'],
-    'id'  => $info['id'],
-    'role'     => $info['role'],
-    'logged_in' => true,
-];
-$session = \Config\Services::session();
-$session->set($userd);
+                //set user info into session
+                $userd = [
+                    'username'  => $info['name'],
+                    'id'  => $info['id'],
+                    'role'     => $info['role'],
+                    'logged_in' => true,
+                ];
+                $session = \Config\Services::session();
+                $session->set($userd);
 
 
                 return redirect()->to(base_url("/dashboard"));
-            }
-            else{
+            } else {
+                $session = \Config\Services::session();
                 $session->setFlashdata('message', 'Auth Failed!!');
-                return redirect()->to(base_url('/login')); 
-            }              
-        } 
-        else{
+                return redirect()->to(base_url('/login'));
+            }
+        } else {
+            $session = \Config\Services::session();
             $session->setFlashdata('message', 'No user Found');
-                    return redirect()->to(base_url('/login'));
-        }      
-//
+            return redirect()->to(base_url('/login'));
+        }
+
+
+        //
     }
 
     //logout
-    public function logout(){
-        $session = \Config\Services::session();
-        $session->destroy();
-        return redirect()->to(base_url('/login'));
+    public function logout()
+    {
+        if ($this->checkauth()) {
+            $session = \Config\Services::session();
+            $session->destroy();
+            return redirect()->to(base_url('/login'));
+        } else {
+            return redirect("login");
+        }
     }
 }

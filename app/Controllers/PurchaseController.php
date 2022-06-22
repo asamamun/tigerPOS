@@ -8,6 +8,10 @@ class PurchaseController extends BaseController
 {
     public function index()
     {
-        return view('purchase/index');
+        if ($this->checkauth()) {
+            return view('purchase/index');
+        } else {
+            return redirect("login");
+        }
     }
 }

@@ -14,41 +14,43 @@ class UsersController extends BaseController
 
     public function login()
     {
-        $data = [];
+        if ($this->checkauth()) {
+            $data = [];
 
-        if ($this->request->getMethod() == 'post') {
+            if ($this->request->getMethod() == 'post') {
 
-            $rules = [
-                'email' => 'required|min_length[6]|max_length[50]|valid_email',
-                'password' => 'required|min_length[8]|max_length[255]|validateUser[email,password]',
-            ];
+                $rules = [
+                    'email' => 'required|min_length[6]|max_length[50]|valid_email',
+                    'password' => 'required|min_length[8]|max_length[255]|validateUser[email,password]',
+                ];
 
-            $errors = [
-                'password' => [
-                    'validateUser' => "Email or Password don't match",
-                ],
-            ];
+                $errors = [
+                    'password' => [
+                        'validateUser' => "Email or Password don't match",
+                    ],
+                ];
 
-            if (!$this->validate($rules, $errors)) {
+                if (!$this->validate($rules, $errors)) {
 
-                return view('login', [
-                    "validation" => $this->validator,
-                ]);
+                    return view('login', [
+                        "validation" => $this->validator,
+                    ]);
+                } else {
+                    $model = new UserModel();
 
-            } else {
-                $model = new UserModel();
+                    $user = $model->where('email', $this->request->getVar('email'))
+                        ->first();
 
-                $user = $model->where('email', $this->request->getVar('email'))
-                    ->first();
-
-                // Stroing session values
-                $this->setUserSession($user);
-                // Redirecting to dashboard after login
-                return redirect()->to(base_url('dashboard'));
-
+                    // Stroing session values
+                    $this->setUserSession($user);
+                    // Redirecting to dashboard after login
+                    return redirect()->to(base_url('dashboard'));
+                }
             }
+            return view('login');
+        } else {
+            return redirect("login");
         }
-        return view('login');
     }
 
     private function setUserSession($user)
@@ -67,122 +69,147 @@ class UsersController extends BaseController
 
     public function register()
     {
-        $data = [];
+        if ($this->checkauth()) {
+            $data = [];
 
-        if ($this->request->getMethod() == 'post') {
-            //let's do the validation here
-            $rules = [
-                'name' => 'required|min_length[3]|max_length[20]',
-                'phone_no' => 'required|min_length[9]|max_length[20]',
-                'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[tbl_users.email]',
-                'password' => 'required|min_length[8]|max_length[255]',
-                'password_confirm' => 'matches[password]',
-            ];
-
-            if (!$this->validate($rules)) {
-
-                return view('register', [
-                    "validation" => $this->validator,
-                ]);
-            } else {
-                $model = new UserModel();
-
-                $newData = [
-                    'name' => $this->request->getVar('name'),
-                    'phone_no' => $this->request->getVar('phone_no'),
-                    'email' => $this->request->getVar('email'),
-                    'password' => $this->request->getVar('password'),
+            if ($this->request->getMethod() == 'post') {
+                //let's do the validation here
+                $rules = [
+                    'name' => 'required|min_length[3]|max_length[20]',
+                    'phone_no' => 'required|min_length[9]|max_length[20]',
+                    'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[tbl_users.email]',
+                    'password' => 'required|min_length[8]|max_length[255]',
+                    'password_confirm' => 'matches[password]',
                 ];
-                $model->save($newData);
-                $session = session();
-                $session->setFlashdata('success', 'Successful Registration');
-                return redirect()->to(base_url('login'));
+
+                if (!$this->validate($rules)) {
+
+                    return view('register', [
+                        "validation" => $this->validator,
+                    ]);
+                } else {
+                    $model = new UserModel();
+
+                    $newData = [
+                        'name' => $this->request->getVar('name'),
+                        'phone_no' => $this->request->getVar('phone_no'),
+                        'email' => $this->request->getVar('email'),
+                        'password' => $this->request->getVar('password'),
+                    ];
+                    $model->save($newData);
+                    $session = session();
+                    $session->setFlashdata('success', 'Successful Registration');
+                    return redirect()->to(base_url('login'));
+                }
             }
+            return view('register');
+        } else {
+            return redirect("login");
         }
-        return view('register');
     }
 
 
     public function index()
     {
-        $users = new UserModel();
-        $data['users'] = $users->where('deleted',null)->findAll();
-        return view('users/index', $data);
+        if ($this->checkauth()) {
+            $users = new UserModel();
+            $data['users'] = $users->where('deleted', null)->findAll();
+            return view('users/index', $data);
+        } else {
+            return redirect("login");
+        }
     }
 
     //create
     public function create()
     {
-        return view('users/create');
-    }
-
-     //store
-     public function store()
-     {
-         $session = \Config\Services::session();
-         $user = new UserModel();
-         $data = [
-             'name' => $this->request->getPost('name'),
-             'email' => $this->request->getPost('email'),
-             'mobile' => $this->request->getPost('mobile'),
-             'address' => $this->request->getPost('address'),
-             
-         ];
-         if($user->insert($data)) {
-             $session->setFlashdata('message', 'User created successfully');
-             return redirect()->to(base_url('/users'));
-         } else {
-             $session->setFlashdata('message', 'User creation failed');
-             return redirect()->to(base_url('/users/create'));
-         }
-     }
-
-     //edit
-    public function edit($id)
-    {
-        $user = new UserModel();
-        $data['user'] = $user->find($id);
-        return view('users/edit', $data);
-    }
-
-     //update
-     public function update($id)
-     {
-         
-         $session = \Config\Services::session();
-         $user = new UserModel();
-         $data = [
-             'name' => $this->request->getPost('name'),
-             'email' => $this->request->getPost('email'),
-             'mobile' => $this->request->getPost('mobile'),
-             'address' => $this->request->getPost('address'),
-             
-         ];
-         if($user->update($id, $data)) {
-             $session->setFlashdata('message', 'User updated successfully');
-             return redirect()->to(base_url('/users'));
-         } else {
-             $session->setFlashdata('message', 'User update failed');
-             return redirect()->to(base_url('/users/edit/'.$id));
-         }
-     }
-
-     //delete
-    public function delete($id)
-    {
-        $session = \Config\Services::session();
-        $user = new UserModel();
-        $data = [
-            'deleted' => date('Y-m-d H:i:s')
-        ];
-        if($user->update($id, $data)) {
-            $session->setFlashdata('message', 'User deleted successfully');
-            return redirect()->to(base_url('/users'));
+        if ($this->checkauth()) {
+            return view('users/create');
         } else {
-            $session->setFlashdata('message', 'User delete failed');
-            return redirect()->to(base_url('/users'));
+            return redirect("login");
         }
     }
 
+    //store
+    public function store()
+    {
+        if ($this->checkauth()) {
+            $session = \Config\Services::session();
+            $user = new UserModel();
+            $data = [
+                'name' => $this->request->getPost('name'),
+                'email' => $this->request->getPost('email'),
+                'mobile' => $this->request->getPost('mobile'),
+                'address' => $this->request->getPost('address'),
 
+            ];
+            if ($user->insert($data)) {
+                $session->setFlashdata('message', 'User created successfully');
+                return redirect()->to(base_url('/users'));
+            } else {
+                $session->setFlashdata('message', 'User creation failed');
+                return redirect()->to(base_url('/users/create'));
+            }
+        } else {
+            return redirect("login");
+        }
+    }
+
+    //edit
+    public function edit($id)
+    {
+        if ($this->checkauth()) {
+            $user = new UserModel();
+            $data['user'] = $user->find($id);
+            return view('users/edit', $data);
+        } else {
+            return redirect("login");
+        }
+    }
+
+    //update
+    public function update($id)
+    {
+        if ($this->checkauth()) {
+            $session = \Config\Services::session();
+            $user = new UserModel();
+            $data = [
+                'name' => $this->request->getPost('name'),
+                'email' => $this->request->getPost('email'),
+                'mobile' => $this->request->getPost('mobile'),
+                'address' => $this->request->getPost('address'),
+
+            ];
+            if ($user->update($id, $data)) {
+                $session->setFlashdata('message', 'User updated successfully');
+                return redirect()->to(base_url('/users'));
+            } else {
+                $session->setFlashdata('message', 'User update failed');
+                return redirect()->to(base_url('/users/edit/' . $id));
+            }
+        } else {
+            return redirect("login");
+        }
+    }
+
+    //delete
+    public function delete($id)
+    {
+        if ($this->checkauth()) {
+            $session = \Config\Services::session();
+            $user = new UserModel();
+            $data = [
+                'deleted' => date('Y-m-d H:i:s')
+            ];
+            if ($user->update($id, $data)) {
+                $session->setFlashdata('message', 'User deleted successfully');
+                return redirect()->to(base_url('/users'));
+            } else {
+                $session->setFlashdata('message', 'User delete failed');
+                return redirect()->to(base_url('/users'));
+            }
+        } else {
+            return redirect("login");
+        }
+    }
 }

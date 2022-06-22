@@ -8,6 +8,10 @@ class SalesController extends BaseController
 {
     public function index()
     {
-        return view('sales/index');
+        if ($this->checkauth()) {
+            return view('sales/index');
+        } else {
+            return redirect("login");
+        }
     }
 }

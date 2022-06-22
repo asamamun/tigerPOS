@@ -8,6 +8,12 @@ class AccountsController extends BaseController
 {
     public function index()
     {
-        return view('accounts/index');
+        if($this->checkauth()){
+            return view('accounts/index');
+        }
+        else{
+            return redirect("login");
+        }
+
     }
 }

@@ -42,7 +42,7 @@ $routes->get('/logout', 'LoginController::logout');
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('/dashboard', 'Home::index');
-$routes->get('/users', 'UsersController::index');
+// $routes->get('/users', 'UsersController::index');
 //customers
 $routes->get('/customers', 'CustomersController::index');
 $routes->get('/customers/create', 'CustomersController::create');
@@ -75,6 +75,15 @@ $routes->get('/expenses/edit/(:num)', 'ExpensesController::edit/$1');
 $routes->post('/expenses/edit/(:num)', 'ExpensesController::update/$1');
 $routes->post('/expenses/delete/(:num)', 'ExpensesController::delete/$1');
 
+//products
+$routes->get('/products', 'ProductsController::index');
+$routes->get('/products/create', 'ProductsController::create');
+$routes->post('/products/create', 'ProductsController::store');
+$routes->get('/products/edit/(:num)', 'ProductsController::edit/$1');
+$routes->post('/products/edit/(:num)', 'ProductsController::update/$1');
+$routes->post('/products/delete/(:num)', 'ProductsController::delete/$1');
+
+
 /* 
 $routes->get('/customers/delete/(:num)', 'CustomersController::delete');
 $routes->post('/customers/delete/(:num)', 'CustomersController::delete');
@@ -96,10 +105,10 @@ $routes->get('/customers/import_example_download_sample_csv', 'CustomersControll
 $routes->post('/customers/import_example_download_sample_csv', 'CustomersController::import_example_download_sample_csv'); */
 //products
 $routes->get('/products', 'ProductsController::index');
-$routes->get('/suppliers', 'SuppliersController::index');
+// $routes->get('/suppliers', 'SuppliersController::index');
 $routes->get('/purchase', 'PurchaseController::index');
 $routes->get('/sales', 'SalesController::index');
-$routes->get('/expenses', 'ExpensesController::index');
+// $routes->get('/expenses', 'ExpensesController::index');
 $routes->get('/accounts', 'AccountsController::index');
 
 /*
