@@ -43,11 +43,9 @@
                                     <td><?= $supplier['address']; ?></td>
                                     <td class="d-flex justify-content-center">
                                         <a href="<?= base_url('suppliers/edit/' . $supplier['id']); ?>" class="btn btn-sm btn-warning me-1"><i class="fa fa-edit"></i></a>
-                                        <!-- onsubmit="return confirm('Are you sure you want to submit this form?');" -->
                                         <?php echo form_open("suppliers/delete/" . $supplier['id'], ['onsubmit' => "return confirm('Are you sure you want to submit this form?');"]) ?>
                                         <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                                         <?php echo form_close(); ?>
-                                        <!-- <a href="<?= base_url('suppliers/delete/' . $supplier['id']); ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a> -->
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

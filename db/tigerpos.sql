@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2022 at 07:40 PM
+-- Generation Time: Jun 22, 2022 at 04:35 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -52,6 +52,109 @@ INSERT INTO `customers` (`id`, `name`, `email`, `mobile`, `address`, `expense`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `expenses`
+--
+
+CREATE TABLE `expenses` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `deleted` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `expenses`
+--
+
+INSERT INTO `expenses` (`id`, `name`, `amount`, `created`, `deleted`) VALUES
+(1, 'Breakfast', '185.00', '2022-06-20 21:52:01', NULL),
+(2, 'Lunch', '430.00', '2022-06-20 21:52:15', NULL),
+(3, 'Labour Cost', '1500.00', '2022-06-20 21:52:25', NULL),
+(4, 'Transport Cost', '3200.00', '2022-06-20 21:52:52', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `barcode` varchar(30) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `company_name` varchar(255) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `wholesale_price` decimal(20,2) NOT NULL,
+  `retail_price` decimal(20,2) NOT NULL,
+  `purchase_price` decimal(20,2) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `tax` decimal(5,2) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `deleted` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `barcode`, `name`, `company_name`, `category_id`, `supplier_id`, `wholesale_price`, `retail_price`, `purchase_price`, `quantity`, `description`, `tax`, `created`, `deleted`) VALUES
+(1, '12343234', 'Lengra Mango (kg)', 'AZ Agro Ltd.', 1, 1, '50.00', '60.00', '35.00', 200, 'Fresh fruits', '0.00', '2022-06-20 20:48:55', NULL),
+(2, '12343222', 'Himsagar Mango (kg)', 'Confident Mart Ltd.', 1, 4, '75.00', '90.00', '50.00', 300, 'Fresh Fruits', '5.00', '2022-06-20 20:48:55', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_categories`
+--
+
+CREATE TABLE `product_categories` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `deleted` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product_categories`
+--
+
+INSERT INTO `product_categories` (`id`, `name`, `created`, `deleted`) VALUES
+(1, 'Fruits', '2022-06-20 20:19:39', NULL),
+(2, 'Kids', '2022-06-20 20:19:39', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `suppliers`
+--
+
+CREATE TABLE `suppliers` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `mobile` varchar(20) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `deleted` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `suppliers`
+--
+
+INSERT INTO `suppliers` (`id`, `name`, `email`, `mobile`, `address`, `created`, `deleted`) VALUES
+(1, 'Arif Khan', 'arif@gmail.com', '01911223344', 'Manikdi, Dhaka Cantonment', '2022-06-20 19:33:48', NULL),
+(2, 'Md Jony', 'jony@gmail.com', '01911151733', 'Matikata, Dhaka Cantonment', '2022-06-20 19:33:48', NULL),
+(3, 'Akib Khan', 'akib@gmail.com', '01711223311', 'Chittagong', '2022-06-20 19:56:16', '2022-06-20 08:56:35'),
+(4, 'Rony Hossain', 'rony@gmail.com', '01987654312', 'Mohakhali', '2022-06-20 19:58:52', NULL),
+(5, 'Tamim Hossain', 'tamim@gmail.com', '01988383332', 'Dhaka', '2022-06-20 21:22:27', '2022-06-20 10:23:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -60,11 +163,27 @@ CREATE TABLE `users` (
   `name` varchar(255) NOT NULL,
   `email` varchar(150) NOT NULL,
   `mobile` varchar(20) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `role` tinyint(4) NOT NULL DEFAULT 1,
   `created` timestamp NOT NULL DEFAULT current_timestamp(),
   `deleted` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `mobile`, `password`, `address`, `role`, `created`, `deleted`) VALUES
+(1, 'Shariful Mia', 'shariful@gmail.com', '01982738421', '', 'Mirpur', 1, '2022-06-20 21:32:05', NULL),
+(2, 'Irin', 'irin@gmail.com', '01987654344', '', 'Kazi Para', 1, '2022-06-20 21:32:42', NULL),
+(3, 'Arifa Begum', 'arifa@gmail.com', '01711223411', '', 'Savar', 1, '2022-06-20 21:33:13', NULL),
+(4, 'Tamima Tammi', 'tamima@gmail.com', '01922345678', '', 'Jessore', 1, '2022-06-20 21:33:34', NULL),
+(5, 'Akib', 'akib@gmail.com', '01987652344', '', 'Khulna', 1, '2022-06-20 21:33:59', NULL),
+(6, 'Kabirul Islam', 'kabir@gmail.com', '01988652344', '', 'Chittagong', 1, '2022-06-20 21:34:27', NULL),
+(7, 'Ziaul Haque Palash', 'palash@gmail.com', '01711124411', '', 'Noakhali', 1, '2022-06-20 21:34:58', NULL),
+(8, 'Shimul', 'shimul@gmail.com', '01982738222', '', 'Noakhali', 1, '2022-06-20 21:35:35', NULL),
+(9, 'Pasha', 'pasha@yahoo.com', '01711144411', '', 'Dhaka', 1, '2022-06-20 21:35:52', NULL);
 
 --
 -- Indexes for dumped tables
@@ -76,6 +195,32 @@ CREATE TABLE `users` (
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `mobile` (`mobile`);
+
+--
+-- Indexes for table `expenses`
+--
+ALTER TABLE `expenses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `supplier_id` (`supplier_id`);
+
+--
+-- Indexes for table `product_categories`
+--
+ALTER TABLE `product_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `suppliers`
+--
+ALTER TABLE `suppliers`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -95,10 +240,45 @@ ALTER TABLE `customers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `expenses`
+--
+ALTER TABLE `expenses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `product_categories`
+--
+ALTER TABLE `product_categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `suppliers`
+--
+ALTER TABLE `suppliers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `product_categories` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
