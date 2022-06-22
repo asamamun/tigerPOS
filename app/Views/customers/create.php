@@ -10,7 +10,13 @@
     <?php endif; ?>
 </div>
 <!-- new customer form -->
-<h1>New Customer</h1>
+<div class="card-header d-flex justify-content-between">
+                <h3 class="card-title">Customers</h3>
+                <div class="card-options">
+                    <a href="<?= base_url('/customers'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-arrow-left"></i> BACK</a>
+                   
+                </div>
+            </div>
 <?php echo form_open('customers/create'); ?>
 <div class="form-group">
     <label for="name">Name</label>
@@ -33,6 +39,8 @@
     <input type="text" class="form-control" id="expense" name="expense" placeholder="Enter expense">
 </div>
 <button type="submit" class="btn btn-primary mt-2">Submit</button>
+<button type="reset" class="btn btn-danger mt-2">Reset</button>
+
 <?php echo form_close(); ?>
 
 <?= $this->endSection(); ?>
