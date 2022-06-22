@@ -36,6 +36,7 @@ $routes->get('/register', 'RegisterController::index');
 $routes->post('/register', 'RegisterController::store');
 $routes->get('/login', 'LoginController::index');
 $routes->post('/login', 'LoginController::check');
+$routes->get('/logout', 'LoginController::logout');
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.

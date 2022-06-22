@@ -31,8 +31,8 @@
               <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="#">Action</a></li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <a class="dropdown-item" href="#">Logout</a>
+                <li>                  
+                  <?= anchor('logout',"Logout",['class'=>"dropdown-item"]) ?>
                 </li>
               </ul>
             </li>

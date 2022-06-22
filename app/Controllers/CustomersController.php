@@ -8,11 +8,12 @@ use App\Models\CustomerModel;
 class CustomersController extends BaseController
 {
     public function __construct()
-    {
+    {        
         helper('form');
     }
     public function index()
     {
+        if(!$this->checkauth()){ return redirect('login');}
         $customers = new CustomerModel();
         $data['customers'] = $customers->where('deleted',null)->findAll();
         return view('customers/index', $data);

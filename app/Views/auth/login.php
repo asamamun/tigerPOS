@@ -43,7 +43,7 @@
           <!-- Email input -->
           <div class="form-outline mb-4">
             <input type="email" id="email" name="email" class="form-control form-control-lg"
-              placeholder="Enter a valid email address" required />
+              placeholder="Enter a valid email address" value="<?= old('email') ?>"  />
             <label class="form-label" for="email">Email address</label>
           </div>
 

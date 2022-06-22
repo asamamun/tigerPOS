@@ -11,8 +11,6 @@
    <div class="container">
 <!-- flash message view -->
 <?php echo view("partial/flashmessage");?>
-
-
    <section class="vh-100" style="background-color: #eee;">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -30,7 +28,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="name" name="name" class="form-control" />
+                      <input type="text" id="name" name="name" class="form-control" value="<?= old('name') ?>" />
                       <label class="form-label" for="name">Your Name</label>
                     </div>
                   </div>
@@ -38,7 +36,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="email" name="email" class="form-control" />
+                      <input type="email" id="email" name="email" class="form-control" value="<?= old('email') ?>" />
                       <label class="form-label" for="email">Your Email</label>
                     </div>
                   </div>
@@ -54,8 +52,8 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="repassword" name="repassword" class="form-control" />
-                      <label class="form-label" for="repassword">Repeat your password</label>
+                      <input type="password" id="password_confirm" name="password_confirm" class="form-control" />
+                      <label class="form-label" for="password_confirm">Repeat your password</label>
                     </div>
                   </div>
 

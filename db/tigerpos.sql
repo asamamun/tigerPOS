@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2022 at 04:35 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: Jun 22, 2022 at 07:09 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -162,28 +162,20 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(150) NOT NULL,
-  `mobile` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `address` varchar(255) NOT NULL,
   `role` tinyint(4) NOT NULL DEFAULT 1,
-  `created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `deleted` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `mobile`, `password`, `address`, `role`, `created`, `deleted`) VALUES
-(1, 'Shariful Mia', 'shariful@gmail.com', '01982738421', '', 'Mirpur', 1, '2022-06-20 21:32:05', NULL),
-(2, 'Irin', 'irin@gmail.com', '01987654344', '', 'Kazi Para', 1, '2022-06-20 21:32:42', NULL),
-(3, 'Arifa Begum', 'arifa@gmail.com', '01711223411', '', 'Savar', 1, '2022-06-20 21:33:13', NULL),
-(4, 'Tamima Tammi', 'tamima@gmail.com', '01922345678', '', 'Jessore', 1, '2022-06-20 21:33:34', NULL),
-(5, 'Akib', 'akib@gmail.com', '01987652344', '', 'Khulna', 1, '2022-06-20 21:33:59', NULL),
-(6, 'Kabirul Islam', 'kabir@gmail.com', '01988652344', '', 'Chittagong', 1, '2022-06-20 21:34:27', NULL),
-(7, 'Ziaul Haque Palash', 'palash@gmail.com', '01711124411', '', 'Noakhali', 1, '2022-06-20 21:34:58', NULL),
-(8, 'Shimul', 'shimul@gmail.com', '01982738222', '', 'Noakhali', 1, '2022-06-20 21:35:35', NULL),
-(9, 'Pasha', 'pasha@yahoo.com', '01711144411', '', 'Dhaka', 1, '2022-06-20 21:35:52', NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`, `deleted_at`) VALUES
+(11, 'admin123', 'admin@gmail.com', '$2y$10$5jcDr4EkuLmgVzXQsdOBFOo87I2Ot9s1Q9yfiZohuPl.2I/.ntlZS', 1, '2022-06-22 11:08:33', NULL),
+(12, 'test', 'test@gmail.com', '$2y$10$kQGyjxVdf6cVfgulgIi2JOld/dJZ/XhWsL8nbO52rZ/fUdMO9o9nu', 1, '2022-06-22 12:17:36', NULL),
+(13, 'test33', 'test33@gmail.com', '$2y$10$dco2K49IK9W4gZjE2509Lej49AULjke8cJ5S/Wj.xpjE8O6i9dlwO', 1, '2022-06-22 12:34:44', NULL);
 
 --
 -- Indexes for dumped tables
@@ -267,7 +259,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
