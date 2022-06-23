@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2022 at 07:09 PM
+-- Generation Time: Jun 23, 2022 at 07:05 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `tigerpos`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `deleted` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `created`, `deleted`) VALUES
+(1, 'Fruits', '2022-06-20 20:19:39', NULL),
+(2, 'Kids', '2022-06-20 20:19:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -76,6 +97,40 @@ INSERT INTO `expenses` (`id`, `name`, `amount`, `created`, `deleted`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `invoice`
+--
+
+CREATE TABLE `invoice` (
+  `id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `nettotal` decimal(10,2) NOT NULL,
+  `discount` decimal(10,2) NOT NULL,
+  `grandtotal` decimal(10,2) NOT NULL,
+  `comment` varchar(512) NOT NULL,
+  `payment_type` set('cash','bKash','nogod','rocket','bankac','due') NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoicedetails`
+--
+
+CREATE TABLE `invoicedetails` (
+  `id` int(11) NOT NULL,
+  `invoice_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` decimal(5,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
@@ -103,27 +158,6 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `barcode`, `name`, `company_name`, `category_id`, `supplier_id`, `wholesale_price`, `retail_price`, `purchase_price`, `quantity`, `description`, `tax`, `created`, `deleted`) VALUES
 (1, '12343234', 'Lengra Mango (kg)', 'AZ Agro Ltd.', 1, 1, '50.00', '60.00', '35.00', 200, 'Fresh fruits', '0.00', '2022-06-20 20:48:55', NULL),
 (2, '12343222', 'Himsagar Mango (kg)', 'Confident Mart Ltd.', 1, 4, '75.00', '90.00', '50.00', 300, 'Fresh Fruits', '5.00', '2022-06-20 20:48:55', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product_categories`
---
-
-CREATE TABLE `product_categories` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `deleted` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `product_categories`
---
-
-INSERT INTO `product_categories` (`id`, `name`, `created`, `deleted`) VALUES
-(1, 'Fruits', '2022-06-20 20:19:39', NULL),
-(2, 'Kids', '2022-06-20 20:19:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -182,6 +216,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`, `d
 --
 
 --
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
@@ -195,18 +235,24 @@ ALTER TABLE `expenses`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `invoice`
+--
+ALTER TABLE `invoice`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `invoicedetails`
+--
+ALTER TABLE `invoicedetails`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
   ADD KEY `category_id` (`category_id`),
   ADD KEY `supplier_id` (`supplier_id`);
-
---
--- Indexes for table `product_categories`
---
-ALTER TABLE `product_categories`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `suppliers`
@@ -226,6 +272,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
@@ -238,15 +290,21 @@ ALTER TABLE `expenses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `invoice`
+--
+ALTER TABLE `invoice`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `invoicedetails`
+--
+ALTER TABLE `invoicedetails`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `product_categories`
---
-ALTER TABLE `product_categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -269,7 +327,7 @@ ALTER TABLE `users`
 -- Constraints for table `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `product_categories` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON UPDATE CASCADE;
 COMMIT;
 

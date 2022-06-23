@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ProductModel;
-
+use App\Models\CategoryModel;
 class ProductsController extends BaseController
 {
     public function __construct()
@@ -14,8 +14,12 @@ class ProductsController extends BaseController
     public function index()
     {
         if ($this->checkauth()) {
+
+            // var_dump($allcat);
+            // exit;
             $products = new ProductModel();
             $data['products'] = $products->where('deleted', null)->findAll();
+            
             return view('products/index', $data);
         } else {
             return redirect("login");
@@ -25,7 +29,10 @@ class ProductsController extends BaseController
     public function create()
     {
         if ($this->checkauth()) {
-            return view('products/create');
+            $c = new CategoryModel();
+            $allcat = $c->select('id,name')->findAll();
+            $data['categories'] = $allcat;
+            return view('products/create', $data);
         } else {
             return redirect("login");
         }

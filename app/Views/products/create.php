@@ -28,12 +28,13 @@
 <!-- category_id -->
 <div class="form-group">
     <label for="category_id">Category</label>
-    <select class="form-select" id="category_id" name="category_id" aria-label="Default select example">
+    <!-- <select class="form-select" id="category_id" name="category_id" aria-label="Default select example">
         <option selected>select</option>
         <option value="1">One</option>
         <option value="2">Two</option>
         <option value="3">Three</option>
-    </select>
+    </select> -->
+    <?php echo form_dropdown('category_id', $categories); ?>
 </div>
 
 <!-- supplier_id -->
