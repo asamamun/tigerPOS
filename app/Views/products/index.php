@@ -19,7 +19,6 @@
                     <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-excel"></i> Excel</a>
                     <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-print"></i> Print</a>
                     <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-                    <a href="<?= base_url('categories/create'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add Category</a>
                     <a href="<?= base_url('products/create'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add Product</a>
                 </div>
             </div>
@@ -44,10 +43,10 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                                <?php $i = 1; ?>
                             <?php foreach ($products as $product) : ?>
                                 <tr>
-                                    <td><?= $product['id']; ?></td>
+                                    <td><?= $i++; ?></td>
                                     <td><?= $product['barcode']; ?></td>
                                     <td><?= $product['name']; ?></td>
                                     <td><?= $product['company_name']; ?></td>
@@ -59,9 +58,11 @@
                                     <td><?= $product['quantity']; ?></td>
                                     <td><?= $product['description']; ?></td>
                                     <td><?= $product['tax'];?>&percnt;</td>
-                                    <td>
-                                        <a href="<?= base_url('products/edit/' . $product['id']); ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                                        <a href="<?= base_url('products/delete/' . $product['id']); ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a>
+                                    <td class="d-flex justify-content-center">
+                                        <a href="<?= base_url('products/edit/' . $product['id']); ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        <?php echo form_open("products/delete/" . $product['id'], ['onsubmit' => "return confirm('Are you sure you want to submit this form?');"]) ?>
+                                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                        <?php echo form_close(); ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

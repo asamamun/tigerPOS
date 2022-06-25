@@ -83,7 +83,21 @@ $routes->get('/products/edit/(:num)', 'ProductsController::edit/$1');
 $routes->post('/products/edit/(:num)', 'ProductsController::update/$1');
 $routes->post('/products/delete/(:num)', 'ProductsController::delete/$1');
 
+//categories
+$routes->get('/categories', 'CategoryController::index');
+$routes->get('/categories/create', 'CategoryController::create');
+$routes->post('/categories/create', 'CategoryController::store');
+$routes->get('/categories/edit/(:num)', 'CategoryController::edit/$1');
+$routes->post('/categories/edit/(:num)', 'CategoryController::update/$1');
+$routes->post('/categories/delete/(:num)', 'CategoryController::delete/$1');
 
+//accounts
+$routes->get('/accounts', 'AccountController::index');
+$routes->get('/accounts/create', 'AccountController::create');
+$routes->post('/accounts/create', 'AccountController::store');
+$routes->get('/accounts/edit/(:num)', 'AccountController::edit/$1');
+$routes->post('/accounts/edit/(:num)', 'AccountController::update/$1');
+$routes->post('/accounts/delete/(:num)', 'AccountController::delete/$1');
 /* 
 $routes->get('/customers/delete/(:num)', 'CustomersController::delete');
 $routes->post('/customers/delete/(:num)', 'CustomersController::delete');

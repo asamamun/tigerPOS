@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\ProductModel;
 use App\Models\CategoryModel;
+use App\Models\SupplierModel;
 use App\Models\UserModel;
 
 class ProductsController extends BaseController
@@ -36,6 +37,11 @@ class ProductsController extends BaseController
             $dropcat = key_value_for_dropdown($allcat);
             // ddd($dropcat);            
             $data['categories'] = $dropcat;
+
+            $s = new SupplierModel();
+            $allsuplliers = $s->select('id,name')->findAll();
+            $dropsuplliers = key_value_for_dropdown($allsuplliers);
+            $data['suppliers'] = $dropsuplliers;
             return view('products/create', $data);
         } else {
             return redirect("login");
@@ -60,6 +66,8 @@ class ProductsController extends BaseController
                 'description' => $this->request->getPost('description'),
                 'tax' => $this->request->getPost('tax'),
             ];
+            // ddd($data);
+            // exit;
             if ($product->insert($data)) {
                 $session->setFlashdata('message', 'Product created successfully');
                 return redirect()->to(base_url('/products'));

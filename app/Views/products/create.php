@@ -28,24 +28,13 @@
 <!-- category_id -->
 <div class="form-group">
     <label for="category_id">Category</label>
-    <!-- <select class="form-select" id="category_id" name="category_id" aria-label="Default select example">
-        <option selected>select</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-    </select> -->
     <?php echo form_dropdown('category_id', $categories,'',['class' => 'form-control']); ?>
 </div>
 
 <!-- supplier_id -->
 <div class="form-group">
-    <label for="supplier_id">Category</label>
-    <select class="form-select" id="supplier_id" name="supplier_id" aria-label="Default select example">
-        <option selected>select</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-    </select>
+    <label for="supplier_id">Supplier</label>
+    <?php echo form_dropdown('supplier_id', $suppliers,'',['class' => 'form-control']); ?>
 </div>
 
 <div class="form-group">
@@ -53,7 +42,7 @@
     <input type="text" class="form-control" id="wholesale_price" name="wholesale_price" placeholder="Enter wholesale price">
 </div>
 <div class="form-group">
-    <label for="retail_price">Wholesale Price</label>
+    <label for="retail_price">Retail Price</label>
     <input type="text" class="form-control" id="retail_price" name="retail_price" placeholder="Enter retail price">
 </div>
 <div class="form-group">
@@ -67,7 +56,7 @@
 
 <div class="mb-3">
     <label for="description" class="form-label">Description</label>
-    <textarea class="form-control" id="description" rows="3"></textarea>
+    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
 </div>
 
 <div class="form-group">
