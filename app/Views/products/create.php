@@ -34,7 +34,7 @@
         <option value="2">Two</option>
         <option value="3">Three</option>
     </select> -->
-    <?php echo form_dropdown('category_id', $categories); ?>
+    <?php echo form_dropdown('category_id', $categories,'',['class' => 'form-control']); ?>
 </div>
 
 <!-- supplier_id -->

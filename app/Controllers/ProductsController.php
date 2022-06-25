@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\ProductModel;
 use App\Models\CategoryModel;
+use App\Models\UserModel;
+
 class ProductsController extends BaseController
 {
     public function __construct()
@@ -31,7 +33,9 @@ class ProductsController extends BaseController
         if ($this->checkauth()) {
             $c = new CategoryModel();
             $allcat = $c->select('id,name')->findAll();
-            $data['categories'] = $allcat;
+            $dropcat = key_value_for_dropdown($allcat);
+            // ddd($dropcat);            
+            $data['categories'] = $dropcat;
             return view('products/create', $data);
         } else {
             return redirect("login");
