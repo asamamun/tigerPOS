@@ -8,17 +8,17 @@
     <div class="row">
         <div class="col order-last">
             <label for="exampleInputEmail1" class="form-label">Date</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
         </div>
         <div class="col order-first">
             <label for="exampleInputPassword1" class="form-label">Refference</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="text" class="form-control" id="exampleInputPassword1">
         </div>
     </div>
 </div>
 <div class="container">
     <label for="inputPassword5" class="form-label"></label>
-    <input type="password" id="inputPassword5" class="form-control mb-3" aria-describedby="passwordHelpBlock"
+    <input type="text" id="inputPassword5" class="form-control mb-3" aria-describedby="passwordHelpBlock"
         placeholder="search here">
 
 </div>
