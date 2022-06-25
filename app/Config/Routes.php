@@ -108,6 +108,7 @@ $routes->get('/products', 'ProductsController::index');
 // $routes->get('/suppliers', 'SuppliersController::index');
 $routes->get('/purchase', 'PurchaseController::index');
 $routes->get('/sales', 'SalesController::index');
+$routes->get('/sales/create', 'SalesController::create');
 // $routes->get('/expenses', 'ExpensesController::index');
 $routes->get('/accounts', 'AccountsController::index');
 

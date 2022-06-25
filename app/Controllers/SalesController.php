@@ -14,4 +14,12 @@ class SalesController extends BaseController
             return redirect("login");
         }
     }
+    public function create()
+    {
+        if ($this->checkauth()) {
+            return view('sales/create');
+        } else {
+            return redirect("login");
+        }
+    }
 }
