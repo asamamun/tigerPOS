@@ -27,41 +27,78 @@
     </div>
 </div>
 
-<div class="row ">
-    <div class="col-sm-3 btn btn-light">
+<div class="row">
+    <div class="col-md-3">
         <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">User</h5>
-                <p>Total: 12564</p>
+            <div class="row">
+                <div class="col-3">
+                    <div class="card-body text-center">
+                        <h1><i class="fa-solid fa-money-check"></i></h1>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="card-body">
+                        <p class="card-title fw-bold">TOTAL PURCHASE</p>
+                        <h2>&#2547; 12564</h2>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-sm-3 btn btn-light">
+    <div class="col-md-3">
         <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Products</h5>
-                <p>Total: 12565464</p>
+            <div class="row">
+                <div class="col-3">
+                    <div class="card-body text-center">
+                        <h1><i class="fa-solid fa-money-check"></i></h1>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="card-body">
+                        <p class="card-title fw-bold">TOTAL PURCHASE</p>
+                        <h2>&#2547; 12564</h2>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="col-sm-3 btn btn-light">
+    <div class="col-md-3">
         <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Sales</h5>
-                <p>Total: 12565464</p>
+            <div class="row">
+                <div class="col-3">
+                    <div class="card-body text-center">
+                        <h1><i class="fa-solid fa-money-check"></i></h1>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="card-body">
+                        <p class="card-title fw-bold">TOTAL PURCHASE</p>
+                        <h2>&#2547; 12564</h2>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-sm-3 btn btn-light">
+    <div class="col-md-3">
         <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Purchase</h5>
-                <p>Total: 12565464</p>
+            <div class="row">
+                <div class="col-3">
+                    <div class="card-body text-center">
+                        <h1><i class="fa-solid fa-money-check"></i></h1>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="card-body">
+                        <p class="card-title fw-bold">TOTAL PURCHASE</p>
+                        <h2>&#2547; 12564</h2>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    
 </div>
+
 <?= $this->endSection(); ?>
 
 
