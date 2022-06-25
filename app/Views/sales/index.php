@@ -17,85 +17,88 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-6">
                         <h5>Location</h5>
-                        <div class="dropdown show">
-                            <a class="btn btn-light dropdown-toggle border-dark" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%">
-                                All
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-
-                            </div>
+                        <div class="dropdown content-center">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="width:100%">
+                             All
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                            </ul>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <h5>Customer</h5>
-                        <div class="dropdown show">
-                            <a class="btn btn-light dropdown-toggle border-dark" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%">
-                                All
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-
-                            </div>
+                        <div class="dropdown content-center">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="width:100%">
+                             All
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                            </ul>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <h5>Payment Status</h5>
-                        <div class="dropdown show">
-                            <a class="btn btn-light dropdown-toggle border-dark" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%">
-                                All
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-
-                            </div>
+                        <div class="dropdown content-center">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="width:100%">
+                             All
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                            </ul>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <h5>Date Range</h5>
-                        <div class="dropdown show">
-                            <a class="btn btn-light dropdown-toggle border-dark" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%">
-                                All
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-
-                            </div>
+                        <div class="dropdown content-center">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="width:100%">
+                             All
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                            </ul>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 mt-3">
                         <h5>User</h5>
-                        <div class="dropdown show">
-                            <a class="btn btn-light dropdown-toggle border-dark" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%">
-                                All
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-
-                            </div>
+                        <div class="dropdown content-center">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="width:100%">
+                             All
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                            </ul>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 mt-3">
                         <h5>Shipping Status</h5>
-                        <div class="dropdown show">
-                            <a class="btn btn-light dropdown-toggle border-dark" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%">
-                                All
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-
-                            </div>
+                        <div class="dropdown content-center">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="width:100%">
+                             All
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                            </ul>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 mt-3">
                         <h4></h4>
                         <h5>Subscriptions</h5>
+                        <div class="dropdown content-center">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="width:100%">
+                             All
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
