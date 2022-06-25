@@ -28,75 +28,144 @@
 </div>
 
 <div class="row">
-    <div class="col-md-3">
-        <div class="card">
+    <div class="col-md-3 mb-3">
+        <div class="card bg-primary">
             <div class="row">
                 <div class="col-3">
-                    <div class="card-body text-center">
-                        <h1><i class="fa-solid fa-money-check"></i></h1>
+                    <div class="card-body text-center ">
+                        <h1 class="mt-2"><i class="fa-solid fa-user-large"></i></h1>
                     </div>
                 </div>
                 <div class="col-9">
                     <div class="card-body">
-                        <p class="card-title fw-bold">TOTAL PURCHASE</p>
-                        <h2>&#2547; 12564</h2>
+                        <p class="card-title fw-bold">TOTAL USER</p>
+                        <h4>&#2547; 12564</h4>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card">
+    <div class="col-md-3 mb-3">
+        <div class="card bg-success">
             <div class="row">
                 <div class="col-3">
-                    <div class="card-body text-center">
-                        <h1><i class="fa-solid fa-money-check"></i></h1>
+                    <div class="card-body text-center ">
+                        <h1 class="mt-2"><i class="fa-solid fa-basket-shopping"></i></h1>
                     </div>
                 </div>
                 <div class="col-9">
                     <div class="card-body">
-                        <p class="card-title fw-bold">TOTAL PURCHASE</p>
-                        <h2>&#2547; 12564</h2>
+                        <p class="card-title fw-bold">TOTAL SALES</p>
+                        <h4>&#2547; 1256646</h4>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card">
+    <div class="col-md-3 mb-3">
+        <div class="card bg-info">
             <div class="row">
                 <div class="col-3">
-                    <div class="card-body text-center">
-                        <h1><i class="fa-solid fa-money-check"></i></h1>
+                    <div class="card-body text-center ">
+                        <h1 class="mt-2"><i class="fa-solid fa-cart-shopping"></i></h1>
                     </div>
                 </div>
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL PURCHASE</p>
-                        <h2>&#2547; 12564</h2>
+                        <h4>&#2547; 12564</h4>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card">
+    <div class="col-md-3 mb-3">
+        <div class="card bg-warning">
             <div class="row">
                 <div class="col-3">
-                    <div class="card-body text-center">
-                        <h1><i class="fa-solid fa-money-check"></i></h1>
+                    <div class="card-body text-center ">
+                        <h1 class="mt-2"><i class="fa-solid fa-circle-dollar-to-slot"></i></h1>
                     </div>
                 </div>
                 <div class="col-9">
                     <div class="card-body">
-                        <p class="card-title fw-bold">TOTAL PURCHASE</p>
-                        <h2>&#2547; 12564</h2>
+                        <p class="card-title fw-bold">TOTAL EXPENSE</p>
+                        <h4>&#2547; 12564</h4>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+    <div class="col-md-3 mt-3">
+        <div class="card bg-muted">
+            <div class="row">
+                <div class="col-3">
+                    <div class="card-body text-center ">
+                        <h1 class="mt-2"><i class="fa-solid fa-people-carry-box"></i></h1>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="card-body">
+                        <p class="card-title fw-bold">TOTAL ORDER</p>
+                        <h4>&#2547; 12564</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mt-3">
+        <div class="card bg-secondary">
+            <div class="row">
+                <div class="col-3">
+                    <div class="card-body text-center ">
+                        <h1 class="mt-2"><i class="fa-solid fa-box"></i></h1>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="card-body">
+                        <p class="card-title fw-bold">TOTAL PACKED</p>
+                        <h4>&#2547; 12564</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mt-3">
+        <div class="card bg-danger">
+            <div class="row">
+                <div class="col-3">
+                    <div class="card-body text-center ">
+                        <h1 class="mt-2"><i class="fa-solid fa-cart-shopping"></i></h1>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="card-body">
+                        <p class="card-title fw-bold">PURCHASE DUE</p>
+                        <h4>&#2547; 12564</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mt-3">
+        <div class="card bg-light">
+            <div class="row">
+                <div class="col-3">
+                    <div class="card-body text-center ">
+                        <h1 class="mt-2"><i class="fa-solid fa-file-lines"></i></h1>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="card-body">
+                        <p class="card-title fw-bold">INVOICE DUE</p>
+                        <h4>&#2547; 12564</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 
 <?= $this->endSection(); ?>
