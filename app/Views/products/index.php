@@ -50,8 +50,8 @@
                                     <td><?= $product['barcode']; ?></td>
                                     <td><?= $product['name']; ?></td>
                                     <td><?= $product['company_name']; ?></td>
-                                    <td><?= $product['category_id']; ?></td>
-                                    <td><?= $product['supplier_id']; ?></td>
+                                    <td><?= $product['catname']; ?></td>
+                                    <td><?= $product['supname']; ?></td>
                                     <td><?= $product['wholesale_price']; ?></td>
                                     <td><?= $product['retail_price']; ?></td>
                                     <td><?= $product['purchase_price']; ?></td>

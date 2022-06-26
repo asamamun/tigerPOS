@@ -13,16 +13,14 @@ class RegisterController extends BaseController
     }
     public function index()
     {
-        if ($this->checkauth()) {
+
             return view("auth/register");
-        } else {
-            return redirect("login");
-        }
+       
     }
     //store
     public function store()
     {
-        if ($this->checkauth()) {
+
             $session = \Config\Services::session();
             $pass = $this->request->getPost('password');
             $repass = $this->request->getPost('password_confirm');
@@ -56,8 +54,6 @@ class RegisterController extends BaseController
                 $session->setFlashdata('message', 'Password Mismatch');
                 return redirect()->to(base_url('/register'));
             }
-        } else {
-            return redirect("login");
-        }
+
     }
 }

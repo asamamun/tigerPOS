@@ -28,7 +28,7 @@
         <ul class="navbar-nav d-flex ms-auto">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle ms-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-
+Welcome <?= session('username'); ?>
               <i class="bi bi-person-fill"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">

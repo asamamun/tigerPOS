@@ -19,11 +19,23 @@ class ProductsController extends BaseController
         if ($this->checkauth()) {
 
             // var_dump($allcat);
-            // exit;
-            $products = new ProductModel();
-            $data['products'] = $products->where('deleted', null)->findAll();
-            
-            return view('products/index', $data);
+            // // exit;
+            // $products = new ProductModel();
+            // $data['products'] = $products->where('deleted', null)->findAll();
+            $db      = \Config\Database::connect();
+            $builder = $db->table('products p')            
+            ->select('p.*, c.name as catname, s.name as supname')
+            ->join('categories c', 'c.id = p.category_id')
+            ->join('suppliers s', 's.id = p.supplier_id')
+            ->where('p.deleted' , null)
+            ->get();
+            //ddd($builder->getResult());
+            $data = ['products'=>$builder->getResultArray('products')];
+
+
+
+
+           return view('products/index', $data);
         } else {
             return redirect("login");
         }
