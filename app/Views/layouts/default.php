@@ -138,7 +138,7 @@
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
       &copy; <?php echo date("Y");?> Copyright :
-      <a class="text-decoration-none" href="https://isdbstudents.com/49/">IsDB WDPF-49 Students</a>
+      <a class="text-decoration-none" href="https://isdbstudents.com/49/">IsDB-BISEW WDPF-49 Students</a>
     </div>
     <!-- Copyright -->
   </footer>
