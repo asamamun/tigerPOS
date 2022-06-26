@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2022 at 07:05 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Jun 26, 2022 at 03:13 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `tigerpos`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accounts`
+--
+
+CREATE TABLE `accounts` (
+  `id` int(11) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `account_number` varchar(50) NOT NULL,
+  `balance` decimal(20,2) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `deleted` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`id`, `name`, `account_number`, `balance`, `created`, `deleted`) VALUES
+(1, 'Bkash Personal', '01629999666', '12759000.00', '2022-06-26 09:11:10', NULL),
+(2, 'Rocket Personal', '01629999666', '875000.00', '2022-06-26 09:11:28', NULL),
+(3, 'DBBL Account', '2161030284757', '57895800.00', '2022-06-26 09:12:15', NULL);
 
 -- --------------------------------------------------------
 
@@ -216,6 +240,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`, `d
 --
 
 --
+-- Indexes for table `accounts`
+--
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
@@ -270,6 +300,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `accounts`
+--
+ALTER TABLE `accounts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `categories`
