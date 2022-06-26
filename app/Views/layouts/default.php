@@ -134,6 +134,14 @@
       <?= $this->renderSection('contents'); ?>
     </div>
   </main>
+  <footer class="bg-light text-center text-lg-start mt-5">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      &copy; <?php echo date("Y");?> Copyright :
+      <a class="text-decoration-none" href="https://isdbstudents.com/49/">IsDB WDPF-49 Students</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
   <script src="<?php echo base_url() ?>/assets/js/bootstrap.bundle.min.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script> -->
   <script src="<?php echo base_url() ?>/assets/js/jquery-3.5.1.js"></script>
