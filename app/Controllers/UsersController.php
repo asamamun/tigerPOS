@@ -113,7 +113,7 @@ class UsersController extends BaseController
     {
         if ($this->checkauth()) {
             $users = new UserModel();
-            $data['users'] = $users->where('deleted', null)->findAll();
+            $data['users'] = $users->where('deleted_at', null)->findAll();
             return view('users/index', $data);
         } else {
             return redirect("login");

@@ -39,7 +39,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL USER</p>
-                        <h4>&#2547; 12564</h4>
+                        <h4> <?= $totalusers; ?></h4>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL SALES</p>
-                        <h4>&#2547; 1256646</h4>
+                        <h4>&#2547; <?= $totalsales; ?></h4>
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL PURCHASE</p>
-                        <h4>&#2547; 12564</h4>
+                        <h4>&#2547; <?= $totalpurchase; ?></h4>
                     </div>
                 </div>
             </div>

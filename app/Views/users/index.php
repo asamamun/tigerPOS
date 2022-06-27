@@ -27,10 +27,7 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Email</th>
-                                <th>Mobile</th>
-                                <th>Address</th>
-                               
+                                <th>Email</th>                        
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -38,9 +35,7 @@
                             <?php foreach ($users as $user) : ?>
                                 <tr>
                                     <td><?= $user['name']; ?></td>
-                                    <td><?= $user['email']; ?></td>
-                                    <td><?= $user['mobile']; ?></td>
-                                    <td><?= $user['address']; ?></td>
+                                    <td><?= $user['email']; ?></td>                                   
                                    
                                     <td class="d-flex justify-content-center">
                                         <a href="<?= base_url('users/edit/' . $user['id']); ?>" class="btn btn-sm btn-warning me-1"><i class="fa fa-edit"></i></a>
