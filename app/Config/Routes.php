@@ -98,6 +98,15 @@ $routes->post('/accounts/create', 'AccountController::store');
 $routes->get('/accounts/edit/(:num)', 'AccountController::edit/$1');
 $routes->post('/accounts/edit/(:num)', 'AccountController::update/$1');
 $routes->post('/accounts/delete/(:num)', 'AccountController::delete/$1');
+
+//pos
+$routes->get('/pos', 'PosController::index');
+$routes->get('/pos/create', 'PosController::create');
+$routes->post('/pos/create', 'PosController::store');
+$routes->get('/pos/edit/(:num)', 'PosController::edit/$1');
+$routes->post('/pos/edit/(:num)', 'PosController::update/$1');
+$routes->post('/pos/delete/(:num)', 'PosController::delete/$1');
+
 /* 
 $routes->get('/customers/delete/(:num)', 'CustomersController::delete');
 $routes->post('/customers/delete/(:num)', 'CustomersController::delete');

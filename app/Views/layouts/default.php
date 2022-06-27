@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
   <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/dataTables.bootstrap5.min.css" />
+  <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/jquery-ui.min.css" />
   <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/style.css" />
   <title>TigerPOS</title>
 </head>
@@ -86,7 +87,25 @@ Welcome <?= session('username'); ?>
             <?php echo anchor('/purchase', '<span class="me-2"><i class="fa-solid fa-cart-arrow-down"></i></span><span>Purchase</span>', ['class' => 'nav-link px-3']); ?>
           </li>
           <li>
-            <?php echo anchor('/sales', '<span class="me-2"><i class="fa-solid fa-cart-shopping"></i></span><span>Sales</span>', ['class' => 'nav-link px-3']); ?>
+            <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#layouts4">
+              <span class="me-2"><i class="fa-solid fa-box-open"></i></span>
+              <span>Sales</span>
+              <span class="ms-auto">
+                <span class="right-icon">
+                  <i class="bi bi-chevron-down"></i>
+                </span>
+              </span>
+            </a>
+            <div class="collapse" id="layouts4">
+              <ul class="navbar-nav ps-3">
+                <li>
+                  <?php echo anchor('/sales', '<span class="me-2"><i class="fa-solid fa-cart-shopping"></i></span><span>All Sale</span>', ['class' => 'nav-link px-3']); ?>
+                </li>
+                <li>
+                  <?php echo anchor('/pos', '<span class="me-2"><i class="fa-solid fa-box-open"></i></span><span>POS</span>', ['class' => 'nav-link px-3']); ?>
+                </li>
+              </ul>
+            </div>
           </li>
           <li>
             <?php echo anchor('/expenses', '<span class="me-2"><i class="fa-solid fa-money-check-dollar"></i></span><span>Expenses</span>', ['class' => 'nav-link px-3']); ?>
@@ -145,6 +164,7 @@ Welcome <?= session('username'); ?>
   <script src="<?php echo base_url() ?>/assets/js/bootstrap.bundle.min.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script> -->
   <script src="<?php echo base_url() ?>/assets/js/jquery-3.5.1.js"></script>
+  <script src="<?php echo base_url() ?>/assets/js/jquery-ui.min.js"></script>
   <script src="<?php echo base_url() ?>/assets/js/jquery.dataTables.min.js"></script>
   <script src="<?php echo base_url() ?>/assets/js/dataTables.bootstrap5.min.js"></script>
   <script src="<?php echo base_url() ?>/assets/js/script.js"></script>
