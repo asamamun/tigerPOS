@@ -9,7 +9,7 @@ if (isset($_GET['term'])){
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
-	$sql = "SELECT `id`,`barcode`,`name` FROM `products` WHERE `name` LIKE '%" . $_GET['term'] . "%'";
+	$sql = "SELECT `id`,`name` FROM `products` WHERE `name` LIKE '%" . $_GET['term'] . "%'";
 	$return_arr = array();
 	$result = $conn->query($sql);
 	while ($row = $result->fetch_assoc()) {

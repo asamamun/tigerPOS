@@ -29,7 +29,7 @@
         <ul class="navbar-nav d-flex ms-auto">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle ms-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-Welcome <?= session('username'); ?>
+              Welcome <?= session('username'); ?>
               <i class="bi bi-person-fill"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -156,7 +156,7 @@ Welcome <?= session('username'); ?>
   <footer class="bg-light text-center text-lg-start mt-5">
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      &copy; <?php echo date("Y");?> Copyright :
+      &copy; <?php echo date("Y"); ?> Copyright :
       <a class="text-decoration-none" href="https://isdbstudents.com/49/">IsDB-BISEW WDPF-49 Students</a>
     </div>
     <!-- Copyright -->

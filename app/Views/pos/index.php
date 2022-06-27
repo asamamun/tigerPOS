@@ -83,31 +83,33 @@
     </div>
     <div class="card-body">
         <div>
-            <input type="text" class="form-control auto" id="productsearch" name="productsearch" placeholder="Enter Product Name/SKU/Scan Bar Code" />
+            <?php echo form_open(''); ?>
+            <input type="text" class="form-control auto" id="search" name="search" placeholder="Enter Product Name/SKU/Scan Bar Code" />
+            <?php echo form_close(); ?>
         </div>
         <div>
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Barcode</th>
                         <th scope="col">Product(s)</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Unit Price</th>
-                        <th scope="col">Discount</th>
-                        <th scope="col">Warranty</th>
+                        <th scope="col">Total</th>
                         <th scope="col">x</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
+                <tbody id="dyn_tr">
+                    <!-- <tr>
                         <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
+                        <td>121212</td>
+                        <td>Mouse</td>
+                        <td>10</td>
+                        <td>500</td>
+                        <td>5000</td>
                         <td>x</td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
@@ -118,7 +120,7 @@
                 <p><b>Item(s):</b> 0.00</p>
             </div>
             <div class="col-md-3">
-                <p><b>Total: </b> &#2547; 0.00</p>
+                <p><b>Total: </b> &#2547; <span id="grandtotal"></span></p>
             </div>
         </div>
     </div>
@@ -223,20 +225,91 @@
 
 
 <?= $this->section('scripts'); ?>
-<script>
-    $(function() {
-	
-	//autocomplete
-	$(".auto").autocomplete({
-		source: "search.php",
-		minLength: 1
-	});				
-
-});
-</script>
 <!-- <script>
     $(document).ready(function() {
-        $('#expenses').DataTable();
-    } );
+        //autocomplete
+        $("#productsearch").autocomplete({
+            source:'',
+            minLength: 1,
+            select: function(event, ui) {
+                var id = ui.item.id;
+                addProduct(id);
+            }
+        });
+
+        function addProduct(id) {
+            $.ajax({
+                url: 'add_product.php',
+                type: 'post',
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    response = JSON.parse(response);
+                    $html = '<tr>';
+                    $html += '<td class="pid d-none">' + response.id + '</td>';
+                    $html += '<td>' + response.barcode + '</td>';
+                    $html += '<td>' + response.name + '</td>';
+                    $html += '<td><input class="qu" type="number" min="1" name="quantity" value="1"></td>';
+                    $html += '<td class="pprice">' + response.retail_price + '</td>';
+                    $html += '<td class="itemtotal">' + response.price + '</td>';
+                    $html += '<td><a href="#" class="deleteproduct" data-id="' + response.id + '">Delete</a></td>';
+                    $html += '</tr>';
+                    $('#dyn_tr').append($html);
+                    $("#productsearch").val("").focus();
+                    updateTotal();
+                }
+            });
+        }
+        //delete product
+        $(document).on('click', '.deleteproduct', function(e) {
+            e.preventDefault();
+            $(this).closest('tr').remove();
+        });
+        $(document).on('blur change keyup', '.qu', function() {
+            var $row = $(this).closest('tr');
+            var qty = $row.find('.qu').val();
+            var price = $row.find('.pprice').text();
+            var itemtotal = qty * price;
+            //console.log(itemtotal);
+            $row.find('.itemtotal').text(financial(itemtotal));
+            updateTotal();
+        });
+
+        function updateTotal() {
+            //console.log($('.itemtotal'));
+            var grandtotal = 0;
+            $('.itemtotal').each(function() {
+                grandtotal += parseFloat($(this).text());
+            });
+            $('#grandtotal').text(grandtotal);
+        }
+    });
 </script> -->
+<script>
+    var BASE_URL = "<?php echo base_url(); ?>";
+
+    $(document).ready(function() {
+        $("#search").autocomplete({
+
+            source: function(request, response) {
+                $.ajax({
+                    url: BASE_URL + "PosController/getTerm",
+                    data: {
+                        term: request.term
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        var resp = $.map(data, function(obj) {
+                            return obj.name;
+                        });
+
+                        response(resp);
+                    }
+                });
+            },
+            minLength: 1
+        });
+    });
+</script>
 <?= $this->endSection(); ?>
