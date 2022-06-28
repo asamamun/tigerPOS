@@ -77,14 +77,14 @@
         </div>
     </div>
 </div>
-<div class="card m-2 mt-3">
+<div class="card m-2 mt-3 bg-primary">
     <div class="card-header">
         Add Product(s)
     </div>
     <div class="card-body">
         <div>
             <?php echo form_open(''); ?>
-            <input type="text" class="form-control auto" id="search" name="search" placeholder="Enter Product Name/SKU/Scan Bar Code" />
+            <input type="text" class="form-control auto" id="productsearch" name="search" placeholder="Enter Product Name/SKU/Scan Bar Code" />
             <?php echo form_close(); ?>
         </div>
         <div>
@@ -101,15 +101,7 @@
                     </tr>
                 </thead>
                 <tbody id="dyn_tr">
-                    <!-- <tr>
-                        <th scope="row">1</th>
-                        <td>121212</td>
-                        <td>Mouse</td>
-                        <td>10</td>
-                        <td>500</td>
-                        <td>5000</td>
-                        <td>x</td>
-                    </tr> -->
+                    
                 </tbody>
             </table>
         </div>
@@ -225,13 +217,15 @@
 
 
 <?= $this->section('scripts'); ?>
-<!-- <script>
+<script>
+    var BASE_URL = "<?php echo base_url(); ?>";
     $(document).ready(function() {
         //autocomplete
         $("#productsearch").autocomplete({
-            source:'',
+            source:BASE_URL + '/search',
             minLength: 1,
             select: function(event, ui) {
+                console.log(ui);
                 var id = ui.item.id;
                 addProduct(id);
             }
@@ -239,22 +233,33 @@
 
         function addProduct(id) {
             $.ajax({
-                url: 'add_product.php',
+                url: BASE_URL +  '/addtocart',
                 type: 'post',
                 data: {
                     id: id
                 },
                 success: function(response) {
+                    // console.log(response);
+                    // return;
                     response = JSON.parse(response);
-                    $html = '<tr>';
-                    $html += '<td class="pid d-none">' + response.id + '</td>';
-                    $html += '<td>' + response.barcode + '</td>';
-                    $html += '<td>' + response.name + '</td>';
-                    $html += '<td><input class="qu" type="number" min="1" name="quantity" value="1"></td>';
-                    $html += '<td class="pprice">' + response.retail_price + '</td>';
-                    $html += '<td class="itemtotal">' + response.price + '</td>';
-                    $html += '<td><a href="#" class="deleteproduct" data-id="' + response.id + '">Delete</a></td>';
-                    $html += '</tr>';
+                    // $html = '<tr>';
+                    // $html += '<td class="pid d-none">' + response.id + '</td>';
+                    // $html += '<td>' + response.barcode + '</td>';
+                    // $html += '<td>' + response.name + '</td>';
+                    // $html += '<td><input class="qu" type="number" min="1" name="quantity" value="1"></td>';
+                    // $html += '<td class="pprice">' + response.retail_price + '</td>';
+                    // $html += '<td class="itemtotal">' + response.price + '</td>';
+                    // $html += '<td><a href="#" class="deleteproduct" data-id="' + response.id + '">Delete</a></td>';
+                    // $html += '</tr>';
+                    $html = "<tr>";
+                    $html += "<th scope='row'>1</th>";
+                    $html += "<td>"+response.barcode+"</td>";
+                    $html += "<td>"+response.name+"</td>";
+                    $html += "<td><input class='qu' type='number' min='1' name='quantity' value='1'></td>";
+                    $html += "<td>"+response.price+"</td>";
+                    $html += "<td class='totalprice'>"+response.price+"</td>";
+                    $html += "<td>x</td>";
+                    $html += "</tr>";
                     $('#dyn_tr').append($html);
                     $("#productsearch").val("").focus();
                     updateTotal();
@@ -285,31 +290,6 @@
             $('#grandtotal').text(grandtotal);
         }
     });
-</script> -->
-<script>
-    var BASE_URL = "<?php echo base_url(); ?>";
-
-    $(document).ready(function() {
-        $("#search").autocomplete({
-
-            source: function(request, response) {
-                $.ajax({
-                    url: BASE_URL + "PosController/getTerm",
-                    data: {
-                        term: request.term
-                    },
-                    dataType: "json",
-                    success: function(data) {
-                        var resp = $.map(data, function(obj) {
-                            return obj.name;
-                        });
-
-                        response(resp);
-                    }
-                });
-            },
-            minLength: 1
-        });
-    });
 </script>
+
 <?= $this->endSection(); ?>
