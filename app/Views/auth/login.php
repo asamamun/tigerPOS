@@ -1,47 +1,89 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/bootstrap.min.css" />
-  <title>Document</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/logregstyle.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <title>TigerPOS - Login</title>
 </head>
 
 <body>
-  <div class="container">
-
     <!-- flash message view -->
     <?php echo view("partial/flashmessage"); ?>
-    <section class="vh-100">
-      <div class="container-fluid h-custom">
-        <div class="row d-flex justify-content-center align-items-center h-100 py-5">
-          <div class="col-md-8 col-lg-6 offset-xl-1 border rounded p-5 bg-secondary">
-            <?php echo form_open("login"); ?>
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-              <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="Enter a valid email address" value="<?= old('email') ?>" />
-              <label class="form-label" for="email">Email address</label>
-            </div>
 
-            <!-- Password input -->
-            <div class="form-outline mb-3">
-              <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Enter password" required />
-              <label class="form-label" for="password">Password</label>
-            </div>
+    <!-- blue circle background -->
+    <div class="d-none d-md-block ball login bg-primary bg-gradient position-absolute rounded-circle"></div>
 
-            <div class="text-center mt-4">
-              <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-            </div>
+    <!-- logo name -->
+    <div class="position-absolute top-0 start-0 p-3">
+        <a href="tigerpos" class="text-decoration-none fw-bold fs-5">TigerPOS</a>
+    </div>
 
-            <?php echo form_close() ?>
-          </div>
+    <!-- Login Section -->
+    <div class="container login__form active">
+        <div class="row vh-100 w-100 align-self-center">
+            <div class="col-12 col-lg-6 col-xl-6 px-5">
+                <div class="row vh-100">
+                    <div class="col align-self-center p-5 w-100">
+                        <h3 class="fw-bolder">WELCOME BACK !</h3>
+                        <p class="fw-lighter fs-6">Don't have an account, <span><?php echo anchor('/register', 'Sign Up', ['class' => 'text-primary']); ?></span></p>
+                        
+                        <!-- form login section -->
+                        <?php echo form_open("login"); ?>
+                        <!-- <form action="" class="mt-5"> -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" value="<?= old('email'); ?>" class="form-control text-indent shadow-sm bg-grey-light border-0 rounded-pill fw-lighter fs-7 p-3" placeholder="name@example.com" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="d-flex position-relative">
+                                <input type="password" id="password" name="password" class="form-control text-indent auth__password shadow-sm bg-grey-light border-0 rounded-pill fw-lighter fs-7 p-3" require />
+                                <span class="password__icon text-primary fs-4 fw-bold bi bi-eye-slash"></span>
+                            </div>
+                        </div>
+                        <div class="col text-center">
+                            <button type="submit" class="btn btn-outline-dark btn-lg rounded-pill mt-4 w-100">Login</button>
+                        </div>
+                        <?php echo form_close() ?>
+                        <!-- </form> -->
+                        <p class="mt-5 text-center">Or Sign in with social platforms</p>
+                        <div class="row text-center">
+                            <div class="col mt-3">
+                                <a href="" class="btn btn-outline-dark border-2 rounded-circle"><i class="bi bi-facebook fs-5"></i></a>
+                            </div>
+                            <div class="col mt-3">
+                                <a href="" class="btn btn-outline-dark border-2 rounded-circle"><i class="bi bi-linkedin fs-5"></i></a>
+                            </div>
+                            <div class="col mt-3">
+                                <a href="" class="btn btn-outline-dark border-2 rounded-circle"><i class="bi bi-twitter fs-5"></i></a>
+                            </div>
+                            <div class="col my-3">
+                                <a href="" class="btn btn-outline-dark border-2 rounded-circle"><i class="bi bi-google fs-5"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-none d-lg-block col-lg-6 col-xl-6 p-5">
+                <div class="row vh-100 p-5">
+                    <div class="col align-self-center p-5 text-center">
+                        <img src="<?php echo base_url(); ?>/assets/images/login.png" class="bounce" alt="">
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
-  </div>
-  <script src="<?php echo base_url() ?>/assets/js/bootstrap.bundle.min.js"></script>
-  <script src="<?php echo base_url() ?>/assets/js/jquery-3.5.1.js"></script>
+    </div>
+
+    <script src="<?php echo base_url() ?>/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url() ?>/assets/js/logregscript.js"></script>
+
 </body>
+
 </html>
