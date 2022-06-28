@@ -50,6 +50,7 @@ $routes->post('/customers/create', 'CustomersController::store');
 $routes->get('/customers/edit/(:num)', 'CustomersController::edit/$1');
 $routes->post('/customers/edit/(:num)', 'CustomersController::update/$1');
 $routes->post('/customers/delete/(:num)', 'CustomersController::delete/$1');
+$routes->get('/customers/download', 'CustomersController::pdf');
 
 //suppliers
 $routes->get('/suppliers', 'SuppliersController::index');

@@ -20,7 +20,8 @@
                     <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-csv"></i> CSV</a>
                     <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-excel"></i> Excel</a>
                     <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-print"></i> Print</a>
-                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                    <!-- <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-pdf"></i> PDF</a> -->
+                    <?php echo anchor('customers/download',"<i class='fa-solid fa-file-pdf'></i>",['class'=>'btn btn-primary btn-sm']) ?>
                     <a href="<?= base_url('customers/create'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add Customer</a>
                 </div>
             </div>

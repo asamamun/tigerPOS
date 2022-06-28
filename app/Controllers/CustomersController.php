@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\CustomerModel;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class CustomersController extends BaseController
 {
@@ -108,4 +110,23 @@ class CustomersController extends BaseController
             return redirect("login");
         }
     }
+
+    //pdf
+    public function pdf()
+    {
+        $view = \Config\Services::renderer();
+        $c = new CustomerModel();
+        $customers = $c->findAll();
+        $options = new Options();
+        $options->set('defaultFont', 'Siyam Rupali ANSI');
+        $d= new Dompdf($options);
+        $html = view('customers/table', ['customers' => $customers , 'title'=>"All Customers"]);
+        $d->load_html($html);
+        // $d->setPaper('A4', 'landscape');
+        $d->setPaper('A4', 'portrait');
+        $d->render();
+        $d->stream();
+        
+    }
+    
 }
