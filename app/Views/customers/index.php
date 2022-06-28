@@ -17,7 +17,8 @@
             <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title">Customers</h3>
                 <div class="card-options">
-                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-csv"></i> CSV</a>
+                    <!-- <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-csv"></i> CSV</a> -->
+                    <?php echo anchor('customers/csv',"<i class='fa-solid fa-file-csv'></i>",['class'=>'btn btn-primary btn-sm']) ?>
                     <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-excel"></i> Excel</a>
                     <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-print"></i> Print</a>
                     <!-- <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-pdf"></i> PDF</a> -->

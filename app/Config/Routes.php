@@ -51,6 +51,7 @@ $routes->get('/customers/edit/(:num)', 'CustomersController::edit/$1');
 $routes->post('/customers/edit/(:num)', 'CustomersController::update/$1');
 $routes->post('/customers/delete/(:num)', 'CustomersController::delete/$1');
 $routes->get('/customers/download', 'CustomersController::pdf');
+$routes->get('/customers/csv', 'CustomersController::csv');
 
 //suppliers
 $routes->get('/suppliers', 'SuppliersController::index');

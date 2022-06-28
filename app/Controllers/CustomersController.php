@@ -128,5 +128,27 @@ class CustomersController extends BaseController
         $d->stream();
         
     }
+    public function csv(){ 
+        // file name 
+        $filename = 'customers_'.date('Ymd').'.csv'; 
+        header("Content-Description: File Transfer"); 
+        header("Content-Disposition: attachment; filename=$filename"); 
+        header("Content-Type: application/csv; ");
+   
+        // get data 
+        $customers = new CustomerModel();
+        $customersData =  $customers->select('*')->findAll();
+   
+        // file creation 
+        $file = fopen('php://output', 'w');
+   
+        $header = array("ID","Name","Email","Phone","Address","Expense"); 
+        fputcsv($file, $header);
+        foreach ($customersData as $key=>$line){ 
+           fputcsv($file,$line); 
+        }
+        fclose($file); 
+        exit; 
+      }
     
 }
