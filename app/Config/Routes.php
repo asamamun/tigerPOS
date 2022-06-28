@@ -105,6 +105,8 @@ $routes->post('/accounts/delete/(:num)', 'AccountController::delete/$1');
 $routes->get('/pos', 'PosController::index');
 $routes->get('/search', 'PosController::search');
 $routes->post('/addtocart', 'PosController::addtocart');
+$routes->get('/customersearch', 'PosController::customersearch');
+$routes->post('/addcustomer', 'PosController::addcustomer');
 
 $routes->get('/pos/create', 'PosController::create');
 $routes->post('/pos/create', 'PosController::store');
