@@ -25,7 +25,7 @@ class PosController extends BaseController
         // exit;
         $data['accounts'] = $dropacc;
 
-        return view('pos/index');
+        return view('pos/index',$data);
     }
     public function search()
     {
@@ -73,22 +73,25 @@ class PosController extends BaseController
             $return_arr[] = array(
                 'label' => $row['name'],
                 'value' => $row['id'],
-                'id' => $row['id']
+                'id' => $row['id'],
+                'name' => $row['name'],
+            'mobile' => $row['mobile'],
+            'address' => $row['address'],
             );
         }
         echo json_encode($return_arr);
     }
-    public function addcustomer()
-    {
-        $id = $this->request->getPost('id');
-        $p = new ProductModel();
-        $row = $p->find($id);
-        $return_arr = array(
-            'id' => $row['id'],
-            'name' => $row['name'],
-            'mobile' => $row['mobile'],
-            'address' => $row['address'],
-        );
-        echo json_encode($return_arr);
-    }
+    // public function customerdetails()
+    // {
+    //     $id = $this->request->getPost('id');
+    //     $p = new CustomerModel();
+    //     $row = $p->find($id);
+    //     $return_arr = array(
+    //         'id' => $row['id'],
+    //         'name' => $row['name'],
+    //         'mobile' => $row['mobile'],
+    //         'address' => $row['address'],
+    //     );
+    //     echo json_encode($return_arr);
+    // }
 }

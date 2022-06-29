@@ -45,15 +45,11 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <?php echo form_open(''); ?>
+                    
                     <input type="text" class="form-control auto" id="customersearch" name="customersearch" placeholder="Enter Customer Name" />
-                    <?php echo form_close(); ?>
+                    
                 </div>
-                <div class="dyn_customer">
-
-                    <!-- <div><strong>Syed Zayed Hossain</strong></div>
-                    <div>Manikdi, Dhaka</div>
-                    <div>01629999666</div> -->
+                <div id="dyn_customer">
                 </div>
                 <hr>
                 <div class="row">
@@ -61,14 +57,14 @@
                     <div class="col-md-5 text-end">&#2547; <span id="total"></span></div>
 
                     <div class="col-md-7">Discount:</div>
-                    <div class="col-md-5 text-end">&#2547; <span id="discount">150</span></div>
+                    <div class="col-md-5 text-end"> <input id="discount" value="0"/>&#2547;</div>
                     <hr>
                     <div class="col-md-7"><b>Grand Total: </b></div>
                     <div class="col-md-5 text-end">&#2547; <span id="grandtotal"></span></div>
                     <hr>
                     <div class="form-group">
                         <label for="payment_method">Payment Method:</label>
-                        <?php echo form_dropdown('payment_method', $accounts, '', ['class' => 'form-control','id'=> 'payment_method']); ?>
+                        <?php echo form_dropdown('payment_method', $accounts, '4', ['class' => 'form-control','id'=> 'payment_method']); ?>
                         <input type="text" name="trxId" id="trxId" class="d-none form-control mt-2" placeholder="Transaction ID">
                     </div>
                     <!-- <div>
@@ -95,7 +91,7 @@
     <textarea class="form-control" name="salenote" id="salenote"></textarea>
 </div>
 <div class=" text-center">
-    <button type="button" class="btn btn-success m-2">Save</button>
+    <button type="button" id="saveBtn" class="btn btn-success m-2">Save</button>
     <button type="button" class="btn btn-info m-2">Save & Print</button>
 </div>
 
@@ -105,6 +101,9 @@
 <?= $this->section('scripts'); ?>
 <script>
     var BASE_URL = "<?php echo base_url(); ?>";
+    function financial(x) {
+			return Number.parseFloat(x).toFixed(2);
+		}
     $(document).ready(function() {
         //autocomplete
         $("#productsearch").autocomplete({
@@ -166,7 +165,13 @@
                 grandtotal += parseFloat($(this).text());
             });
             $('#total').text(grandtotal);
+            // alert($("#discount").val());
+            $('#grandtotal').text(grandtotal - parseInt($("#discount").val()));
         }
+        //
+        $("#discount").keyup(function() {
+            updateTotal();
+        })
 
         //payment method
         $("#payment_method").change(function() {
@@ -184,31 +189,45 @@
             minLength: 1,
             select: function(event, ui) {
                 console.log(ui);
-                var id = ui.item.id;
-                addCustomer(id);
+                    $html2 = "";
+                    $html2 += "<div><strong>" + ui.item.name + "</strong></div>";
+                    $html2 += "<div>" + ui.item.address + "</div>";
+                    $html2 += "<div>" + ui.item.mobile + "</div>";
+                    $('#dyn_customer').html($html2);
+                    $("#customersearch").val("").focus();  
+                
             }
         });
 
-        function addCustomer(id) {
-            $.ajax({
-                url: BASE_URL + '/addcustomer',
-                type: 'post',
-                data: {
-                    id: id
-                },
-                success: function(response2) {
-                    // console.log(response);
-                    // return;
-                    response2 = JSON.parse(response2);
-                    $html2 += "<div>" + response2.name + "</div>";
-                    $html2 += "<div>" + response2.address + "</div>";
-                    $html2 += "<div>" + response2.mobile + "</div>";
-                    $('#dyn_customer').append($html2);
-                    $("#customersearch").val("").focus();
-                    // updateTotal();
-                }
-            });
-        }
+        // function addCustomer(id) {
+        //     $.ajax({
+        //         url: BASE_URL + '/customerdetails',
+        //         type: 'post',
+        //         data: {
+        //             id: id
+        //         },
+        //         success: function(response2) {
+        //             $html2 = "";
+        //             // console.log(response);
+        //             // return;
+        //             response2 = JSON.parse(response2);
+        //             // console.log(response2);
+        //             $html2 += "<div>" + response2.name + "</div>";
+        //             $html2 += "<div>" + response2.address + "</div>";
+        //             $html2 += "<div>" + response2.mobile + "</div>";
+        //             $('#dyn_customer').append($html2);
+        //             $("#customersearch").val("").focus();
+        //             // updateTotal();
+        //         }
+        //     });
+        // }
+
+        // save button start
+        $("#saveBtn").click(function(){
+
+        });
+        // save button end
+        // 
     });
 </script>
 
