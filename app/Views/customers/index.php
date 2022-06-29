@@ -18,11 +18,12 @@
                 <h3 class="card-title">Customers</h3>
                 <div class="card-options">
                     <!-- <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-csv"></i> CSV</a> -->
-                    <?php echo anchor('customers/csv',"<i class='fa-solid fa-file-csv'></i>",['class'=>'btn btn-primary btn-sm']) ?>
-                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-excel"></i> Excel</a>
-                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-print"></i> Print</a>
+                    <?php echo anchor('customers/csv', "<i class='fa-solid fa-file-csv'> CSV</i>", ['class' => 'btn btn-primary btn-sm']) ?>
+                    <!-- <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-excel"></i> Excel</a> -->
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm" id="btnPrint"><i class="fa-solid fa-print"></i> Print</a>
+                    <!-- <?php echo anchor('customers/print',"<i class='fa-solid fa-print'></i>", ['class' => 'btn btn-primary btn-sm']) ?> -->
                     <!-- <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-pdf"></i> PDF</a> -->
-                    <?php echo anchor('customers/download',"<i class='fa-solid fa-file-pdf'></i>",['class'=>'btn btn-primary btn-sm']) ?>
+                    <?php echo anchor('customers/download', "<i class='fa-solid fa-file-pdf'> PDF</i>", ['class' => 'btn btn-primary btn-sm']) ?>
                     <a href="<?= base_url('customers/create'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add Customer</a>
                 </div>
             </div>
@@ -77,5 +78,21 @@
     $(document).ready(function() {
         $('#customers').DataTable();
     } );
+</script>
+<script>
+    $("#btnPrint").on("click", function() {
+        //alert($(window).height());
+        var ht = $(window).height();
+        var wt = $(window).width();
+        var divContents = $("#customers").html();
+        var printWindow = window.open('', '', 'height=' + ht + 'px,width=' + wt + 'px');
+        printWindow.document.write('<html><head><title>All Customers</title>');
+        printWindow.document.write('<link href="<?= base_url() ?>web_assets/css/bootstrap.css" rel="stylesheet" media="screen">  <link href="<?= base_url() ?>web_assets/css/custom.css" rel="stylesheet" media="screen">');
+        printWindow.document.write('</head><body>');
+        printWindow.document.write(divContents);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+    });
 </script>
 <?= $this->endSection(); ?>

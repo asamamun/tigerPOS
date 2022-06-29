@@ -128,7 +128,7 @@
                     // return;
                     response = JSON.parse(response);
                     $html = "<tr>";
-                    $html += "<th>1</th>";
+                    $html += "<th>" + response.id +"</th>";
                     $html += "<td>" + response.barcode + "</td>";
                     $html += "<td>" + response.name + "</td>";
                     $html += "<td class='pprice'>" + response.price + "</td>";
