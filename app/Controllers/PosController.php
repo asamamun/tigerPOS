@@ -6,6 +6,8 @@ use App\Controllers\BaseController;
 use App\Models\AccountModel;
 use App\Models\CustomerModel;
 use App\Models\ProductModel;
+use App\Models\InvoiceModel;
+use App\Models\InvoiceDetailsModel;
 
 //https://laratutorials.com/codeigniter-4-jquery-ui-autocomplete-search-from-database/
 
@@ -94,4 +96,37 @@ class PosController extends BaseController
     //     );
     //     echo json_encode($return_arr);
     // }
+
+    public function placeorder(){
+        $inv = new InvoiceModel();
+        $details = new InvoiceDetailsModel();
+        $data = [
+            'customer_id'=>$this->request->getPost('cid'),
+            'nettotal'=>$this->request->getPost('total'),
+            'discount'=>$this->request->getPost('discount'),
+            'grandtotal'=>$this->request->getPost('gtotal'),
+            'comment'=>$this->request->getPost('comment'),
+            'payment_type'=>$this->request->getPost('pmethod'),
+            'texid'=>$this->request->getPost('trxid'),
+        ];
+        $inv->save($data);
+        $invoiceID = $inv->getInsertID();
+
+        $ids = $this->request->getPost('ids');
+        $quans = $this->request->getPost('quantity');
+        $pprice = $this->request->getPost('pricearr');
+        $ptotal = $this->request->getPost('totalarr');
+        foreach ($ids as $key => $value) {
+            $det = new InvoiceDetailsModel();
+            $pdata = [
+                'invoice_id'=>$invoiceID,
+                'product_id'=>$ids[$key],
+                'quantity'=>$quans[$key],
+                'price'=>$pprice[$key],
+                'total'=>$ptotal[$key],
+            ];
+            $det->save($pdata);
+        }
+        echo "Order Saved. Invoice Id: ". $invoiceID;
+}
 }

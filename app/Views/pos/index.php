@@ -24,7 +24,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th>ID</th>
                                 <th>Barcode</th>
                                 <th>Product(s)</th>
                                 <th>Unit Price</th>
@@ -94,6 +94,7 @@
     <button type="button" id="saveBtn" class="btn btn-success m-2">Save</button>
     <button type="button" class="btn btn-info m-2">Save & Print</button>
 </div>
+<h3 id="responseMessage"></h3>
 
 <?= $this->endSection(); ?>
 
@@ -128,9 +129,9 @@
                     // return;
                     response = JSON.parse(response);
                     $html = "<tr>";
-                    $html += "<th>1</th>";
-                    $html += "<td>" + response.barcode + "</td>";
-                    $html += "<td>" + response.name + "</td>";
+                    $html += "<th class='productid'>" + response.id + "</th>";
+                    $html += "<td class='barcode'>" + response.barcode + "</td>";
+                    $html += "<td class='productname'>" + response.name + "</td>";
                     $html += "<td class='pprice'>" + response.price + "</td>";
                     $html += "<td><input class='qu' type='number' min='1' name='quantity' value='1'></td>";
                     $html += "<td class='itemtotal'>" + response.price + "</td>";
@@ -188,7 +189,7 @@
             source: BASE_URL + '/customersearch',
             minLength: 1,
             select: function(event, ui) {
-                console.log(ui);
+                // console.log(ui);
                     $html2 = "";
                     $html2 += "<div><strong>" + ui.item.name + "</strong></div>";
                     $html2 += "<div>" + ui.item.address + "</div>";
@@ -199,31 +200,44 @@
             }
         });
 
-        // function addCustomer(id) {
-        //     $.ajax({
-        //         url: BASE_URL + '/customerdetails',
-        //         type: 'post',
-        //         data: {
-        //             id: id
-        //         },
-        //         success: function(response2) {
-        //             $html2 = "";
-        //             // console.log(response);
-        //             // return;
-        //             response2 = JSON.parse(response2);
-        //             // console.log(response2);
-        //             $html2 += "<div>" + response2.name + "</div>";
-        //             $html2 += "<div>" + response2.address + "</div>";
-        //             $html2 += "<div>" + response2.mobile + "</div>";
-        //             $('#dyn_customer').append($html2);
-        //             $("#customersearch").val("").focus();
-        //             // updateTotal();
-        //         }
-        //     });
-        // }
 
         // save button start
         $("#saveBtn").click(function(){
+        $idArr = [];
+        $quanArr = [];
+        $priceArr = [];
+        $totalArr = [];
+        $(".productid").each(function(){$idArr.push($(this).text());})
+        $(".qu").each(function(){$quanArr.push($(this).val());})
+        $(".pprice").each(function(){$priceArr.push($(this).text());})
+        $(".itemtotal").each(function(){$totalArr.push($(this).text());})
+
+        console.log($quanArr);
+//post data
+$.ajax({
+                url: BASE_URL + '/placeorder',
+                type: 'post',
+                data: {
+                    ids: $idArr,
+                    quantity: $quanArr,
+                    pricearr :$priceArr,
+                    totalarr: $totalArr,
+                    cid: $("#customersearch").val(),
+                    total: $("#total").html(),
+                    discount: $("#discount").val(),
+                    gtotal: $("#grandtotal").html(),
+                    pmethod: $("#payment_method").val(),
+                    trxid: $("#trxId").val(),
+                    comment: $("#salenote").val()
+                        },
+                success: function(response) {
+                  $("#responseMessage").html(response);
+                    // location.reload();
+
+                }
+            });            
+//post data            
+
 
         });
         // save button end

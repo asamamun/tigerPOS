@@ -107,6 +107,7 @@ $routes->get('/search', 'PosController::search');
 $routes->post('/addtocart', 'PosController::addtocart');
 $routes->get('/customersearch', 'PosController::customersearch');
 $routes->post('/customerdetails', 'PosController::customerdetails');
+$routes->post('/placeorder', 'PosController::placeorder');
 
 $routes->get('/pos/create', 'PosController::create');
 $routes->post('/pos/create', 'PosController::store');
