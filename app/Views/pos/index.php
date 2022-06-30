@@ -129,15 +129,9 @@
                     // return;
                     response = JSON.parse(response);
                     $html = "<tr>";
-<<<<<<< HEAD
                     $html += "<th class='productid'>" + response.id + "</th>";
                     $html += "<td class='barcode'>" + response.barcode + "</td>";
                     $html += "<td class='productname'>" + response.name + "</td>";
-=======
-                    $html += "<th>" + response.id +"</th>";
-                    $html += "<td>" + response.barcode + "</td>";
-                    $html += "<td>" + response.name + "</td>";
->>>>>>> 2ce59d1e3b5ca23a0c8e2b66ff21c2b4c478d020
                     $html += "<td class='pprice'>" + response.price + "</td>";
                     $html += "<td><input class='qu' type='number' min='1' name='quantity' value='1'></td>";
                     $html += "<td class='itemtotal'>" + response.price + "</td>";
