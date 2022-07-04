@@ -20,6 +20,11 @@
     <label for="amount">Amount</label>
     <input type="text" class="form-control" id="amount" name="amount" placeholder="Enter amount">
 </div>
+<!-- payment method -->
+<div class="form-group">
+    <label for="payment_type">Payment Method</label>
+    <?php echo form_dropdown('payment_type', $accounts,'',['class' => 'form-control']); ?>
+</div>
 
 <button type="submit" class="btn btn-primary mt-2">Submit</button>
 <?php echo form_close(); ?>

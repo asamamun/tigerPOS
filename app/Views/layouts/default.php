@@ -99,6 +99,12 @@
             <div class="collapse" id="layouts4">
               <ul class="navbar-nav ps-3">
                 <li>
+                  <?php echo anchor('/invoice', '<span class="me-2"><i class="fa-solid fa-file-invoice"></i></span><span>Invoice List</span>', ['class' => 'nav-link px-3']); ?>
+                </li>
+                <li>
+                  <?php echo anchor('/invoicedetails', '<span class="me-2"><i class="fa-solid fa-file-invoice-dollar"></i></span><span>Detail Invoice List</span>', ['class' => 'nav-link px-3']); ?>
+                </li>
+                <li>
                   <?php echo anchor('/sales', '<span class="me-2"><i class="fa-solid fa-cart-shopping"></i></span><span>All Sale</span>', ['class' => 'nav-link px-3']); ?>
                 </li>
                 <li>

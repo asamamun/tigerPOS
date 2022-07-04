@@ -29,6 +29,7 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Amount</th>
+                                <th>Payment Method</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -38,6 +39,7 @@
                                     <td><?= $expense['id']; ?></td>
                                     <td><?= $expense['name']; ?></td>
                                     <td><?= $expense['amount']; ?></td>
+                                    <td><?= $expense['accname']; ?></td>
                                     <td class="d-flex justify-content-center">
                                         <a href="<?= base_url('expenses/edit/' . $expense['id']); ?>" class="btn btn-sm btn-warning me-1"><i class="fa fa-edit"></i></a>
                                         <?php echo form_open("expenses/delete/" . $expense['id'], ['onsubmit' => "return confirm('Are you sure you want to submit this form?');"]) ?>

@@ -22,14 +22,6 @@
     <label for="email">Email</label>
     <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="<?= $user['email'] ?>">
 </div>
-<div class="form-group">
-    <label for="mobile">Mobile</label>
-    <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter mobile" value="<?= $user['mobile'] ?>">
-</div>
-<div class="form-group">
-    <label for="address">Address</label>
-    <input type="text" class="form-control" id="address" name="address" placeholder="Enter address" value="<?= $user['address'] ?>">
-</div>
 
 <button type="submit" class="btn btn-primary">Submit</button>
 <?php echo form_close(); ?>

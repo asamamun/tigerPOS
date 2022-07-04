@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\AccountModel;
 use App\Models\ExpenseModel;
 
 class ExpensesController extends BaseController
@@ -14,8 +15,16 @@ class ExpensesController extends BaseController
     public function index()
     {
         if ($this->checkauth()) {
-            $expenses = new ExpenseModel();
-            $data['expenses'] = $expenses->where('deleted', null)->findAll();
+            $db      = \Config\Database::connect();
+            $builder = $db->table('expenses e')
+                ->select('e.*, a.name as accname')
+                ->join('accounts a', 'a.id = e.payment_type')
+                // ->join('invoicedetails d', 'd.id = p.category_id')
+                ->where('e.deleted', null)
+                ->get();
+            //ddd($builder->getResult());
+            $data = ['expenses' => $builder->getResultArray('expenses')];
+
             return view('expenses/index', $data);
         } else {
             return redirect("login");
@@ -25,7 +34,12 @@ class ExpensesController extends BaseController
     public function create()
     {
         if ($this->checkauth()) {
-            return view('expenses/create');
+            $c = new AccountModel();
+            $allacc = $c->select('id,name')->findAll();
+            $dropacc = key_value_for_dropdown($allacc);
+            // ddd($dropacc);            
+            $data['accounts'] = $dropacc;
+            return view('expenses/create',$data);
         } else {
             return redirect("login");
         }
@@ -40,6 +54,7 @@ class ExpensesController extends BaseController
             $data = [
                 'name' => $this->request->getPost('name'),
                 'amount' => $this->request->getPost('amount'),
+                'payment_type' => $this->request->getPost('payment_type'),
                 'deleted' => null,
             ];
             if ($expense->insert($data)) {

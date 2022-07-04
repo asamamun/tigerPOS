@@ -18,8 +18,8 @@
                     <div class="col-md-3 col-sm-6">
                         <h5>Location</h5>
                         <div class="dropdown content-center">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="width:100%">
-                             All
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width:100%">
+                                All
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
@@ -30,8 +30,8 @@
                     <div class="col-md-3 col-sm-6">
                         <h5>Customer</h5>
                         <div class="dropdown content-center">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="width:100%">
-                             All
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width:100%">
+                                All
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
@@ -42,8 +42,8 @@
                     <div class="col-md-3 col-sm-6">
                         <h5>Payment Status</h5>
                         <div class="dropdown content-center">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="width:100%">
-                             All
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width:100%">
+                                All
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
@@ -54,8 +54,8 @@
                     <div class="col-md-3 col-sm-6">
                         <h5>Date Range</h5>
                         <div class="dropdown content-center">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="width:100%">
-                             All
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width:100%">
+                                All
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
@@ -66,8 +66,8 @@
                     <div class="col-md-3 col-sm-6 mt-3">
                         <h5>User</h5>
                         <div class="dropdown content-center">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="width:100%">
-                             All
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width:100%">
+                                All
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
@@ -78,8 +78,8 @@
                     <div class="col-md-3 col-sm-6 mt-3">
                         <h5>Shipping Status</h5>
                         <div class="dropdown content-center">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="width:100%">
-                             All
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width:100%">
+                                All
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
@@ -91,8 +91,8 @@
                         <h4></h4>
                         <h5>Subscriptions</h5>
                         <div class="dropdown content-center">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="width:100%">
-                             All
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width:100%">
+                                All
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
@@ -110,7 +110,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title">All Sales</h3>
-                <h3 class="card-title"><a href="<?= base_url('/sales/create'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add </a></h3>
+                <h3 class="card-title"><a href="<?= base_url('/pos'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add </a></h3>
 
 
             </div>
@@ -132,37 +132,38 @@
                     <table class="table table-striped table-hover table-bordered border-light table-scroll table-wrap" id="sales">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <!-- <th>#</th> -->
                                 <th>Action</th>
                                 <th>Date</th>
                                 <th>Invoice No.</th>
                                 <th>Customer name</th>
                                 <th>Contact number</th>
                                 <th>Location</th>
-                                <th>Payment Status</th>
                                 <th>Payment Method</th>
-                                <th>Total Amount</th>
-                                <th>Total Paid</th>
-                                <th>Sell Due</th>
+                                <th>Net Total</th>
+                                <th>Discount</th>
+                                <th>Grand Total</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                            <?php foreach ($sales as $sale) : ?>
+                                <tr>
+                                    <td class="d-flex justify-content-center">
+                                        <a href="<?= base_url('' . $sale['id']); ?>" class="btn btn-sm btn-warning me-1"><i class="fa-solid fa-print"></i></a>
+                                        <a href="<?= base_url('' . $sale['id']); ?>" class="btn btn-sm btn-warning me-1"><i class="fa-solid fa-file-pdf"></i></a>
+                                    </td>
+                                    <td><?= $sale['created']; ?></td>
+                                    <td><?= $sale['id']; ?></td>
+                                    <td><?= $sale['custname']; ?></td>
+                                    <td><?= $sale['custmob']; ?></td>
+                                    <td><?= $sale['custaddress']; ?></td>
+                                    <td><?= $sale['accname']; ?></td>
+                                    <td><?= $sale['nettotal']; ?></td>
+                                    <td><?= $sale['discount']; ?></td>
+                                    <td><?= $sale['grandtotal']; ?></td>
 
-                            </tr>
-
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
 

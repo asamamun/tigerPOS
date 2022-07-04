@@ -22,6 +22,16 @@
     <label for="amount">Amount</label>
     <input type="text" class="form-control" id="amount" name="amount" placeholder="Enter amount" value="<?= $expense['amount'] ?>">
 </div>
+<div class="form-group">
+    <label for="amount">Payment Method</label>
+    <input type="text" class="form-control" id="amount" name="amount" placeholder="Enter amount" value="<?= $expense['amount'] ?>">
+</div>
+
+<!-- payment method -->
+<div class="form-group">
+    <label for="payment_method">Payment Method</label>
+    <?php echo form_dropdown('payment_method', $accounts,'',['class' => 'form-control']); ?>
+</div>
 
 <button type="submit" class="btn btn-primary">Submit</button>
 <?php echo form_close(); ?>

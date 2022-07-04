@@ -119,36 +119,35 @@ class CustomersController extends BaseController
         $customers = $c->findAll();
         $options = new Options();
         $options->set('defaultFont', 'Siyam Rupali ANSI');
-        $d= new Dompdf($options);
-        $html = view('customers/table', ['customers' => $customers , 'title'=>"All Customers"]);
+        $d = new Dompdf($options);
+        $html = view('customers/table', ['customers' => $customers, 'title' => "All Customers"]);
         $d->load_html($html);
         // $d->setPaper('A4', 'landscape');
         $d->setPaper('A4', 'portrait');
         $d->render();
         $d->stream();
-        
     }
-    public function csv(){ 
+    public function csv()
+    {
         // file name 
-        $filename = 'customers_'.date('Ymd').'.csv'; 
-        header("Content-Description: File Transfer"); 
-        header("Content-Disposition: attachment; filename=$filename"); 
+        $filename = 'customers_' . date('Ymd') . '.csv';
+        header("Content-Description: File Transfer");
+        header("Content-Disposition: attachment; filename=$filename");
         header("Content-Type: application/csv; ");
-   
+
         // get data 
         $customers = new CustomerModel();
         $customersData =  $customers->select('*')->findAll();
-   
+
         // file creation 
         $file = fopen('php://output', 'w');
-   
-        $header = array("ID","Name","Email","Phone","Address","Expense"); 
+
+        $header = array("ID", "Name", "Email", "Phone", "Address", "Expense");
         fputcsv($file, $header);
-        foreach ($customersData as $key=>$line){ 
-           fputcsv($file,$line); 
+        foreach ($customersData as $key => $line) {
+            fputcsv($file, $line);
         }
-        fclose($file); 
-        exit; 
-      }
-    
+        fclose($file);
+        exit;
+    }
 }

@@ -77,6 +77,30 @@ $routes->get('/expenses/edit/(:num)', 'ExpensesController::edit/$1');
 $routes->post('/expenses/edit/(:num)', 'ExpensesController::update/$1');
 $routes->post('/expenses/delete/(:num)', 'ExpensesController::delete/$1');
 
+//sales
+$routes->get('/sales', 'SalesController::index');
+// $routes->get('/sales/create', 'SalesController::create');
+// $routes->post('/sales/create', 'SalesController::store');
+// $routes->get('/sales/edit/(:num)', 'SalesController::edit/$1');
+// $routes->post('/sales/edit/(:num)', 'SalesController::update/$1');
+// $routes->post('/sales/delete/(:num)', 'SalesController::delete/$1');
+
+//invoice
+$routes->get('/invoice', 'InvoiceController::index');
+// $routes->get('/invoice/create', 'InvoiceController::create');
+// $routes->post('/invoice/create', 'InvoiceController::store');
+// $routes->get('/invoice/edit/(:num)', 'InvoiceController::edit/$1');
+// $routes->post('/invoice/edit/(:num)', 'InvoiceController::update/$1');
+// $routes->post('/invoice/delete/(:num)', 'InvoiceController::delete/$1');
+
+//invoice
+$routes->get('/invoicedetails', 'InvoiceDetailController::index');
+// $routes->get('/invoicedetails/create', 'InvoiceDetailController::create');
+// $routes->post('/invoicedetails/create', 'InvoiceDetailController::store');
+// $routes->get('/invoicedetails/edit/(:num)', 'InvoiceDetailController::edit/$1');
+// $routes->post('/invoicedetails/edit/(:num)', 'InvoiceDetailController::update/$1');
+// $routes->post('/invoicedetails/delete/(:num)', 'InvoiceDetailController::delete/$1');
+
 //products
 $routes->get('/products', 'ProductsController::index');
 $routes->get('/products/create', 'ProductsController::create');
@@ -138,8 +162,6 @@ $routes->post('/customers/import_example_download_sample_csv', 'CustomersControl
 $routes->get('/products', 'ProductsController::index');
 // $routes->get('/suppliers', 'SuppliersController::index');
 $routes->get('/purchase', 'PurchaseController::index');
-$routes->get('/sales', 'SalesController::index');
-$routes->get('/sales/create', 'SalesController::create');
 // $routes->get('/expenses', 'ExpensesController::index');
 $routes->get('/accounts', 'AccountsController::index');
 
