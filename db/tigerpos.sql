@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2022 at 09:47 PM
+-- Generation Time: Jul 05, 2022 at 10:05 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -90,7 +90,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `email`, `mobile`, `address`, `expense`, `created`, `deleted`) VALUES
-(1, 'Shariful Islam', 'php.shariful@gmail.com', '01746959343', 'Mirpur 13, Dhaka-1216', '0.00', '2022-06-19 21:08:52', NULL),
+(1, 'Default Customer', 'default@gmail.com', '01812345678', 'Mirpur', '0.00', '2022-06-19 21:08:52', NULL),
 (2, 'Tamimul Islam', 'tamimislam732@gmail.com', '01911151732', 'Savar, Dhaka', '0.00', '2022-06-19 21:08:52', NULL),
 (3, 'Syed Zayed Hosssain', 'php.zayed@gmail.com', '01629999666', 'Manikdi, Dhaka Cantonment, Dhaka-1206', '0.00', '2022-06-19 21:10:34', NULL),
 (4, 'Tasnim Al Rahman', 'tasnim333@gmail.com', '01712345678', 'Mirpur, Dhaka-1216', '0.00', '2022-06-19 21:10:34', NULL),
@@ -147,13 +147,6 @@ CREATE TABLE `invoice` (
 --
 
 INSERT INTO `invoice` (`id`, `customer_id`, `nettotal`, `discount`, `grandtotal`, `comment`, `payment_type`, `trxid`, `created`, `updated`) VALUES
-(1, 1, '156.00', '6.00', '150.00', 'aaaa', 1, '', '2022-06-29 12:21:45', NULL),
-(2, 1, '156.00', '6.00', '150.00', 'aaaa', 1, '', '2022-06-29 12:22:07', NULL),
-(3, 2, '60.00', '10.00', '50.00', 'asdfdsf', 2, '', '2022-06-29 12:23:00', NULL),
-(4, 3, '390.00', '90.00', '300.00', 'sadfsdfdf', 4, '', '2022-06-29 12:24:32', NULL),
-(5, 4, '1080.00', '80.00', '1000.00', '77777', 1, '', '2022-06-29 12:34:42', NULL),
-(6, 4, '1080.00', '80.00', '1000.00', '77777', 1, '', '2022-06-29 12:36:18', NULL),
-(7, 5, '2100.00', '100.00', '2000.00', 'tttt', 1, '', '2022-06-29 12:42:18', NULL),
 (8, 2, '774.00', '4.00', '770.00', 'sdafsdaf', 4, '', '2022-06-29 12:45:39', NULL),
 (9, 2, '240.00', '40.00', '200.00', 'sdafdsf', 4, '', '2022-06-29 12:48:24', NULL),
 (10, 4, '384.00', '4.00', '380.00', 'dafasdf', 4, '', '2022-06-29 12:48:52', NULL),
@@ -162,7 +155,10 @@ INSERT INTO `invoice` (`id`, `customer_id`, `nettotal`, `discount`, `grandtotal`
 (13, 3, '462.00', '2.00', '460.00', 'dummy order', 1, '', '2022-06-29 17:16:24', NULL),
 (14, 2, '276.00', '6.00', '270.00', 'Paid', 4, '', '2022-07-04 17:12:06', NULL),
 (15, 5, '578.00', '8.00', '570.00', 'al amin oil', 4, '', '2022-07-04 18:48:46', NULL),
-(16, 4, '1660.00', '10.00', '1650.00', 'some note', 4, '', '2022-07-04 18:49:26', NULL);
+(16, 4, '1660.00', '10.00', '1650.00', 'some note', 4, '', '2022-07-04 18:49:26', NULL),
+(17, 1, '180.00', '10.00', '170.00', 'sdsfsd', 1, 'asdasdfsdf', '2022-07-05 17:17:55', NULL),
+(18, 1, '480.00', '30.00', '450.00', 'dfsdf', 4, '', '2022-07-05 17:20:12', NULL),
+(19, 1, '960.00', '60.00', '900.00', 'efewwghths', 2, 'sfefefrfe', '2022-07-05 19:16:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -201,7 +197,63 @@ INSERT INTO `invoicedetails` (`id`, `invoice_id`, `product_id`, `quantity`, `pri
 (19, 15, 3, '3.00', '96.00', '288.00', '2022-07-04 18:48:46'),
 (20, 16, 6, '2.00', '145.00', '290.00', '2022-07-04 18:49:26'),
 (21, 16, 2, '1.00', '90.00', '90.00', '2022-07-04 18:49:26'),
-(22, 16, 4, '4.00', '320.00', '1280.00', '2022-07-04 18:49:27');
+(22, 16, 4, '4.00', '320.00', '1280.00', '2022-07-04 18:49:27'),
+(23, 17, 1, '3.00', '60.00', '180.00', '2022-07-05 17:17:55'),
+(24, 18, 3, '5.00', '96.00', '480.00', '2022-07-05 17:20:12'),
+(26, 19, 3, '10.00', '96.00', '960.00', '2022-07-05 19:16:29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderdetails`
+--
+
+CREATE TABLE `orderdetails` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` decimal(5,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orderdetails`
+--
+
+INSERT INTO `orderdetails` (`id`, `order_id`, `product_id`, `quantity`, `price`, `total`, `created`) VALUES
+(1, 2, 4, '100.00', '320.00', '32000.00', '2022-07-05 19:12:46'),
+(2, 2, 5, '50.00', '197.00', '9850.00', '2022-07-05 19:12:46'),
+(3, 3, 6, '50.00', '145.00', '7250.00', '2022-07-05 19:14:43'),
+(4, 3, 3, '55.00', '96.00', '5280.00', '2022-07-05 19:14:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `nettotal` decimal(10,2) NOT NULL,
+  `discount` decimal(10,2) NOT NULL,
+  `grandtotal` decimal(10,2) NOT NULL,
+  `comment` varchar(512) NOT NULL,
+  `payment_type` int(2) NOT NULL,
+  `trxid` varchar(30) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `supplier_id`, `nettotal`, `discount`, `grandtotal`, `comment`, `payment_type`, `trxid`, `created`, `updated`) VALUES
+(2, 4, '41850.00', '0.00', '41850.00', 'asdwerewd', 2, 'sadasfdfgsd', '2022-07-05 19:12:46', NULL),
+(3, 5, '12530.00', '0.00', '12530.00', 'asdweefef', 3, 'sadasdsdger', '2022-07-05 19:14:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -231,12 +283,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `barcode`, `name`, `company_name`, `category_id`, `supplier_id`, `wholesale_price`, `retail_price`, `purchase_price`, `quantity`, `description`, `tax`, `created`, `deleted`) VALUES
-(1, '12343234', 'Lengra Mango (kg)', 'AZ Agro Ltd.', 1, 1, '50.00', '60.00', '35.00', 200, 'Fresh fruits', '0.00', '2022-06-20 20:48:55', NULL),
+(1, '12343234', 'Lengra Mango (kg)', 'AZ Agro Ltd.', 1, 1, '50.00', '60.00', '35.00', 197, 'Fresh fruits', '0.00', '2022-06-20 20:48:55', NULL),
 (2, '12343222', 'Himsagar Mango (kg)', 'Confident Mart Ltd.', 1, 4, '75.00', '90.00', '50.00', 300, 'Fresh Fruits', '5.00', '2022-06-20 20:48:55', NULL),
-(3, '999999', 'Teer 1 Litre pack soyabin oil', 'Teer', 3, 5, '90.00', '96.00', '85.00', 50, 'lorem ipsum', '0.00', '2022-06-27 11:12:02', NULL),
-(4, '859323', 'Aarong Ghee (200gm)', 'Aarong', 3, 4, '280.00', '320.00', '260.00', 100, 'Aarong ghee', '0.00', '2022-07-04 18:45:26', NULL),
-(5, '9833224', 'Fresh Soyabin Oil Poly Pack 1ltr', 'Fresh', 3, 5, '185.00', '197.00', '170.00', 200, 'Fresh Soyabin Oil Poly', '0.00', '2022-07-04 18:46:43', NULL),
-(6, '8593133', 'Kishwan Mustard Oil (500ml)', 'Kishwan', 3, 1, '136.00', '145.00', '120.00', 200, 'Kishwan Mustard Oil', '0.00', '2022-07-04 18:48:00', NULL);
+(3, '999999', 'Teer 1 Litre pack soyabin oil', 'Teer', 3, 5, '90.00', '96.00', '85.00', 190, 'lorem ipsum', '0.00', '2022-06-27 11:12:02', NULL),
+(4, '859323', 'Aarong Ghee (200gm)', 'Aarong', 3, 4, '280.00', '320.00', '260.00', 200, 'Aarong ghee', '0.00', '2022-07-04 18:45:26', NULL),
+(5, '9833224', 'Fresh Soyabin Oil Poly Pack 1ltr', 'Fresh', 3, 5, '185.00', '197.00', '170.00', 250, 'Fresh Soyabin Oil Poly', '0.00', '2022-07-04 18:46:43', NULL),
+(6, '8593133', 'Kishwan Mustard Oil (500ml)', 'Kishwan', 3, 1, '136.00', '145.00', '120.00', 250, 'Kishwan Mustard Oil', '0.00', '2022-07-04 18:48:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -261,9 +313,9 @@ CREATE TABLE `suppliers` (
 INSERT INTO `suppliers` (`id`, `name`, `email`, `mobile`, `address`, `created`, `deleted`) VALUES
 (1, 'Arif Khan', 'arif@gmail.com', '01911223344', 'Manikdi, Dhaka Cantonment', '2022-06-20 19:33:48', NULL),
 (2, 'Md Jony', 'jony@gmail.com', '01911151733', 'Matikata, Dhaka Cantonment', '2022-06-20 19:33:48', NULL),
-(3, 'Akib Khan', 'akib@gmail.com', '01711223311', 'Chittagong', '2022-06-20 19:56:16', '2022-06-20 08:56:35'),
+(3, 'Akib Khan', 'akib@gmail.com', '01711223311', 'Chittagong', '2022-06-20 19:56:16', NULL),
 (4, 'Rony Hossain', 'rony@gmail.com', '01987654312', 'Mohakhali', '2022-06-20 19:58:52', NULL),
-(5, 'Tamim Hossain', 'tamim@gmail.com', '01988383332', 'Dhaka', '2022-06-20 21:22:27', '2022-06-20 10:23:00');
+(5, 'Tamim Hossain', 'tamim@gmail.com', '01988383332', 'Dhaka', '2022-06-20 21:22:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -334,6 +386,18 @@ ALTER TABLE `invoicedetails`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `orderdetails`
+--
+ALTER TABLE `orderdetails`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -387,13 +451,25 @@ ALTER TABLE `expenses`
 -- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `invoicedetails`
 --
 ALTER TABLE `invoicedetails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `orderdetails`
+--
+ALTER TABLE `orderdetails`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `products`

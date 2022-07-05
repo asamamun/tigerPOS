@@ -84,7 +84,25 @@
             <?php echo anchor('/suppliers', '<span class="me-2"><i class="fa-solid fa-people-carry-box"></i></span><span>Suppliers</span>', ['class' => 'nav-link px-3']); ?>
           </li>
           <li>
-            <?php echo anchor('/purchase', '<span class="me-2"><i class="fa-solid fa-cart-arrow-down"></i></span><span>Purchase</span>', ['class' => 'nav-link px-3']); ?>
+            <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#layouts5">
+              <span class="me-2"><i class="fa-solid fa-box-open"></i></span>
+              <span>Purchase</span>
+              <span class="ms-auto">
+                <span class="right-icon">
+                  <i class="bi bi-chevron-down"></i>
+                </span>
+              </span>
+            </a>
+            <div class="collapse" id="layouts5">
+              <ul class="navbar-nav ps-3">
+                <li>
+                  <?php echo anchor('/order', '<span class="me-2"><i class="fa-solid fa-file-invoice"></i></span><span>Purchase List</span>', ['class' => 'nav-link px-3']); ?>
+                </li>
+                <li>
+                <?php echo anchor('/purchase', '<span class="me-2"><i class="fa-solid fa-cart-arrow-down"></i></span><span>Add Purchase</span>', ['class' => 'nav-link px-3']); ?>
+                </li>
+              </ul>
+            </div>
           </li>
           <li>
             <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#layouts4">

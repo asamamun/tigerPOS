@@ -45,9 +45,7 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    
-                    <input type="text" class="form-control auto" id="customersearch" name="customersearch" placeholder="Enter Customer Name" />
-                    
+                    <input type="text" class="form-control auto" id="customersearch" name="customersearch" value="1" placeholder="Enter Customer Name" />
                 </div>
                 <div id="dyn_customer">
                 </div>

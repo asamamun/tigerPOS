@@ -27,7 +27,7 @@ class PosController extends BaseController
         // exit;
         $data['accounts'] = $dropacc;
 
-        return view('pos/index',$data);
+        return view('pos/index', $data);
     }
     public function search()
     {
@@ -77,8 +77,8 @@ class PosController extends BaseController
                 'value' => $row['id'],
                 'id' => $row['id'],
                 'name' => $row['name'],
-            'mobile' => $row['mobile'],
-            'address' => $row['address'],
+                'mobile' => $row['mobile'],
+                'address' => $row['address'],
             );
         }
         echo json_encode($return_arr);
@@ -97,17 +97,18 @@ class PosController extends BaseController
     //     echo json_encode($return_arr);
     // }
 
-    public function placeorder(){
+    public function placeorder()
+    {
         $inv = new InvoiceModel();
         $details = new InvoiceDetailsModel();
         $data = [
-            'customer_id'=>$this->request->getPost('cid'),
-            'nettotal'=>$this->request->getPost('total'),
-            'discount'=>$this->request->getPost('discount'),
-            'grandtotal'=>$this->request->getPost('gtotal'),
-            'comment'=>$this->request->getPost('comment'),
-            'payment_type'=>$this->request->getPost('pmethod'),
-            'trxid'=>$this->request->getPost('trxid'),
+            'customer_id' => $this->request->getPost('cid'),
+            'nettotal' => $this->request->getPost('total'),
+            'discount' => $this->request->getPost('discount'),
+            'grandtotal' => $this->request->getPost('gtotal'),
+            'comment' => $this->request->getPost('comment'),
+            'payment_type' => $this->request->getPost('pmethod'),
+            'trxid' => $this->request->getPost('trxid'),
         ];
         $inv->save($data);
         $invoiceID = $inv->getInsertID();
@@ -119,27 +120,26 @@ class PosController extends BaseController
         foreach ($ids as $key => $value) {
             $det = new InvoiceDetailsModel();
             $pdata = [
-                'invoice_id'=>$invoiceID,
-                'product_id'=>$ids[$key],
-                'quantity'=>$quans[$key],
-                'price'=>$pprice[$key],
-                'total'=>$ptotal[$key],
+                'invoice_id' => $invoiceID,
+                'product_id' => $ids[$key],
+                'quantity' => $quans[$key],
+                'price' => $pprice[$key],
+                'total' => $ptotal[$key],
             ];
             $det->save($pdata);
             //update quantity in product table
             $p = new ProductModel();
             $pd = $p->find($ids[$key]);
             $newquantity = $pd['quantity'] - $quans[$key];
-            
+
 
             // $pd->update($ids[$key],$data);
             $db      = \Config\Database::connect();
             $builder = $db->table('products');
-            $newdata = ['quantity'=> $newquantity];
+            $newdata = ['quantity' => $newquantity];
             $builder->where('id', $ids[$key]);
             $builder->update($newdata);
-
         }
-        echo "Order Saved. Invoice Id: ". $invoiceID;
-}
+        echo "Order Saved. Invoice Id: " . $invoiceID;
+    }
 }
