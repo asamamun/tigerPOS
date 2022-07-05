@@ -32,12 +32,14 @@ class InvoiceController extends BaseController
     public function details($id){
             $db      = \Config\Database::connect();
             $builder = $db->table('invoice i')
-            ->select('i.*, id.*')
+            ->select('i.*, id.*, p.name as product_name, c.name as customer_name, c.address as customer_address, c.email as customer_email')
             ->join('invoicedetails id', 'i.id = id.invoice_id')
+            ->join('products p', 'p.id = id.product_id')
+            ->join('customers c', 'c.id = i.customer_id')
             ->where('i.id',$id)
             ->get();
             $data = ['invoice' => $builder->getResultArray()];
-            //ddd($data);
+            // ddd($data);
             return view('invoice/details', $data);
     }
     //pdf

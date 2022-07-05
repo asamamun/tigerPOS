@@ -31,7 +31,7 @@ class OrderController extends BaseController
     {
         $db      = \Config\Database::connect();
         $builder = $db->table('orders o')
-            ->select('o.*, od.*, p.name as product_name, s.name as supplier_name')
+            ->select('o.*, od.*, p.name as product_name, s.name as supplier_name, s.address as supplier_address, s.email as supplier_email, s.mobile as supplier_mobile')
             ->join('orderdetails od', 'o.id = od.order_id')
             ->join('products p', 'p.id = od.product_id')
             ->join('suppliers s', 's.id = o.supplier_id')

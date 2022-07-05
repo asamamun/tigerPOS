@@ -113,7 +113,8 @@ define('EVENT_PRIORITY_HIGH', 10);
 
 //Company Constants
 
-define('COMPANY_NAME', 'TIGER POS11');
+define('COMPANY_NAME', 'TIGER POS LIMITED');
 define('COMPANY_LOGO', 'assets/images/logo.png');
-define('COMPANY_ADDRESS', 'pILLAR nO 273, METRORAIL');
+define('COMPANY_ADDRESS', 'Kazipara, Mirpur, Dhaka-1216');
 define('COMPANY_PHONE', '01911039525');
+define('COMPANY_EMAIL', 'info@tigerpos.com');

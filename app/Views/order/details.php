@@ -1,153 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <title>Tax Invoice</title>
-  <link rel="shortcut icon" type="image/png" href="./favicon.png" />
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    .table-bordered td,
-    .table-bordered th {
-      border: 1px solid #ddd;
-      padding: 10px;
-      word-break: break-all;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      padding: 0;
-      font-size: 16px;
-    }
-
-    .h4-14 h4 {
-      font-size: 12px;
-      margin-top: 0;
-      margin-bottom: 5px;
-    }
-
-    .img {
-      margin-left: "auto";
-      margin-top: "auto";
-      height: 30px;
-    }
-
-    pre,
-    p {
-      /* width: 99%; */
-      /* overflow: auto; */
-      /* bpicklist: 1px solid #aaa; */
-      padding: 0;
-      margin: 0;
-    }
-
-    table {
-      font-family: arial, sans-serif;
-      width: 100%;
-      border-collapse: collapse;
-      padding: 1px;
-    }
-
-    .hm-p p {
-      text-align: left;
-      padding: 1px;
-      padding: 5px 4px;
-    }
-
-    td,
-    th {
-      text-align: left;
-      padding: 8px 6px;
-    }
-
-    .table-b td,
-    .table-b th {
-      border: 1px solid #ddd;
-    }
-
-    .hm-p td,
-    .hm-p th {
-      padding: 3px 0px;
-    }
-
-    .cropped {
-      float: right;
-      margin-bottom: 20px;
-      height: 100px;
-      /* height of container */
-      overflow: hidden;
-    }
-
-    .cropped img {
-      width: 400px;
-      margin: 8px 0px 0px 80px;
-    }
-
-    .main-pd-wrapper {
-      box-shadow: 0 0 10px #ddd;
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 15px;
-    }
-
-    .table-bordered td,
-    .table-bordered th {
-      border: 1px solid #ddd;
-      padding: 10px;
-      font-size: 14px;
-    }
-
-    .invoice-items {
-      font-size: 14px;
-      border-top: 1px dashed #ddd;
-    }
-
-    .invoice-items td {
-      padding: 14px 0;
-
-    }
-  </style>
+  <meta charset="utf-8">
+  <title>Invoice</title>
+  <link rel="stylesheet" href="style.css" media="all" />
+  <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/invoicestyle.css" />
 </head>
 
 <body>
-  <section class="main-pd-wrapper" style="width: 450px; margin: auto">
-    <div style="
-                  text-align: center;
-                  margin: auto;
-                  line-height: 1.5;
-                  font-size: 14px;
-                  color: #4a4a4a;
-                ">
-      <img src="<?= base_url() ?>/<?= COMPANY_LOGO ?>" alt="">
-
-      <p style="font-weight: bold; color: #000; margin-top: 15px; font-size: 18px;">
-        Tax Order Of Supply <?= COMPANY_NAME; ?>
-      </p>
-      <p style="margin: 15px auto;">
-        <?= COMPANY_ADDRESS; ?>
-      </p>
-      <p>
-        <b>MAMUN:</b> <?= COMPANY_PHONE; ?>
-      </p>
-      <p>Supplier Name: <?php echo $order[0]['supplier_name'] ?> </p>
-      <hr style="border: 1px dashed rgb(131, 131, 131); margin: 25px auto">
+  <header class="clearfix">
+    <div id="logo">
+    <img src="<?= base_url() ?>/<?= COMPANY_LOGO ?>" alt="">
     </div>
-    <table style="width: 100%; table-layout: fixed">
+    <div id="company">
+      <h2 class="name"><?= COMPANY_NAME; ?></h2>
+      <div><?= COMPANY_ADDRESS; ?></div>
+      <div><?= COMPANY_PHONE; ?></div>
+      <div><a href="<?= COMPANY_EMAIL; ?>"><?= COMPANY_EMAIL; ?></a></div>
+    </div>
+    </div>
+  </header>
+  <main>
+    <div id="details" class="clearfix">
+      <div id="client">
+        <div class="to">INVOICE TO:</div>
+        <h2 class="name"><?php echo $order[0]['supplier_name'] ?></h2>
+        <div class="address"><?php echo $order[0]['supplier_address'] ?></div>
+        <div class="email"><a href="<?php echo $order[0]['supplier_email'] ?>"><?php echo $order[0]['supplier_email'] ?></a></div>
+      </div>
+      <div id="invoice">
+        <h1>INVOICE #<?php echo $order[0]['order_id'] ?></h1>
+        <div class="date">Date of Invoice: <?php echo $order[0]['created'] ?></div>
+        <!-- <div class="date">Due Date: 30/06/2014</div> -->
+      </div>
+    </div>
+    <table border="0" cellspacing="0" cellpadding="0">
       <thead>
         <tr>
-          <th style="width: 50px; padding-left: 0;">Sn.</th>
-          <th style="width: 220px;">Item Name</th>
-          <th>QTY</th>
-          <th style="text-align: right; padding-right: 0;">Price</th>
-          <th style="text-align: right; padding-right: 0;">Total</th>
+          <th class="no">#</th>
+          <th class="desc">DESCRIPTION</th>
+          <th class="unit">UNIT PRICE</th>
+          <th class="qty">QUANTITY</th>
+          <th class="total">TOTAL</th>
         </tr>
       </thead>
       <tbody>
-        <?php
+      <?php
         $sl = 1;
         $q = 0;
         foreach ($order as $o) {
@@ -160,49 +59,44 @@
           $trxid = $o['trxid'];
           $q +=  $o['quantity'];
         ?>
-          <tr class="invoice-items">
-            <td><?= $sl++; ?></td>
-            <td><?= $o['product_name'] ?></td>
-            <td><?= $o['quantity'] ?></td>
-            <td><?= $o['price'] ?></td>
-            <td style="text-align: right;"><?= $o['total']; ?></td>
+          <tr>
+            <td class="no"><?= $sl++; ?></td>
+            <td class="desc"><?= $o['product_name'] ?></td>
+            <td class="unit">&#2547; <?= $o['price'] ?></td>
+            <td class="qty"><?= $o['quantity'] ?></td>
+            <td class="total">&#2547; <?= $o['total']; ?></td>
           </tr>
         <?php
         }
         ?>
       </tbody>
-    </table>
-    <table style="width: 100%;
-              margin-top: 15px;
-              border: 1px dashed #00cd00;
-              border-radius: 3px;">
-      <thead>
+      <tfoot>
         <tr>
-          <td>Total Amount In Tk: </td>
-          <td style="text-align: right;"><?= $nettotal ?></td>
+          <td colspan="2"></td>
+          <td colspan="2">SUBTOTAL</td>
+          <td>&#2547; <?= $nettotal ?></td>
         </tr>
         <tr>
-          <td>Total Discount in Tk: </td>
-          <td style="text-align: right;"><?= $discount ?></td>
+          <td colspan="2"></td>
+          <td colspan="2">DISCOUNT</td>
+          <td>&#2547; <?= $discount ?></td>
         </tr>
-      </thead>
-
-    </table>
-    <table style="width: 100%;
-              background: #fcbd024f;
-              border-radius: 4px;">
-      <thead>
         <tr>
-          <th>Total</th>
-          <th style="text-align: center;">Total Item (<?= $q ?>)</th>
-          <th>&nbsp;</th>
-          <th style="text-align: right;"><?= $grandtotal; ?></th>
-
+          <td colspan="2"></td>
+          <td colspan="2">GRAND TOTAL</td>
+          <td>&#2547; <?= $grandtotal; ?></td>
         </tr>
-      </thead>
-
+      </tfoot>
     </table>
-  </section>
+    <div id="thanks">Thank you!</div>
+    <div id="notices">
+      <div>NOTICE:</div>
+      <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+    </div>
+  </main>
+  <footer>
+    Invoice was created on a computer and is valid without the signature and seal.
+  </footer>
 </body>
 
 </html>
