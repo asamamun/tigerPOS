@@ -87,11 +87,12 @@ $routes->get('/sales', 'SalesController::index');
 
 //invoice
 $routes->get('/invoice', 'InvoiceController::index');
+$routes->get('invoice/details/(:num)', 'InvoiceController::details/$1');
 // $routes->get('/invoice/create', 'InvoiceController::create');
 // $routes->post('/invoice/create', 'InvoiceController::store');
 // $routes->get('/invoice/edit/(:num)', 'InvoiceController::edit/$1');
 // $routes->post('/invoice/edit/(:num)', 'InvoiceController::update/$1');
-// $routes->post('/invoice/delete/(:num)', 'InvoiceController::delete/$1');
+
 
 //invoice
 $routes->get('/invoicedetails', 'InvoiceDetailController::index');

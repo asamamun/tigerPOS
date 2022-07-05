@@ -107,7 +107,7 @@ class PosController extends BaseController
             'grandtotal'=>$this->request->getPost('gtotal'),
             'comment'=>$this->request->getPost('comment'),
             'payment_type'=>$this->request->getPost('pmethod'),
-            'texid'=>$this->request->getPost('trxid'),
+            'trxid'=>$this->request->getPost('trxid'),
         ];
         $inv->save($data);
         $invoiceID = $inv->getInsertID();
@@ -126,6 +126,19 @@ class PosController extends BaseController
                 'total'=>$ptotal[$key],
             ];
             $det->save($pdata);
+            //update quantity in product table
+            $p = new ProductModel();
+            $pd = $p->find($ids[$key]);
+            $newquantity = $pd['quantity'] - $quans[$key];
+            
+
+            // $pd->update($ids[$key],$data);
+            $db      = \Config\Database::connect();
+            $builder = $db->table('products');
+            $newdata = ['quantity'=> $newquantity];
+            $builder->where('id', $ids[$key]);
+            $builder->update($newdata);
+
         }
         echo "Order Saved. Invoice Id: ". $invoiceID;
 }

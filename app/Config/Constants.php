@@ -109,3 +109,11 @@ define('EVENT_PRIORITY_NORMAL', 100);
  * @deprecated Use \CodeIgniter\Events\Events::PRIORITY_HIGH instead.
  */
 define('EVENT_PRIORITY_HIGH', 10);
+
+
+//Company Constants
+
+define('COMPANY_NAME', 'TIGER POS11');
+define('COMPANY_LOGO', 'assets/images/logo.png');
+define('COMPANY_ADDRESS', 'pILLAR nO 273, METRORAIL');
+define('COMPANY_PHONE', '01911039525');

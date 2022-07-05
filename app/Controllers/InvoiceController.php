@@ -29,7 +29,17 @@ class InvoiceController extends BaseController
 
         return view('invoice/index', $data);
     }
-    
+    public function details($id){
+            $db      = \Config\Database::connect();
+            $builder = $db->table('invoice i')
+            ->select('i.*, id.*')
+            ->join('invoicedetails id', 'i.id = id.invoice_id')
+            ->where('i.id',$id)
+            ->get();
+            $data = ['invoice' => $builder->getResultArray()];
+            //ddd($data);
+            return view('invoice/details', $data);
+    }
     //pdf
     // public function pdf()
     // {

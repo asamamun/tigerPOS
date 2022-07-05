@@ -18,4 +18,4 @@ error_reporting(-1);
  | the system. It's not widely used currently, and may not survive
  | release of the framework.
  */
-defined('CI_DEBUG') || define('CI_DEBUG', false);
+defined('CI_DEBUG') || define('CI_DEBUG', true);

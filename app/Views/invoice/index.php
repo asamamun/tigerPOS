@@ -47,6 +47,8 @@
                                     <td class="d-flex justify-content-center">
                                         <a href="<?= base_url('' . $inv['id']); ?>" class="btn btn-sm btn-warning me-1"><i class="fa-solid fa-print"></i></a>
                                         <a href="<?= base_url('' . $inv['id']); ?>" class="btn btn-sm btn-warning me-1"><i class="fa-solid fa-file-pdf"></i></a>
+                                        <?php echo anchor('invoice/details/'.$inv['id'],'<i class="fa-solid fa-info-circle"></i>',['class'=>'btn btn-sm btn-warning me-1']) ?>
+
                                     </td>
                                     <td><?= $inv['id']; ?></td>
                                     <td><?= $inv['custname']; ?></td>
