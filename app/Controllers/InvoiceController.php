@@ -17,30 +17,58 @@ class InvoiceController extends BaseController
             return redirect('login');
         }
         $db      = \Config\Database::connect();
-            $builder = $db->table('invoice i')
-                ->select('i.*, c.name as custname, a.name as accname')
-                ->join('customers c', 'c.id = i.customer_id')
-                ->join('accounts a', 'a.id = i.payment_type')
-                // ->join('invoicedetails d', 'd.id = p.category_id')
-                ->where('i.updated', null)
-                ->get();
-            //ddd($builder->getResult());
-            $data = ['invoice' => $builder->getResultArray('invoice')];
+        $builder = $db->table('invoice i')
+            ->select('i.*, c.name as custname, a.name as accname')
+            ->join('customers c', 'c.id = i.customer_id')
+            ->join('accounts a', 'a.id = i.payment_type')
+            // ->join('invoicedetails d', 'd.id = p.category_id')
+            ->where('i.updated', null)
+            ->get();
+        //ddd($builder->getResult());
+        $data = ['invoice' => $builder->getResultArray('invoice')];
 
         return view('invoice/index', $data);
     }
-    public function details($id){
-            $db      = \Config\Database::connect();
-            $builder = $db->table('invoice i')
+    public function details($id)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('invoice i')
             ->select('i.*, id.*, p.name as product_name, c.name as customer_name, c.address as customer_address, c.email as customer_email')
             ->join('invoicedetails id', 'i.id = id.invoice_id')
             ->join('products p', 'p.id = id.product_id')
             ->join('customers c', 'c.id = i.customer_id')
-            ->where('i.id',$id)
+            ->where('i.id', $id)
             ->get();
-            $data = ['invoice' => $builder->getResultArray()];
-            // ddd($data);
-            return view('invoice/details', $data);
+        $data = ['invoice' => $builder->getResultArray()];
+        // ddd($data);
+        return view('invoice/details', $data);
+    }
+    //pdf
+    public function pdf()
+    {
+        $view = \Config\Services::renderer();
+
+
+        $dompdf = new \Dompdf\Dompdf();
+        $this->db = \Config\Database::connect();
+
+        $builder = $this->db->table('invoice')->select('*')
+            ->join('invoicedetails', 'invoicedetails.id = invoice.id')
+            ->get();
+        $data = ['invoice' => $builder->getResultArray()];
+        //ddd($data);
+
+
+        // Sending data to view file
+        $dompdf->loadHtml(view('invoice/details', $data));
+        // setting paper to portrait, also we have landscape
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        // Download pdf
+        $dompdf->stream();
+        // to give pdf file name
+        // $dompdf->stream("myfile");
+
     }
     //pdf
     // public function pdf()
