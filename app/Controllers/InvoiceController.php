@@ -44,7 +44,7 @@ class InvoiceController extends BaseController
         return view('invoice/details', $data);
     }
     //pdf
-    public function pdf()
+    public function pdf($id)
     {
         $view = \Config\Services::renderer();
 
@@ -57,10 +57,10 @@ class InvoiceController extends BaseController
             ->join('invoicedetails id', 'i.id = id.invoice_id')
             ->join('products p', 'p.id = id.product_id')
             ->join('customers c', 'c.id = i.customer_id')
-            
+            ->where('i.id',$id)           
             ->get();
         $data = ['invoice' => $builder->getResultArray()];
-        //ddd($data);
+        // ddd($builder->getResultArray());
 
         // Sending data to view file
         $dompdf->loadHtml(view('invoice/details', $data));

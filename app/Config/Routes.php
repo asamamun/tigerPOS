@@ -88,7 +88,7 @@ $routes->get('/sales', 'SalesController::index');
 //invoice
 $routes->get('/invoice', 'InvoiceController::index');
 $routes->get('invoice/details/(:num)', 'InvoiceController::details/$1');
-$routes->get('/invoice/pdf', 'InvoiceController::pdf');
+$routes->get('/invoice/pdf/(:num)', 'InvoiceController::pdf/$1');
 // $routes->get('/invoice/create', 'InvoiceController::create');
 // $routes->post('/invoice/create', 'InvoiceController::store');
 // $routes->get('/invoice/edit/(:num)', 'InvoiceController::edit/$1');

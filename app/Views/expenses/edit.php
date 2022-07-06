@@ -30,7 +30,7 @@
 <!-- payment method -->
 <div class="form-group">
     <label for="payment_method">Payment Method</label>
-    <?php echo form_dropdown('payment_method', $accounts,'',['class' => 'form-control']); ?>
+    <?php echo form_dropdown('payment_method', $accounts, $expense['payment_type'] ,['class' => 'form-control']); ?>
 </div>
 
 <button type="submit" class="btn btn-primary">Submit</button>

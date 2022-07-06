@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>Invoice</title>
   <link rel="stylesheet" href="style.css" media="all" />
-  <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/invoicestyle.css" />
+  <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/invoicestyle.css" media="screen" />
 </head>
 
 <body>

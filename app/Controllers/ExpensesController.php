@@ -54,9 +54,9 @@ class ExpensesController extends BaseController
             $data = [
                 'name' => $this->request->getPost('name'),
                 'amount' => $this->request->getPost('amount'),
-                'payment_type' => $this->request->getPost('payment_type'),
-                'deleted' => null,
+                'payment_type' =>intval($this->request->getPost('payment_type'))              
             ];
+            //ddd($data);
             if ($expense->insert($data)) {
                 $session->setFlashdata('message', 'Expense created successfully');
                 return redirect()->to(base_url('/expenses'));
@@ -75,6 +75,7 @@ class ExpensesController extends BaseController
         if ($this->checkauth()) {
             $expense = new ExpenseModel();
             $data['expense'] = $expense->find($id);
+            // ddd($data);
             return view('expenses/edit', $data);
         } else {
             return redirect("login");

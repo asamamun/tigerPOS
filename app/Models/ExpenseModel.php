@@ -14,7 +14,7 @@ class ExpenseModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name','amount','deleted'];
+    protected $allowedFields    = ['name','amount','payment_type'];
 
     // Dates
     protected $useTimestamps = false;
