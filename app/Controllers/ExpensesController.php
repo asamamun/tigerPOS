@@ -73,6 +73,12 @@ class ExpensesController extends BaseController
     public function edit($id)
     {
         if ($this->checkauth()) {
+            $c = new AccountModel();
+            $allacc = $c->select('id,name')->findAll();
+            $dropacc = key_value_for_dropdown($allacc);
+            // ddd($dropacc);            
+            $data['accounts'] = $dropacc;
+            
             $expense = new ExpenseModel();
             $data['expense'] = $expense->find($id);
             // ddd($data);

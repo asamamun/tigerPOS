@@ -22,11 +22,6 @@
     <label for="amount">Amount</label>
     <input type="text" class="form-control" id="amount" name="amount" placeholder="Enter amount" value="<?= $expense['amount'] ?>">
 </div>
-<div class="form-group">
-    <label for="amount">Payment Method</label>
-    <input type="text" class="form-control" id="amount" name="amount" placeholder="Enter amount" value="<?= $expense['amount'] ?>">
-</div>
-
 <!-- payment method -->
 <div class="form-group">
     <label for="payment_method">Payment Method</label>
