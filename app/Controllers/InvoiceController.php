@@ -52,12 +52,15 @@ class InvoiceController extends BaseController
         $dompdf = new \Dompdf\Dompdf();
         $this->db = \Config\Database::connect();
 
-        $builder = $this->db->table('invoice')->select('*')
-            ->join('invoicedetails', 'invoicedetails.id = invoice.id')
+        $builder = $this->db->table('invoice i')
+            ->select('i.*, id.*, p.name as product_name, c.name as customer_name, c.address as customer_address, c.email as customer_email')
+            ->join('invoicedetails id', 'i.id = id.invoice_id')
+            ->join('products p', 'p.id = id.product_id')
+            ->join('customers c', 'c.id = i.customer_id')
+            
             ->get();
         $data = ['invoice' => $builder->getResultArray()];
         //ddd($data);
-
 
         // Sending data to view file
         $dompdf->loadHtml(view('invoice/details', $data));
