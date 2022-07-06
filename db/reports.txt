@@ -1,0 +1,15 @@
+https://demo.opensourcepos.org/
+user: admin 
+password : pointofsale
+Reports: 
+
+sales report: 
+todays sale: input type date(select todays date) ,  submit button
+date wise sale: start date and end date and submit button
+monthly sales report: select month and year and submit button
+day wise monthly sale : reports + graph
+month wise yearly sale: reports + chart/graph
+
+
+inventory report: input text: quantity- 5 or less/0 or less/6 or more/10 or more
+
