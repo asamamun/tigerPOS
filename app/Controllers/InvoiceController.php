@@ -63,7 +63,7 @@ class InvoiceController extends BaseController
         // ddd($builder->getResultArray());
 
         // Sending data to view file
-        $dompdf->loadHtml(view('invoice/details', $data));
+        $dompdf->loadHtml(view('invoice/pdf', $data));
         // setting paper to portrait, also we have landscape
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
