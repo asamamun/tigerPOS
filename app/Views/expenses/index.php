@@ -1,14 +1,13 @@
-
 <?= $this->extend('layouts/default'); ?>
 
 <?= $this->section('contents'); ?>
 
-    <?php if (session()->getFlashdata('message')) : ?>        
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+<?php if (session()->getFlashdata('message')) : ?>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <?= session()->getFlashdata('message'); ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>        
-        </div>
-    <?php endif; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php endif; ?>
 
 
 
@@ -18,6 +17,8 @@
             <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title">Expenses</h3>
                 <div class="card-options">
+                    <?php echo anchor('expenses/csv', "<i class='fa-solid fa-file-csv'> CSV</i>", ['class' => 'btn btn-primary btn-sm']) ?>
+                    <?php echo anchor('expenses/download', "<i class='fa-solid fa-file-pdf'> PDF</i>", ['class' => 'btn btn-primary btn-sm']) ?>
                     <a href="<?= base_url('expenses/create'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add Expense</a>
                 </div>
             </div>
@@ -67,9 +68,6 @@
 <script>
     $(document).ready(function() {
         $('#expenses').DataTable();
-    } );
+    });
 </script>
 <?= $this->endSection(); ?>
-
-
-

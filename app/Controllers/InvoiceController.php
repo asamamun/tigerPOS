@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\InvoiceModel;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class InvoiceController extends BaseController
 {
@@ -73,43 +75,61 @@ class InvoiceController extends BaseController
         // $dompdf->stream("myfile");
 
     }
-    //pdf
-    // public function pdf()
-    // {
-    //     $view = \Config\Services::renderer();
-    //     $c = new CustomerModel();
-    //     $customers = $c->findAll();
-    //     $options = new Options();
-    //     $options->set('defaultFont', 'Siyam Rupali ANSI');
-    //     $d = new Dompdf($options);
-    //     $html = view('customers/table', ['customers' => $customers, 'title' => "All Customers"]);
-    //     $d->load_html($html);
-    //     // $d->setPaper('A4', 'landscape');
-    //     $d->setPaper('A4', 'portrait');
-    //     $d->render();
-    //     $d->stream();
-    // }
-    // public function csv()
-    // {
-    //     // file name 
-    //     $filename = 'customers_' . date('Ymd') . '.csv';
-    //     header("Content-Description: File Transfer");
-    //     header("Content-Disposition: attachment; filename=$filename");
-    //     header("Content-Type: application/csv; ");
+    //All pdf
+    public function download()
+    {
+        $view = \Config\Services::renderer();
 
-    //     // get data 
-    //     $customers = new CustomerModel();
-    //     $customersData =  $customers->select('*')->findAll();
+        $db      = \Config\Database::connect();
+        $builder = $db->table('invoice i')
+            ->select('i.*, c.name as custname, a.name as accname')
+            ->join('customers c', 'c.id = i.customer_id')
+            ->join('accounts a', 'a.id = i.payment_type')
+         
+            ->get();
+        //ddd($builder->getResult());
+        $data = ['invoice' => $builder->getResultArray('invoice')];
+        
+        $options = new Options();
+        $options->set('defaultFont', 'Siyam Rupali ANSI');
+        $d = new Dompdf();
+        $html = view('invoice/table', $data);
+        $d->load_html($html);
+        // $d->setPaper('A4', 'landscape');
+        $d->setPaper('A4', 'portrait');
+        $d->render();
+        $d->stream();
+    }
+   //csv
+   public function csv()
+    {
+        // file name 
+        $filename = 'invoice_' . date('Ymd') . '.csv';
+        header("Content-Description: File Transfer");
+        header("Content-Disposition: attachment; filename=$filename");
+        header("Content-Type: application/csv; ");
 
-    //     // file creation 
-    //     $file = fopen('php://output', 'w');
+        // get data 
+        $db      = \Config\Database::connect();
+        $builder = $db->table('invoice i')
+            ->select('i.id,c.name as custname,i.nettotal,i.discount,i.comment,i.grandtotal,  a.name as accname')
+            ->join('customers c', 'c.id = i.customer_id')
+            ->join('accounts a', 'a.id = i.payment_type')
+            ->get();
+        //ddd($builder->getResult());
+        $data = $builder->getResultArray();
+        // $invoice = new InvoiceModel();
+        // $invoiceData =  $invoice->select('*')->findAll();
 
-    //     $header = array("ID", "Name", "Email", "Phone", "Address", "Expense");
-    //     fputcsv($file, $header);
-    //     foreach ($customersData as $key => $line) {
-    //         fputcsv($file, $line);
-    //     }
-    //     fclose($file);
-    //     exit;
-    // }
+        // file creation 
+        $file = fopen('php://output', 'w');
+
+        $header = array("ID", "Name", "Net Total", "Discount", "Comment", "Grant Total","Payment Method");
+        fputcsv($file, $header);
+        foreach ($data as $key => $line) {
+            fputcsv($file, $line);
+        }
+        fclose($file);
+        exit;
+    }
 }

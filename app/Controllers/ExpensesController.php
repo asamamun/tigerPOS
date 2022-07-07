@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\AccountModel;
 use App\Models\ExpenseModel;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class ExpensesController extends BaseController
 {
@@ -129,4 +131,45 @@ class ExpensesController extends BaseController
             return redirect("login");
         }
     }
+
+        //pdf
+        public function pdf()
+        {
+            $view = \Config\Services::renderer();
+            $e = new ExpenseModel();
+            
+            $expenses = $e->findAll();
+            $options = new Options();
+            $options->set('defaultFont', 'Siyam Rupali ANSI');
+            $d = new Dompdf($options);
+            $html = view('expenses/table', ['expenses' => $expenses, 'title' => "All expenses"]);
+            $d->load_html($html);
+            // $d->setPaper('A4', 'landscape');
+            $d->setPaper('A4', 'portrait');
+            $d->render();
+            $d->stream();
+        }
+        public function csv()
+        {
+            // file name 
+            $filename = 'expenses_' . date('Ymd') . '.csv';
+            header("Content-Description: File Transfer");
+            header("Content-Disposition: attachment; filename=$filename");
+            header("Content-Type: application/csv; ");
+    
+            // get data 
+            $expenses = new ExpenseModel();
+            $expensesData =  $expenses->select('*')->findAll();
+    
+            // file creation 
+            $file = fopen('php://output', 'w');
+    
+            $header = array("ID", "Name", "Amount", "Payment Method");
+            fputcsv($file, $header);
+            foreach ($expensesData as $key => $line) {
+                fputcsv($file, $line);
+            }
+            fclose($file);
+            exit;
+        }
 }

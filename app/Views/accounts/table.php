@@ -31,29 +31,27 @@
         </div>
 
         <table class="table table-responsive" style="background-color: white;">
+
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>ID</th>
                     <th>Name</th>
-                    <th>Amount</th>
-                    <th>Payment Method</th>
-
+                    <th>Balance</th>
+                    
+                   
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($expenses as $expense) { ?>
+                <?php foreach ($accounts as $ac) { ?>
                     <tr>
-                        <td><?= $expense['id']; ?></td>
-                        <td><?= $expense['name']; ?></td>
-                        <td><?= $expense['amount']; ?></td>
-                        <td><?= $expense['payment_type']; ?></td>
-                    <?php } ?>
+                        <td><?= $ac['id'] ?></td>
+                        <td><?= $ac['name'] ?></td>
+                        <td><?= $ac['balance'] ?></td>
+                        
+                    </tr>
+                <?php } ?>
 
             </tbody>
-
-
-
-
 
 
 

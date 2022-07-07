@@ -26,7 +26,7 @@
     <div class="container">
 
         <div class="d-flex justify-content-between">
-            <h3 style="text-align:center; font-family: Kalpurush,KalpurushANSI, sans-serif;"><?php echo $title; ?></h3>
+         
             <a class="btn btn-primary" href="#"><i class="fas fa-file-pdf"></i></a>
         </div>
 
@@ -34,20 +34,26 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Amount</th>
-                    <th>Payment Method</th>
-
+                    <th>Customer</th>
+                    <th>Net Total</th>
+                    <th>Discount</th>
+                    
+                    <th>Grand Total</th>
+                    <th>Comment</th>
+                    <th>Payment Type</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($expenses as $expense) { ?>
+                <?php foreach ($invoice as $inv) { ?>
                     <tr>
-                        <td><?= $expense['id']; ?></td>
-                        <td><?= $expense['name']; ?></td>
-                        <td><?= $expense['amount']; ?></td>
-                        <td><?= $expense['payment_type']; ?></td>
-                    <?php } ?>
+                        <td><?= $inv['id']; ?></td>
+                        <td><?= $inv['custname']; ?></td>
+                        <td><?= $inv['nettotal']; ?></td>
+                        <td><?= $inv['discount']; ?></td>
+                        <td><?= $inv['grandtotal']; ?></td>
+                        <td><?= $inv['comment']; ?></td>
+                        <td><?= $inv['accname']; ?></td>
+                        <?php } ?>$
 
             </tbody>
 

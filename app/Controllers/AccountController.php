@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\AccountModel;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class AccountController extends BaseController
 {
@@ -108,5 +110,45 @@ class AccountController extends BaseController
         } else {
             return redirect("login");
         }
+    }
+
+    public function pdf()
+    {
+        $view = \Config\Services::renderer();
+        $a = new AccountModel();
+        $accounts = $a->findAll();
+        $options = new Options();
+        $options->set('defaultFont', 'Siyam Rupali ANSI');
+        $d = new Dompdf($options);
+       
+        $html = view('accounts/table', ['accounts' => $accounts, 'title' => "All Accounts"]);
+        $d->load_html($html);
+        // $d->setPaper('A4', 'landscape');
+        $d->setPaper('A4', 'portrait');
+        $d->render();
+        $d->stream();
+    }
+    public function csv()
+    {
+        // file name 
+        $filename = 'accounts_' . date('Ymd') . '.csv';
+        header("Content-Description: File Transfer");
+        header("Content-Disposition: attachment; filename=$filename");
+        header("Content-Type: application/csv; ");
+
+        // get data 
+        $accounts = new AccountModel();
+        $accountsData =  $accounts->select('*')->findAll();
+
+        // file creation 
+        $file = fopen('php://output', 'w');
+
+        $header = array("ID", "Name", "Account No.", "Balance");
+        fputcsv($file, $header);
+        foreach ($accountsData as $key => $line) {
+            fputcsv($file, $line);
+        }
+        fclose($file);
+        exit;
     }
 }

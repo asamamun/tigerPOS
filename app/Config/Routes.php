@@ -76,6 +76,8 @@ $routes->post('/expenses/create', 'ExpensesController::store');
 $routes->get('/expenses/edit/(:num)', 'ExpensesController::edit/$1');
 $routes->post('/expenses/edit/(:num)', 'ExpensesController::update/$1');
 $routes->post('/expenses/delete/(:num)', 'ExpensesController::delete/$1');
+$routes->get('/expenses/download', 'ExpensesController::pdf');
+$routes->get('/expenses/csv', 'ExpensesController::csv');
 
 //sales
 $routes->get('/sales', 'SalesController::index');
@@ -89,6 +91,8 @@ $routes->get('/sales', 'SalesController::index');
 $routes->get('/invoice', 'InvoiceController::index');
 $routes->get('invoice/details/(:num)', 'InvoiceController::details/$1');
 $routes->get('/invoice/pdf/(:num)', 'InvoiceController::pdf/$1');
+$routes->get('/invoice/download', 'InvoiceController::download');
+$routes->get('/invoice/csv', 'InvoiceController::csv');
 // $routes->get('/invoice/create', 'InvoiceController::create');
 // $routes->post('/invoice/create', 'InvoiceController::store');
 // $routes->get('/invoice/edit/(:num)', 'InvoiceController::edit/$1');
@@ -126,6 +130,8 @@ $routes->post('/accounts/create', 'AccountController::store');
 $routes->get('/accounts/edit/(:num)', 'AccountController::edit/$1');
 $routes->post('/accounts/edit/(:num)', 'AccountController::update/$1');
 $routes->post('/accounts/delete/(:num)', 'AccountController::delete/$1');
+$routes->get('/accounts/download', 'AccountController::pdf');
+$routes->get('/accounts/csv', 'AccountController::csv');
 
 //pos
 $routes->get('/pos', 'PosController::index');
