@@ -212,7 +212,7 @@ footer {
 <body>
   <header class="clearfix">
     <div id="logo">
-    <img src="../../assests/images/logo.png" alt="">
+    <img src="" alt="">
     </div>
     <div id="company">
       <h2 class="name"><?= COMPANY_NAME; ?></h2>
@@ -225,14 +225,11 @@ footer {
   <main>
     <div id="details" class="clearfix">
       <div id="client">
-        <div class="to">INVOICE TO:</div>
-        <h2 class="name"><?php echo $invoice[0]['customer_name'] ?></h2>
-        <div class="address"><?php echo $invoice[0]['customer_address'] ?></div>
-        <div class="email"><a href="<?php echo $invoice[0]['customer_email'] ?>"><?php echo $invoice[0]['customer_email'] ?></a></div>
+        
       </div>
       <div id="invoice">
-        <h1>INVOICE #<?php echo $invoice[0]['invoice_id'] ?></h1>
-        <div class="date">Date of Invoice: <?php echo $invoice[0]['created'] ?></div>
+        <h1>INVOICE #<?php echo $invoicedetails[0]['invoice_id'] ?></h1>
+        <div class="date">Date of Invoice Details: <?php echo $invoicedetails[0]['created'] ?></div>
         <!-- <div class="date">Due Date: 30/06/2014</div> -->
       </div>
     </div>
@@ -250,15 +247,9 @@ footer {
       <?php
         $sl = 1;
         $q = 0;
-        foreach ($invoice as $i) {
-          $supplierid = $i['customer_id'];
-          $nettotal = $i['nettotal'];
-          $discount = $i['discount'];
-          $grandtotal = $i['grandtotal'];
-          $comment = $i['comment'];
-          $payment = $i['payment_type'];
-          $trxid = $i['trxid'];
-          $q +=  $i['quantity'];
+        foreach ($invoicedetails as $i) {
+          
+         
         ?>
           <tr>
             <td class="no"><?= $sl++; ?></td>
@@ -272,21 +263,8 @@ footer {
         ?>
       </tbody>
       <tfoot>
-        <tr>
-          <td colspan="2"></td>
-          <td colspan="2">SUBTOTAL</td>
-          <td>Tk <?= $nettotal ?></td>
-        </tr>
-        <tr>
-          <td colspan="2"></td>
-          <td colspan="2">DISCOUNT</td>
-          <td>Tk <?= $discount ?></td>
-        </tr>
-        <tr>
-          <td colspan="2"></td>
-          <td colspan="2">GRAND TOTAL</td>
-          <td>Tk <?= $grandtotal; ?></td>
-        </tr>
+        
+   
       </tfoot>
     </table>
     <div id="thanks">Thank you!</div>

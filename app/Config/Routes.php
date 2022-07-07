@@ -101,6 +101,9 @@ $routes->get('/invoice/csv', 'InvoiceController::csv');
 
 //invoice
 $routes->get('/invoicedetails', 'InvoiceDetailController::index');
+$routes->get('/invoicedetails/pdf/(:num)', 'InvoiceDetailController::pdf/$1');
+$routes->get('/invoicedetails/csv', 'InvoiceDetailController::csv');
+$routes->get('/invoicedetails/download', 'InvoiceDetailController::download');
 // $routes->get('/invoicedetails/create', 'InvoiceDetailController::create');
 // $routes->post('/invoicedetails/create', 'InvoiceDetailController::store');
 // $routes->get('/invoicedetails/edit/(:num)', 'InvoiceDetailController::edit/$1');

@@ -17,12 +17,12 @@
                 <h3 class="card-title">Invoice Details List</h3>
                 <div class="card-options">
                     <!-- <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-csv"></i> CSV</a> -->
-                    <?php echo anchor('customers/csv', "<i class='fa-solid fa-file-csv'> CSV</i>", ['class' => 'btn btn-primary btn-sm']) ?>
+                    <?php echo anchor('invoicedetails/csv', "<i class='fa-solid fa-file-csv'> CSV</i>", ['class' => 'btn btn-primary btn-sm']) ?>
                     <!-- <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-excel"></i> Excel</a> -->
                     <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm" id="btnPrint"><i class="fa-solid fa-print"></i> Print</a>
                     <!-- <?php echo anchor('customers/print', "<i class='fa-solid fa-print'></i>", ['class' => 'btn btn-primary btn-sm']) ?> -->
                     <!-- <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-pdf"></i> PDF</a> -->
-                    <?php echo anchor('customers/download', "<i class='fa-solid fa-file-pdf'> PDF</i>", ['class' => 'btn btn-primary btn-sm']) ?>
+                    <?php echo anchor('invoicedetails/download', "<i class='fa-solid fa-file-pdf'> PDF</i>", ['class' => 'btn btn-primary btn-sm']) ?>
                     <a href="<?= base_url('pos'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add Sale</a>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                                 <tr>
                                     <td class="d-flex justify-content-center">
                                         <a href="<?= base_url('' . $invoicedetail['id']); ?>" class="btn btn-sm btn-warning me-1"><i class="fa-solid fa-print"></i></a>
-                                        <a href="<?= base_url('' . $invoicedetail['id']); ?>" class="btn btn-sm btn-warning me-1"><i class="fa-solid fa-file-pdf"></i></a>
+                                        <?php echo anchor('invoicedetails/pdf/'.$invoicedetail['id'],'<i class="fa-solid fa-file-pdf"></i>',['class'=>'btn btn-sm btn-warning me-1']) ?>
                                     </td>
                                     <td><?= $invoicedetail['id']; ?></td>
                                     <td><?= $invoicedetail['invoice_id']; ?></td>
