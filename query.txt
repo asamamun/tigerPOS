@@ -1,0 +1,8 @@
+monthwise report
+SELECT sum(`grandtotal`), DATE_FORMAT(created, "%m-%y") FROM `invoice` WHERE 1 GROUP BY DATE_FORMAT(created, "%m-%y");
+
+            $query = $db->query('SELECT sum(`grandtotal`) as totalsales, DATE_FORMAT(created, "%m-%y-%d") as cdate FROM `invoice` WHERE (created between "'.$last30date.' 00:00:00" and "'.$currentdate.' 23:59:59")GROUP BY DATE_FORMAT(created, "%m-%y-%d")');
+
+
+daywise report
+SELECT sum(`grandtotal`), DATE_FORMAT(created, "%m-%y-%d") FROM `invoice` WHERE 1 GROUP BY DATE_FORMAT(created, "%m-%y-%d");

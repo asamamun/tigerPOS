@@ -31,7 +31,7 @@
             <?php echo anchor('/pos', 'POS', ['class' => 'nav-link px-3']); ?>
           </li <li class="nav-item dropdown">
           <li class="nav-item">
-            <p class="text-white m-2"><?php echo date("Y-m-d h:i:sa"); ?></p>
+            <p id="clock" class="text-white m-2"><?php echo date("Y-m-d h:i:sa"); ?></p>
           </li <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle ms-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Welcome <?= session('username'); ?>

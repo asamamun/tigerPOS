@@ -11,14 +11,15 @@
                 Filter By Date
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">Yesterday</a></li>
-                <li><a class="dropdown-item" href="#">Last 7 Days</a></li>
-                <li><a class="dropdown-item" href="#">Last month</a></li>
-                <li><a class="dropdown-item" href="#">This month</a></li>
-                <li><a class="dropdown-item" href="#">Last 6 Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-                <li><a class="dropdown-item" href="#">last year</a></li>
+                <li><a class="dropdown-item" href="dashboard">All</a></li>
+                <li><a class="dropdown-item" href="?filter=today">Today</a></li>
+                <li><a class="dropdown-item" href="?filter=yesterday">Yesterday</a></li>
+                <li><a class="dropdown-item" href="?filter=last7">Last 7 Days</a></li>
+                <li><a class="dropdown-item" href="?filter=lastmonth">Last month</a></li>
+                <li><a class="dropdown-item" href="?filter=thismonth">This month</a></li>
+                <li><a class="dropdown-item" href="?filter=last6month">Last 6 Month</a></li>
+                <li><a class="dropdown-item" href="?filter=year">This Year</a></li>
+                <li><a class="dropdown-item" href="?filter=lastyear">last year</a></li>
                 <li><a class="dropdown-item" href="#">last Financial year</a></li>
                 <li><a class="dropdown-item" href="#">this Financial year</a></li>
                 <li><a class="dropdown-item" href="#">Custom Range</a></li>
@@ -189,7 +190,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <?php
+foreach ($sales30->getResult() as $row) {
+    echo "<tr>";
+    echo "<td>".$row->cdate."</td>";
+    echo "<td>".$row->totalsales."</td>";
+    
+    echo "</tr>";
+}
+                            ?>
+                            <!-- <tr>
                                 <td>10-05-2022</td>
                                 <td>100000</td>
                             </tr>
@@ -212,7 +222,7 @@
                             <tr>
                                 <td>15-05-2022</td>
                                 <td>100000</td>
-                            </tr>
+                            </tr> -->
 
                         </tbody>
                     </table>
@@ -283,8 +293,33 @@
 
 <?= $this->section('scripts'); ?>
 <script>
-    // $(document).ready(function() {
-    //     $('#users').DataTable();
-    // } );
+    function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+    function startTime() {
+  const today = new Date();
+
+  let y = today.getFullYear();
+  let mo = today.getMonth();
+  let d = today.getDay();
+  let h = today.getHours();
+  let ampm = (h>=12)?"PM":"AM";
+  h = (h-12) > 0 ? (h-12): h;
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+
+  mo = checkTime(mo);
+  d = checkTime(d);
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('clock').innerHTML =y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s + " " + ampm;
+  setTimeout(startTime, 1000);
+}
+
+
+    $(document).ready(function() {
+        startTime();
+    } );
 </script>
 <?= $this->endSection(); ?>
