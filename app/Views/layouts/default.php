@@ -27,18 +27,23 @@
       </button>
       <div class="collapse navbar-collapse" id="topNavBar">
         <ul class="navbar-nav d-flex ms-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle ms-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Welcome <?= session('username'); ?>
-              <i class="bi bi-person-fill"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <?= anchor('logout', "Logout", ['class' => "dropdown-item"]) ?>
-              </li>
-            </ul>
+          <li class="nav-item">
+            <?php echo anchor('/pos', 'POS', ['class' => 'nav-link px-3']); ?>
+          </li <li class="nav-item dropdown">
+          <li class="nav-item">
+            <p class="text-white m-2"><?php echo date("Y-m-d h:i:sa"); ?></p>
+          </li <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle ms-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Welcome <?= session('username'); ?>
+            <i class="bi bi-person-fill"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li>
+              <?= anchor('logout', "Logout", ['class' => "dropdown-item"]) ?>
+            </li>
+          </ul>
           </li>
         </ul>
       </div>
@@ -99,7 +104,7 @@
                   <?php echo anchor('/order', '<span class="me-2"><i class="fa-solid fa-file-invoice"></i></span><span>Purchase List</span>', ['class' => 'nav-link px-3']); ?>
                 </li>
                 <li>
-                <?php echo anchor('/purchase', '<span class="me-2"><i class="fa-solid fa-cart-arrow-down"></i></span><span>Add Purchase</span>', ['class' => 'nav-link px-3']); ?>
+                  <?php echo anchor('/purchase', '<span class="me-2"><i class="fa-solid fa-cart-arrow-down"></i></span><span>Add Purchase</span>', ['class' => 'nav-link px-3']); ?>
                 </li>
               </ul>
             </div>

@@ -90,7 +90,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL EXPENSE</p>
-                        <h4>&#2547; 12564</h4>
+                        <h4>&#2547; <?= $totalexpense; ?></h4>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL ORDER</p>
-                        <h4>&#2547; 12564</h4>
+                        <h4><?= $totalorder; ?></h4>
                     </div>
                 </div>
             </div>
@@ -166,6 +166,115 @@
     </div>
 </div>
 
+<!-- last 30 days sales -->
+<div class="row mt-3">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h4 class="card-title">Sales Last 30 Days</h4>
+                <div class="card-options">
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-csv"></i> CSV</a>
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-excel"></i> Excel</a>
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-print"></i> Print</a>
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="categories">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>10-05-2022</td>
+                                <td>100000</td>
+                            </tr>
+                            <tr>
+                                <td>11-05-2022</td>
+                                <td>100000</td>
+                            </tr>
+                            <tr>
+                                <td>12-05-2022</td>
+                                <td>100000</td>
+                            </tr>
+                            <tr>
+                                <td>13-05-2022</td>
+                                <td>100000</td>
+                            </tr>
+                            <tr>
+                                <td>14-05-2022</td>
+                                <td>100000</td>
+                            </tr>
+                            <tr>
+                                <td>15-05-2022</td>
+                                <td>100000</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Montly sales report -->
+<div class="row mt-3">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h4 class="card-title">Monthly Sales Report</h4>
+                <div class="card-options">
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-csv"></i> CSV</a>
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-excel"></i> Excel</a>
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-print"></i> Print</a>
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="categories">
+                        <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>January</td>
+                                <td>100000</td>
+                            </tr>
+                            <tr>
+                                <td>February</td>
+                                <td>100000</td>
+                            </tr>
+                            <tr>
+                                <td>March</td>
+                                <td>100000</td>
+                            </tr>
+                            <tr>
+                                <td>April</td>
+                                <td>100000</td>
+                            </tr>
+                            <tr>
+                                <td>May</td>
+                                <td>100000</td>
+                            </tr>
+                            <tr>
+                                <td>June</td>
+                                <td>100000</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?= $this->endSection(); ?>
