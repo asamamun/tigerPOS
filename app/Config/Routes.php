@@ -81,6 +81,7 @@ $routes->get('/expenses/csv', 'ExpensesController::csv');
 
 //sales
 $routes->get('/sales', 'SalesController::index');
+$routes->get('/sales/download', 'SalesController::pdf');
 // $routes->get('/sales/create', 'SalesController::create');
 // $routes->post('/sales/create', 'SalesController::store');
 // $routes->get('/sales/edit/(:num)', 'SalesController::edit/$1');
