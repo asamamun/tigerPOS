@@ -31,28 +31,6 @@ class Home extends BaseController
                 $userbuilder->select("id");
                 $query   = $userbuilder->get()->getResultArray();
                 $data['totalusers'] = count($query);
-                //total sales
-                $invoice = new InvoiceModel();
-                $invresult = $invoice->select('sum(grandtotal) as totalsales')->first();
-                $data['totalsales'] = $invresult['totalsales'];
-
-                //total purchase
-                $purchase = new OrderModel();
-                $purchaseresult = $purchase->select('sum(grandtotal) as totalpurchase')->first();
-                $data['totalpurchase'] = $purchaseresult['totalpurchase'];
-
-                //total expense
-                $expense = new ExpenseModel();
-                $expresult = $expense->select('sum(amount) as totalexpense')->first();
-                $data['totalexpense'] = $expresult['totalexpense'];
-
-                //total order
-                $o = new OrderModel();
-                $data['totalorder'] = $o->countAll();
-
-                $data['totalpacked'] = 9999;
-                $data['purchasedue'] = 9999;
-                $data['invoicedue'] = 9999;
             } else {
 
                 if ($filter == "today") {
@@ -63,18 +41,6 @@ class Home extends BaseController
                     $userbuilder->where('created_at <', $today . " 23:59:59");
                     $r = $userbuilder->get()->getResultArray();
                     $data['totalusers'] = count($r);
-                    //totalsale
-                    $currentdate = date("Y-m-d");
-                  
-                    //SELECT sum(`grandtotal`), DATE_FORMAT(created, "%m-%y-%d") FROM `invoice` WHERE 1 GROUP BY DATE_FORMAT(created, "%m-%y-%d");
-
-                    $query = $db->query('SELECT sum(`grandtotal`) as totalsales, DATE_FORMAT(created, "%m-%y-%d") as cdate FROM `invoice` WHERE (created between "' . $today . ' 00:00:00" and "' . $currentdate . ' 23:59:59")GROUP BY DATE_FORMAT(created, "%m-%y-%d")');
-                    // echo date("Y-m-d",$last30date);
-                    $data['totalsales'] = $query;
-
-                    //totalpurchase
-
-
                 }
                 if ($filter == "yesterday") {
                     //user
@@ -112,9 +78,70 @@ class Home extends BaseController
 
 
             //total sales
-            $invoice = new InvoiceModel();
-            $invresult = $invoice->select('sum(grandtotal) as totalsales')->first();
-            $data['totalsales'] = $invresult['totalsales'];
+            $salesbuilder = $db->table('invoice');
+
+            if ($filter == null) {
+                //sales
+                $invoice = new InvoiceModel();
+                $invresult = $invoice->select('sum(grandtotal) as totalsales')->first();
+                $data['totalsales'] = $invresult['totalsales'];
+            } else {
+
+                if ($filter == "today") {
+                    //sales
+                    $today = date("Y-m-d");
+                    
+                    // $invoice = new InvoiceModel();
+                    // $invresult = $invoice->where('created',$today)->select('sum(grandtotal) as totalsales')->first();  
+                    // $data['totalsales'] = $invresult['totalsales'];
+                    $query = $db->query('SELECT sum(`grandtotal`) as totalsales FROM `invoice` WHERE (created between "' . $today . ' 00:00:00" and "' . $today . ' 23:59:59")');
+                    $data['totalsales'] = $query->getResult();
+                    
+                  
+                }
+                    
+                if ($filter == "yesterday") {
+                    //sales
+                    $time = date("Y-m-d");
+                    $today = date("Y-m-d", strtotime("$time-1 day"));
+                    $yesterday = date("Y-m-d", strtotime("$time -2 days"));
+                    // $invoice = new InvoiceModel();
+                    // $invresult = $invoice->select('sum(grandtotal) as totalsales')->where('created>', $yesterday . " 00:00:00")
+                    //     ->where('created<', $today . " 23:59:59")->first();
+                    // $data['totalsales'] = $invresult['totalsales'];
+                    $query = $db->query('SELECT sum(`grandtotal`) as totalsales FROM `invoice` WHERE (created between "' . $yesterday . ' 00:00:00" and "' . $today . ' 23:59:59")');
+                    $data['totalsales'] = $query->getResult();
+                }
+                if ($filter == "last7") {
+                    //sales
+                    $today = date("Y-m-d");
+                    $last7date = date("Y-m-d", strtotime("$today -7 days"));
+                    // $invoice = new InvoiceModel();
+                    // $invresult = $invoice->select('sum(grandtotal) as totalsales')->where('created >', $last7date . " 00:00:00")
+                    //     ->where('created <', $today . " 23:59:59")->first();
+                    // $data['totalsales'] = $invresult['totalsales'];
+                    $query = $db->query('SELECT sum(`grandtotal`) as totalsales FROM `invoice` WHERE (created between "' . $last7date . ' 00:00:00" and "' . $today . ' 23:59:59")');
+                    $data['totalsales'] = $query->getResult();
+                }
+                if ($filter == "lastmonth") {
+                    //sales
+                    $today = date("Y-m-d");
+                    $last7date = date("Y-m-d", strtotime("$today -30 days"));
+                    // $invoice = new InvoiceModel();
+                    // $invresult = $invoice->where('created',$today)->select('sum(grandtotal) as totalsales')->first();  
+                    // $data['totalsales'] = $invresult['totalsales'];
+                    $query = $db->query('SELECT sum(`grandtotal`) as totalsales FROM `invoice` WHERE (created between "' . $last7date . ' 00:00:00" and "' . $today . ' 23:59:59")');
+                    $data['totalsales'] = $query->getResult();
+                    ddd($data);
+                    exit();
+                  
+                }
+            }
+
+
+            // $invoice = new InvoiceModel();
+            // $invresult = $invoice->select('sum(grandtotal) as totalsales')->where('created>', null)->first();
+            // $data['totalsales'] = $invresult['totalsales'];
 
             //total purchase
             $purchase = new OrderModel();
