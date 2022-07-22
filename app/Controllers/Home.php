@@ -41,6 +41,7 @@ class Home extends BaseController
                     $userbuilder->where('created_at <', $today . " 23:59:59");
                     $r = $userbuilder->get()->getResultArray();
                     $data['totalusers'] = count($r);
+
                 }
                 if ($filter == "yesterday") {
                     //user
@@ -72,6 +73,8 @@ class Home extends BaseController
                     $userbuilder->where('created_at <', $today . " 23:59:59");
                     $r = $userbuilder->get()->getResultArray();
                     $data['totalusers'] = count($r);
+                    //totalsales
+
                 }
             }
 
@@ -82,9 +85,12 @@ class Home extends BaseController
 
             if ($filter == null) {
                 //sales
-                $invoice = new InvoiceModel();
-                $invresult = $invoice->select('sum(grandtotal) as totalsales')->first();
-                $data['totalsales'] = $invresult['totalsales'];
+                //$invoice = new InvoiceModel();
+                //$invresult = $invoice->select('sum(grandtotal) as totalsales')->first();
+                $query = $db->query('SELECT sum(`grandtotal`) as totalsales FROM `invoice` where 1');
+                    $data['totalsales'] = $query->getFirstRow();
+                // $data['totalsales'] = 
+                // ddd($data);
             } else {
 
                 if ($filter == "today") {
@@ -98,8 +104,7 @@ class Home extends BaseController
                     $data['totalsales'] = $query->getResult();
                     
                   
-                }
-                    
+                }                    
                 if ($filter == "yesterday") {
                     //sales
                     $time = date("Y-m-d");
@@ -121,7 +126,7 @@ class Home extends BaseController
                     //     ->where('created <', $today . " 23:59:59")->first();
                     // $data['totalsales'] = $invresult['totalsales'];
                     $query = $db->query('SELECT sum(`grandtotal`) as totalsales FROM `invoice` WHERE (created between "' . $last7date . ' 00:00:00" and "' . $today . ' 23:59:59")');
-                    $data['totalsales'] = $query->getResult();
+                    $data['totalsales'] = $query->getFirstRow();
                 }
                 if ($filter == "lastmonth") {
                     //sales
@@ -130,10 +135,12 @@ class Home extends BaseController
                     // $invoice = new InvoiceModel();
                     // $invresult = $invoice->where('created',$today)->select('sum(grandtotal) as totalsales')->first();  
                     // $data['totalsales'] = $invresult['totalsales'];
-                    $query = $db->query('SELECT sum(`grandtotal`) as totalsales FROM `invoice` WHERE (created between "' . $last7date . ' 00:00:00" and "' . $today . ' 23:59:59")');
-                    $data['totalsales'] = $query->getResult();
-                    ddd($data);
-                    exit();
+                    $sql = 'SELECT sum(`grandtotal`) as totalsales FROM `invoice` WHERE (created between "' . $last7date . ' 00:00:00" and "' . $today . ' 23:59:59")';
+                    // ddd($sql);
+                    $query = $db->query($sql);
+                    $data['totalsales'] = $query->getFirstRow();
+                    // ddd($data);
+                    // exit();
                   
                 }
             }

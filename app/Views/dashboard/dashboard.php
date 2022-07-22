@@ -57,7 +57,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL SALES</p>
-                        <h4>&#2547; <?= $totalsales; ?></h4>
+                        <h4>&#2547; <?= $totalsales->totalsales; ?></h4>
                     </div>
                 </div>
             </div>
