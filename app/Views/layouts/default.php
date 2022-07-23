@@ -197,6 +197,7 @@
   <script src="<?php echo base_url() ?>/assets/js/jquery.dataTables.min.js"></script>
   <script src="<?php echo base_url() ?>/assets/js/dataTables.bootstrap5.min.js"></script>
   <script src="<?php echo base_url() ?>/assets/js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.js"></script>
   <?= $this->renderSection('scripts'); ?>
 </body>
 

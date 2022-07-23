@@ -272,18 +272,28 @@ class Home extends BaseController
             $last30date = date("Y-m-d", strtotime("$currentdate -30 days"));
             //SELECT sum(`grandtotal`), DATE_FORMAT(created, "%m-%y-%d") FROM `invoice` WHERE 1 GROUP BY DATE_FORMAT(created, "%m-%y-%d");
 
-            $query = $db->query('SELECT sum(`grandtotal`) as totalsales, DATE_FORMAT(created, "%d-%m-%Y") as cdate FROM `invoice` WHERE (created between "' . $last30date . ' 00:00:00" and "' . $currentdate . ' 23:59:59") GROUP BY DATE_FORMAT(created, "%d-%m-%Y")');
+            $query = $db->query('SELECT sum(`grandtotal`) as totalsales, DATE_FORMAT(created, "%d-%m-%Y") as cdate FROM `invoice` WHERE (created between "' . $last30date . ' 00:00:00" and "' . $currentdate . ' 23:59:59") GROUP BY DATE_FORMAT(created, "%d-%m-%Y") order by created desc');
             // echo date("Y-m-d",$last30date);
             $data['sales30'] = $query;
+            // ddd($data['sales30']->getResultArray());
+            $labels = [];
+            $chartdata = [];
+            foreach ($data['sales30']->getResultArray() as $value) {
+                array_push($labels,$value['cdate']);
+                array_push($chartdata,$value['totalsales']);
+            }
+            $data['labels'] = $labels;
+            $data['chartdata'] = $chartdata;
             
             //past 12 months sale
             $currentdate = date("Y-m-d");
             $last30date = date("Y-m-d", strtotime("$currentdate -365 days"));
             //SELECT sum(`grandtotal`), DATE_FORMAT(created, "%m-%y-%d") FROM `invoice` WHERE 1 GROUP BY DATE_FORMAT(created, "%m-%y-%d");
-
-            $query = $db->query('SELECT sum(grandtotal) as totalsales, Month(created) as month FROM `invoice` GROUP BY Month(created)');
+            $y = date("Y");
+            $query = $db->query('SELECT sum(grandtotal) as totalsales, Month(created) as month FROM `invoice` where year(created)='.$y.' GROUP BY Month(created)');
             // echo date("Y-m-d",$last30date);
             $data['sales365'] = $query;
+            $data['calender'] = array(1 => 'Jan.', 2 => 'Feb.', 3 => 'Mar.', 4 => 'Apr.', 5 => 'May', 6 => 'Jun.', 7 => 'Jul.', 8 => 'Aug.', 9 => 'Sep.', 10 => 'Oct.', 11 => 'Nov.', 12 => 'Dec.');
 
 
             /*             foreach ($query->getResult() as $row) {

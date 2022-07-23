@@ -127,8 +127,6 @@ class PosController extends BaseController
                 'quantity' => $quans[$key],
                 'price' => $pprice[$key],
                 'total' => $ptotal[$key],
-                'gtotal' => $pgtotal,
-                'payment_id' => $pmethod[$key],
             ];
             $det->save($pdata);
             //update quantity in product table
@@ -142,20 +140,20 @@ class PosController extends BaseController
             $builder = $db->table('products');
             $newdata = ['quantity' => $newquantity];
             $builder->where('id', $ids[$key]);
-            $builder->update($newdata);
-            //balance addition
-            $pa = new AccountModel();
-            $pad= $pa->find($pmethod[$key]);
-            $balance = $pad['balance'] + $pgtotal;
-             // $pd->update($ids[$key],$data);
-             
-             $acbuilder = $db->table('accounts');
-             $newacdata = ['balance' => $balance];
-             $acbuilder->where('id', $pmethod[$key]);
-             $acbuilder->update($newacdata);
-            
+            $builder->update($newdata);     
             
         }
+//balance addition
+$pa = new AccountModel();
+$pad= $pa->find($pmethod);
+$balance = $pad['balance'] + $pgtotal;
+ $pd->update($pmethod,['balance' => $balance]);
+ 
+//  $acbuilder = $db->table('accounts');
+//  $newacdata = ['balance' => $balance];
+//  $acbuilder->where('id', $pmethod);
+//  $acbuilder->update($newacdata);
+
         echo "Order Saved. Invoice Id: " . $invoiceID;
     }
 }

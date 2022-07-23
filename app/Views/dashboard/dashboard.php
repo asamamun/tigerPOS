@@ -40,7 +40,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL USER</p>
-                        <h4> <?= $totalusers; ?></h4>
+                        <h4> <?= $totalusers??"0"; ?></h4>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL SALES</p>
-                        <h4>&#2547; <?= $totalsales->totalsales; ?></h4>
+                        <h4>&#2547; <?= $totalsales->totalsales??"0"; ?></h4>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL PURCHASE</p>
-                        <h4>&#2547; <?= $totalpurchase->totalpurchase; ?></h4>
+                        <h4>&#2547; <?= $totalpurchase->totalpurchase??"0"; ?></h4>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL EXPENSE</p>
-                        <h4>&#2547; <?= $totalexpense->totalexpense; ?></h4>
+                        <h4>&#2547; <?= $totalexpense->totalexpense??"0"; ?></h4>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL ORDER</p>
-                        <h4><?= $totalorders; ?></h4>
+                        <h4><?= $totalorders??"0"; ?></h4>
                     </div>
                 </div>
             </div>
@@ -181,6 +181,7 @@
                 </div>
             </div>
             <div class="card-body">
+            <canvas id="last30chart"></canvas>
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover" id="categories">
                         <thead>
@@ -256,7 +257,7 @@ foreach ($sales30->getResult() as $row) {
                         <tbody>
                         <?php
 foreach ($sales365->getResult() as $row) {
-    $m = $row->month;
+  /*   $m = $row->month;
     if ($m == 1) {
         $month = "January";
     }
@@ -292,10 +293,10 @@ foreach ($sales365->getResult() as $row) {
     }
     if ($m == 12) {
         $month = "December";
-    }
+    } */
     
     echo "<tr>";
-    echo "<td>".$month."</td>";
+    echo "<td>".$calender[$row->month]."</td>";
     echo "<td>".$row->totalsales."</td>";
     
     echo "</tr>";
@@ -368,5 +369,44 @@ foreach ($sales365->getResult() as $row) {
     $(document).ready(function() {
         startTime();
     } );
+</script>
+
+<script>
+const ctx = document.getElementById('last30chart');
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: <?php echo json_encode($labels) ?>,
+        datasets: [{
+            label: 'Last 30 days sales',
+            data: <?php echo json_encode($chartdata) ?>,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
 </script>
 <?= $this->endSection(); ?>
