@@ -235,29 +235,6 @@ class Home extends BaseController
                 }
             }
 
-
-
-
-
-
-            // $invoice = new InvoiceModel();
-            // $invresult = $invoice->select('sum(grandtotal) as totalsales')->where('created>', null)->first();
-            // $data['totalsales'] = $invresult['totalsales'];
-
-            //total purchase
-            // $purchase = new OrderModel();
-            // $purchaseresult = $purchase->select('sum(grandtotal) as totalpurchase')->first();
-            // $data['totalpurchase'] = $purchaseresult['totalpurchase'];
-
-            //total expense
-            // $expense = new ExpenseModel();
-            // $expresult = $expense->select('sum(amount) as totalexpense')->first();
-            // $data['totalexpense'] = $expresult['totalexpense'];
-
-            //total order
-            // $o = new OrderModel();
-            // $data['totalorder'] = $o->countAll();
-
             $data['totalpacked'] = 9999;
             $data['purchasedue'] = 9999;
             $data['invoicedue'] = 9999;
@@ -273,7 +250,6 @@ class Home extends BaseController
             //SELECT sum(`grandtotal`), DATE_FORMAT(created, "%m-%y-%d") FROM `invoice` WHERE 1 GROUP BY DATE_FORMAT(created, "%m-%y-%d");
 
             $query = $db->query('SELECT sum(`grandtotal`) as totalsales, DATE_FORMAT(created, "%d-%m-%Y") as cdate FROM `invoice` WHERE (created between "' . $last30date . ' 00:00:00" and "' . $currentdate . ' 23:59:59") GROUP BY DATE_FORMAT(created, "%d-%m-%Y") order by created desc');
-            // echo date("Y-m-d",$last30date);
             $data['sales30'] = $query;
             // ddd($data['sales30']->getResultArray());
             $labels = [];
@@ -293,7 +269,19 @@ class Home extends BaseController
             $query = $db->query('SELECT sum(grandtotal) as totalsales, Month(created) as month FROM `invoice` where year(created)='.$y.' GROUP BY Month(created)');
             // echo date("Y-m-d",$last30date);
             $data['sales365'] = $query;
-            $data['calender'] = array(1 => 'Jan.', 2 => 'Feb.', 3 => 'Mar.', 4 => 'Apr.', 5 => 'May', 6 => 'Jun.', 7 => 'Jul.', 8 => 'Aug.', 9 => 'Sep.', 10 => 'Oct.', 11 => 'Nov.', 12 => 'Dec.');
+
+            $labels2 = [];
+            $chartdata2 = [];
+            foreach ($data['sales365']->getResultArray() as $value) {
+                array_push($labels2,$value['month']);
+                array_push($chartdata2,$value['totalsales']);
+            }
+            $data['labels2'] = $labels2;
+            $data['chartdata2'] = $chartdata2;
+            // ddd($data['chartdata2']);
+            // exit;
+
+            $data['calender'] = array(1 => 'January', 2 => 'February', 3 => 'March', 4 => 'April', 5 => 'May', 6 => 'June', 7 => 'July', 8 => 'August', 9 => 'September', 10 => 'October', 11 => 'November', 12 => 'December');
 
 
             /*             foreach ($query->getResult() as $row) {

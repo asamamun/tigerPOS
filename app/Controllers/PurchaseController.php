@@ -102,9 +102,7 @@ class PurchaseController extends BaseController
         $ids = $this->request->getPost('ids');
         $quans = $this->request->getPost('quantity');
         $pprice = $this->request->getPost('pricearr');
-        $pgtotal = $this->request->getPost('gtotal');
         $ptotal = $this->request->getPost('totalarr');
-        $pmethod =  $this->request->getPost('pmethod');
         foreach ($ids as $key => $value) {
             $det = new OrderDetailsModel();
             $pdata = [
@@ -113,7 +111,6 @@ class PurchaseController extends BaseController
                 'quantity' => $quans[$key],
                 'price' => $pprice[$key],
                 'total' => $ptotal[$key],
-                'gtotal' => $pgtotal,
             ];
             $det->save($pdata);
             //update quantity in product table
@@ -128,20 +125,15 @@ class PurchaseController extends BaseController
             $newdata = ['quantity' => $newquantity];
             $builder->where('id', $ids[$key]);
             $builder->update($newdata);
-
-
-            //balance subtraction
-            $pa = new AccountModel();
-            $pad= $pa->find($pmethod[$key]);
-            $balance = $pad['balance'] - $pgtotal;
-             // $pd->update($ids[$key],$data);
-             
-             $acbuilder = $db->table('accounts');
-             $newacdata = ['balance' => $balance];
-             $acbuilder->where('id', $pmethod[$key]);
-             $acbuilder->update($newacdata);
-            
         }
+        //balance subtraction
+        $pa = new AccountModel();
+        $paymethod = $this->request->getPost('pmethod');
+        $gtotal = $this->request->getPost('gtotal');
+        $pad = $pa->find($paymethod);
+        $balance = $pad['balance'] - $gtotal;
+        $pa->update($paymethod, ['balance' => $balance]);
+        
         echo "Order Saved. Order Id: " . $orderID;
     }
 }

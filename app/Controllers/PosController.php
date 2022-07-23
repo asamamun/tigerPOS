@@ -117,8 +117,6 @@ class PosController extends BaseController
         $quans = $this->request->getPost('quantity');
         $pprice = $this->request->getPost('pricearr');
         $ptotal = $this->request->getPost('totalarr');
-        $pgtotal = $this->request->getPost('gtotal');
-        $pmethod =  $this->request->getPost('pmethod');
         foreach ($ids as $key => $value) {
             $det = new InvoiceDetailsModel();
             $pdata = [
@@ -140,19 +138,15 @@ class PosController extends BaseController
             $builder = $db->table('products');
             $newdata = ['quantity' => $newquantity];
             $builder->where('id', $ids[$key]);
-            $builder->update($newdata);     
-            
+            $builder->update($newdata);
         }
-//balance addition
-$pa = new AccountModel();
-$pad= $pa->find($pmethod);
-$balance = $pad['balance'] + $pgtotal;
- $pd->update($pmethod,['balance' => $balance]);
- 
-//  $acbuilder = $db->table('accounts');
-//  $newacdata = ['balance' => $balance];
-//  $acbuilder->where('id', $pmethod);
-//  $acbuilder->update($newacdata);
+        //balance addition
+        $pa = new AccountModel();
+        $paymethod = $this->request->getPost('pmethod');
+        $gtotal = $this->request->getPost('gtotal');
+        $pad= $pa->find($paymethod);
+        $balance = $pad['balance'] + $gtotal;
+        $pa->update($paymethod,['balance' => $balance]);
 
         echo "Order Saved. Invoice Id: " . $invoiceID;
     }

@@ -40,7 +40,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL USER</p>
-                        <h4> <?= $totalusers??"0"; ?></h4>
+                        <h4> <?= $totalusers ?? "0"; ?></h4>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL SALES</p>
-                        <h4>&#2547; <?= $totalsales->totalsales??"0"; ?></h4>
+                        <h4>&#2547; <?= $totalsales->totalsales ?? "0"; ?></h4>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL PURCHASE</p>
-                        <h4>&#2547; <?= $totalpurchase->totalpurchase??"0"; ?></h4>
+                        <h4>&#2547; <?= $totalpurchase->totalpurchase ?? "0"; ?></h4>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL EXPENSE</p>
-                        <h4>&#2547; <?= $totalexpense->totalexpense??"0"; ?></h4>
+                        <h4>&#2547; <?= $totalexpense->totalexpense ?? "0"; ?></h4>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL ORDER</p>
-                        <h4><?= $totalorders??"0"; ?></h4>
+                        <h4><?= $totalorders ?? "0"; ?></h4>
                     </div>
                 </div>
             </div>
@@ -181,7 +181,17 @@
                 </div>
             </div>
             <div class="card-body">
-            <canvas id="last30chart"></canvas>
+                <canvas id="last30chart"></canvas>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Details
+                </button>
+            </div>
+        </div>
+
+        <div class="collapse mt-3" id="collapseExample">
+            <div class="card card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover" id="categories">
                         <thead>
@@ -192,39 +202,13 @@
                         </thead>
                         <tbody>
                             <?php
-foreach ($sales30->getResult() as $row) {
-    echo "<tr>";
-    echo "<td>".$row->cdate."</td>";
-    echo "<td>".$row->totalsales."</td>";
-    
-    echo "</tr>";
-}
+                            foreach ($sales30->getResult() as $row) {
+                                echo "<tr>";
+                                echo "<td>" . $row->cdate . "</td>";
+                                echo "<td>" . $row->totalsales . "</td>";
+                                echo "</tr>";
+                            }
                             ?>
-                            <!-- <tr>
-                                <td>10-05-2022</td>
-                                <td>100000</td>
-                            </tr>
-                            <tr>
-                                <td>11-05-2022</td>
-                                <td>100000</td>
-                            </tr>
-                            <tr>
-                                <td>12-05-2022</td>
-                                <td>100000</td>
-                            </tr>
-                            <tr>
-                                <td>13-05-2022</td>
-                                <td>100000</td>
-                            </tr>
-                            <tr>
-                                <td>14-05-2022</td>
-                                <td>100000</td>
-                            </tr>
-                            <tr>
-                                <td>15-05-2022</td>
-                                <td>100000</td>
-                            </tr> -->
-
                         </tbody>
                     </table>
                 </div>
@@ -246,6 +230,16 @@ foreach ($sales30->getResult() as $row) {
                 </div>
             </div>
             <div class="card-body">
+                <canvas id="monthlysalechart"></canvas>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+                    Details
+                </button>
+            </div>
+        </div>
+        <div class="collapse mt-3" id="collapseExample2">
+            <div class="card card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover" id="categories">
                         <thead>
@@ -255,158 +249,135 @@ foreach ($sales30->getResult() as $row) {
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
-foreach ($sales365->getResult() as $row) {
-  /*   $m = $row->month;
-    if ($m == 1) {
-        $month = "January";
-    }
-    if ($m == 2) {
-        $month = "February";
-    }
-    if ($m == 3) {
-        $month = "March";
-    }
-    if ($m == 4) {
-        $month = "April";
-    }
-    if ($m == 5) {
-        $month = "May";
-    }
-    if ($m == 6) {
-        $month = "June";
-    }
-    if ($m == 7) {
-        $month = "July";
-    }
-    if ($m == 8) {
-        $month = "August";
-    }
-    if ($m == 9) {
-        $month = "September";
-    }
-    if ($m == 10) {
-        $month = "October";
-    }
-    if ($m == 11) {
-        $month = "November";
-    }
-    if ($m == 12) {
-        $month = "December";
-    } */
-    
-    echo "<tr>";
-    echo "<td>".$calender[$row->month]."</td>";
-    echo "<td>".$row->totalsales."</td>";
-    
-    echo "</tr>";
-}
+                            <?php
+                            foreach ($sales365->getResult() as $row) {
+                                echo "<tr>";
+                                echo "<td>" . $calender[$row->month] . "</td>";
+                                echo "<td>" . $row->totalsales . "</td>";
+                                echo "</tr>";
+                            }
                             ?>
-                            <!-- <tr>
-                                <td>January</td>
-                                <td>100000</td>
-                            </tr>
-                            <tr>
-                                <td>February</td>
-                                <td>100000</td>
-                            </tr>
-                            <tr>
-                                <td>March</td>
-                                <td>100000</td>
-                            </tr>
-                            <tr>
-                                <td>April</td>
-                                <td>100000</td>
-                            </tr>
-                            <tr>
-                                <td>May</td>
-                                <td>100000</td>
-                            </tr>
-                            <tr>
-                                <td>June</td>
-                                <td>100000</td>
-                            </tr> -->
-
                         </tbody>
                     </table>
                 </div>
             </div>
+
         </div>
     </div>
-</div>
 
-<?= $this->endSection(); ?>
-
+    <?= $this->endSection(); ?>
 
 
-<?= $this->section('scripts'); ?>
-<script>
-    function checkTime(i) {
-  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-  return i;
-}
-    function startTime() {
-  const today = new Date();
 
-  let y = today.getFullYear();
-  let mo = today.getMonth();
-  let d = today.getDay();
-  let h = today.getHours();
-  let ampm = (h>=12)?"PM":"AM";
-  h = (h-12) > 0 ? (h-12): h;
-  let m = today.getMinutes();
-  let s = today.getSeconds();
-
-  mo = checkTime(mo);
-  d = checkTime(d);
-  m = checkTime(m);
-  s = checkTime(s);
-  document.getElementById('clock').innerHTML =y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s + " " + ampm;
-  setTimeout(startTime, 1000);
-}
-
-
-    $(document).ready(function() {
-        startTime();
-    } );
-</script>
-
-<script>
-const ctx = document.getElementById('last30chart');
-const myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        labels: <?php echo json_encode($labels) ?>,
-        datasets: [{
-            label: 'Last 30 days sales',
-            data: <?php echo json_encode($chartdata) ?>,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+    <?= $this->section('scripts'); ?>
+    <script>
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i
+            }; // add zero in front of numbers < 10
+            return i;
         }
-    }
-});
-</script>
-<?= $this->endSection(); ?>
+
+        function startTime() {
+            const today = new Date();
+
+            let y = today.getFullYear();
+            let mo = today.getMonth();
+            let d = today.getDay();
+            let h = today.getHours();
+            let ampm = (h >= 12) ? "PM" : "AM";
+            h = (h - 12) > 0 ? (h - 12) : h;
+            let m = today.getMinutes();
+            let s = today.getSeconds();
+
+            mo = checkTime(mo);
+            d = checkTime(d);
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('clock').innerHTML = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s + " " + ampm;
+            setTimeout(startTime, 1000);
+        }
+
+
+        $(document).ready(function() {
+            startTime();
+        });
+    </script>
+
+    <script>
+        const ctx = document.getElementById('last30chart');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: <?php echo json_encode($labels) ?>,
+                datasets: [{
+                    label: 'Last 30 days sales',
+                    data: <?php echo json_encode($chartdata) ?>,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        //monthly sale chart
+        const ctx2 = document.getElementById('monthlysalechart');
+        const myChart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: <?php echo json_encode($labels2) ?>,
+                datasets: [{
+                    label: 'Monthly Sale',
+                    data: <?php echo json_encode($chartdata2) ?>,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <?= $this->endSection(); ?>
