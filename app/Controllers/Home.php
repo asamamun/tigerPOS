@@ -272,7 +272,7 @@ class Home extends BaseController
             $last30date = date("Y-m-d", strtotime("$currentdate -30 days"));
             //SELECT sum(`grandtotal`), DATE_FORMAT(created, "%m-%y-%d") FROM `invoice` WHERE 1 GROUP BY DATE_FORMAT(created, "%m-%y-%d");
 
-            $query = $db->query('SELECT sum(`grandtotal`) as totalsales, DATE_FORMAT(created, "%d-%m-%Y") as cdate FROM `invoice` WHERE (created between "' . $last30date . ' 00:00:00" and "' . $currentdate . ' 23:59:59")GROUP BY DATE_FORMAT(created, "%d-%m-%Y")');
+            $query = $db->query('SELECT sum(`grandtotal`) as totalsales, DATE_FORMAT(created, "%d-%m-%Y") as cdate FROM `invoice` WHERE (created between "' . $last30date . ' 00:00:00" and "' . $currentdate . ' 23:59:59") GROUP BY DATE_FORMAT(created, "%d-%m-%Y")');
             // echo date("Y-m-d",$last30date);
             $data['sales30'] = $query;
             
