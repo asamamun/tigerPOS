@@ -230,6 +230,8 @@ $.ajax({
                         },
                 success: function(response) {
                   $("#responseMessage").html(response);
+                  console.log($pmethod);
+                  exit();
                     // location.reload();
 
                 }
