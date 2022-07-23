@@ -74,7 +74,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL PURCHASE</p>
-                        <h4>&#2547; <?= $totalpurchase; ?></h4>
+                        <h4>&#2547; <?= $totalpurchase->totalpurchase; ?></h4>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL EXPENSE</p>
-                        <h4>&#2547; <?= $totalexpense; ?></h4>
+                        <h4>&#2547; <?= $totalexpense->totalexpense; ?></h4>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                 <div class="col-9">
                     <div class="card-body">
                         <p class="card-title fw-bold">TOTAL ORDER</p>
-                        <h4><?= $totalorder; ?></h4>
+                        <h4><?= $totalorders; ?></h4>
                     </div>
                 </div>
             </div>
@@ -254,7 +254,16 @@ foreach ($sales30->getResult() as $row) {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                        <?php
+foreach ($sales365->getResult() as $row) {
+    echo "<tr>";
+    echo "<td>".$row->month."</td>";
+    echo "<td>".$row->totalsales."</td>";
+    
+    echo "</tr>";
+}
+                            ?>
+                            <!-- <tr>
                                 <td>January</td>
                                 <td>100000</td>
                             </tr>
@@ -277,7 +286,7 @@ foreach ($sales30->getResult() as $row) {
                             <tr>
                                 <td>June</td>
                                 <td>100000</td>
-                            </tr>
+                            </tr> -->
 
                         </tbody>
                     </table>
