@@ -255,26 +255,26 @@ class Home extends BaseController
             $labels = [];
             $chartdata = [];
             foreach ($data['sales30']->getResultArray() as $value) {
-                array_push($labels,$value['cdate']);
-                array_push($chartdata,$value['totalsales']);
+                array_push($labels, $value['cdate']);
+                array_push($chartdata, $value['totalsales']);
             }
             $data['labels'] = $labels;
             $data['chartdata'] = $chartdata;
-            
+
             //past 12 months sale
             $currentdate = date("Y-m-d");
             $last30date = date("Y-m-d", strtotime("$currentdate -365 days"));
             //SELECT sum(`grandtotal`), DATE_FORMAT(created, "%m-%y-%d") FROM `invoice` WHERE 1 GROUP BY DATE_FORMAT(created, "%m-%y-%d");
             $y = date("Y");
-            $query = $db->query('SELECT sum(grandtotal) as totalsales, Month(created) as month FROM `invoice` where year(created)='.$y.' GROUP BY Month(created)');
+            $query = $db->query('SELECT sum(grandtotal) as totalsales, Month(created) as month FROM `invoice` where year(created)=' . $y . ' GROUP BY Month(created)');
             // echo date("Y-m-d",$last30date);
             $data['sales365'] = $query;
 
             $labels2 = [];
             $chartdata2 = [];
             foreach ($data['sales365']->getResultArray() as $value) {
-                array_push($labels2,$value['month']);
-                array_push($chartdata2,$value['totalsales']);
+                array_push($labels2, $value['month']);
+                array_push($chartdata2, $value['totalsales']);
             }
             $data['labels2'] = $labels2;
             $data['chartdata2'] = $chartdata2;
@@ -291,6 +291,40 @@ class Home extends BaseController
                 echo "<hr>";
             }
                       exit; */
+
+            //past 30 days purchase
+            $currentdate = date("Y-m-d");
+            $last30date = date("Y-m-d", strtotime("$currentdate -30 days"));
+            //SELECT sum(`grandtotal`), DATE_FORMAT(created, "%m-%y-%d") FROM `invoice` WHERE 1 GROUP BY DATE_FORMAT(created, "%m-%y-%d");
+
+            $query = $db->query('SELECT sum(`grandtotal`) as totalpurchase, DATE_FORMAT(created, "%d-%m-%Y") as cdate FROM `orders` WHERE (created between "' . $last30date . ' 00:00:00" and "' . $currentdate . ' 23:59:59") GROUP BY DATE_FORMAT(created, "%d-%m-%Y") order by created desc');
+            $data['purchase30'] = $query;
+            $labels3 = [];
+            $chartdata3 = [];
+            foreach ($data['purchase30']->getResultArray() as $value) {
+                array_push($labels3, $value['cdate']);
+                array_push($chartdata3, $value['totalpurchase']);
+            }
+            $data['labels3'] = $labels3;
+            $data['chartdata3'] = $chartdata3;
+            //past 12 months purchase
+            $currentdate = date("Y-m-d");
+            $last30date = date("Y-m-d", strtotime("$currentdate -365 days"));
+            //SELECT sum(`grandtotal`), DATE_FORMAT(created, "%m-%y-%d") FROM `invoice` WHERE 1 GROUP BY DATE_FORMAT(created, "%m-%y-%d");
+            $y = date("Y");
+            $query = $db->query('SELECT sum(grandtotal) as totalpurchase, Month(created) as month FROM `orders` where year(created)=' . $y . ' GROUP BY Month(created)');
+            // echo date("Y-m-d",$last30date);
+            $data['purchase365'] = $query;
+            $labels4 = [];
+            $chartdata4 = [];
+            foreach ($data['purchase365']->getResultArray() as $value) {
+                array_push($labels4, $value['month']);
+                array_push($chartdata4, $value['totalpurchase']);
+            }
+            $data['labels4'] = $labels4;
+            $data['chartdata4'] = $chartdata4;
+
+
             return view('dashboard/dashboard', $data);
         } else {
             return redirect("login");

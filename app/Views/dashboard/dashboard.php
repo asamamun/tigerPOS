@@ -264,6 +264,104 @@
 
         </div>
     </div>
+    <!-- last 30 days purchase -->
+<div class="row mt-3">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h4 class="card-title">Purchase Last 30 Days</h4>
+                <div class="card-options">
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-csv"></i> CSV</a>
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-excel"></i> Excel</a>
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-print"></i> Print</a>
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <canvas id="last30purchasechart"></canvas>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+                    Details
+                </button>
+            </div>
+        </div>
+
+        <div class="collapse mt-3" id="collapseExample3">
+            <div class="card card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="categories">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($purchase30->getResult() as $row) {
+                                echo "<tr>";
+                                echo "<td>" . $row->cdate . "</td>";
+                                echo "<td>" . $row->totalpurchase . "</td>";
+                                echo "</tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Montly Purchase report -->
+<div class="row mt-3">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h4 class="card-title">Monthly Purchase Report</h4>
+                <div class="card-options">
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-csv"></i> CSV</a>
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-excel"></i> Excel</a>
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-print"></i> Print</a>
+                    <a href="<?= base_url('/'); ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <canvas id="monthlypurchasechart"></canvas>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample2">
+                    Details
+                </button>
+            </div>
+        </div>
+        <div class="collapse mt-3" id="collapseExample4">
+            <div class="card card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="categories">
+                        <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($purchase365->getResult() as $row) {
+                                echo "<tr>";
+                                echo "<td>" . $calender[$row->month] . "</td>";
+                                echo "<td>" . $row->totalpurchase . "</td>";
+                                echo "</tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
 
     <?= $this->endSection(); ?>
 
@@ -352,6 +450,81 @@
                 datasets: [{
                     label: 'Monthly Sale',
                     data: <?php echo json_encode($chartdata2) ?>,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        //last 30days purchase chart
+        const ctx3 = document.getElementById('last30purchasechart');
+        const myChart3 = new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: <?php echo json_encode($labels3) ?>,
+                datasets: [{
+                    label: 'Monthly Sale',
+                    data: <?php echo json_encode($chartdata3) ?>,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        //monthly purchase chart
+        const ctx4 = document.getElementById('monthlypurchasechart');
+        const myChart4 = new Chart(ctx4, {
+            type: 'bar',
+            data: {
+                // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: <?php echo json_encode($labels4) ?>,
+                datasets: [{
+                    label: 'Monthly Sale',
+                    data: <?php echo json_encode($chartdata4) ?>,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
