@@ -14,7 +14,7 @@ class InvoiceDetailsModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['invoice_id','product_id','quantity','price','total','grandtotal','payment_type'];
+    protected $allowedFields    = ['invoice_id','product_id','quantity','price','total'];
 
     // Dates
     protected $useTimestamps = false;
