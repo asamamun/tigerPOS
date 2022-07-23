@@ -486,7 +486,7 @@
                 // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
                 labels: <?php echo json_encode($labels3) ?>,
                 datasets: [{
-                    label: 'Monthly Sale',
+                    label: 'Purchase Last 30 Days',
                     data: <?php echo json_encode($chartdata3) ?>,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -523,7 +523,7 @@
                 // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
                 labels: <?php echo json_encode($labels4) ?>,
                 datasets: [{
-                    label: 'Monthly Sale',
+                    label: 'Monthly Purchase',
                     data: <?php echo json_encode($chartdata4) ?>,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',

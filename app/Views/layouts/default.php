@@ -185,7 +185,7 @@
   <footer class="bg-light text-center text-lg-start mt-5">
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      &copy; <?php echo date("Y"); ?> Copyright :
+      WDPF-49 - V1.2.0 | Copyright &copy; <?php echo date("Y"); ?> All rights reserved |
       <a class="text-decoration-none" href="https://isdbstudents.com/49/">IsDB-BISEW WDPF-49 Students</a>
     </div>
     <!-- Copyright -->
