@@ -16,6 +16,21 @@ class Home extends BaseController
     }
     public function index()
     {
+
+        $data['calender'] = array(
+            1 => 'January', 
+            2 => 'February', 
+            3 => 'March', 
+            4 => 'April', 
+            5 => 'May', 
+            6 => 'June', 
+            7 => 'July', 
+            8 => 'August', 
+            9 => 'September',
+            10 => 'October', 
+            11 => 'November', 
+            12 => 'December'
+        );
         //$db = db_connect();
         $db      = \Config\Database::connect();
         $filter = $this->request->getGet('filter');
@@ -273,7 +288,7 @@ class Home extends BaseController
             $labels2 = [];
             $chartdata2 = [];
             foreach ($data['sales365']->getResultArray() as $value) {
-                array_push($labels2, $value['month']);
+                array_push($labels2,$data['calender'][$value['month']]);
                 array_push($chartdata2, $value['totalsales']);
             }
             $data['labels2'] = $labels2;
@@ -281,7 +296,7 @@ class Home extends BaseController
             // ddd($data['chartdata2']);
             // exit;
 
-            $data['calender'] = array(1 => 'January', 2 => 'February', 3 => 'March', 4 => 'April', 5 => 'May', 6 => 'June', 7 => 'July', 8 => 'August', 9 => 'September', 10 => 'October', 11 => 'November', 12 => 'December');
+
 
 
             /*             foreach ($query->getResult() as $row) {
@@ -318,7 +333,7 @@ class Home extends BaseController
             $labels4 = [];
             $chartdata4 = [];
             foreach ($data['purchase365']->getResultArray() as $value) {
-                array_push($labels4, $value['month']);
+                array_push($labels4,$data['calender'][$value['month']]);
                 array_push($chartdata4, $value['totalpurchase']);
             }
             $data['labels4'] = $labels4;
