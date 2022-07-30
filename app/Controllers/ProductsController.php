@@ -59,6 +59,10 @@ class ProductsController extends BaseController
             return redirect("login");
         }
     }
+    //generate barcode
+    public function barcode(){
+        return view('products/generate');
+    }
     //store
     public function store()
     {

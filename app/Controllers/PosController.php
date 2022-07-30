@@ -29,6 +29,9 @@ class PosController extends BaseController
 
         return view('pos/index', $data);
     }
+	public function scan(){
+		return view('pos/barcode');
+	}
     public function search()
     {
         $db      = \Config\Database::connect();

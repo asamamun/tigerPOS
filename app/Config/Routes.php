@@ -114,6 +114,8 @@ $routes->get('/invoicedetails/download', 'InvoiceDetailController::download');
 //products
 $routes->get('/products', 'ProductsController::index');
 $routes->get('/products/create', 'ProductsController::create');
+$routes->get('/products/barcode', 'ProductsController::barcode');
+
 $routes->post('/products/create', 'ProductsController::store');
 $routes->get('/products/edit/(:num)', 'ProductsController::edit/$1');
 $routes->post('/products/edit/(:num)', 'ProductsController::update/$1');
@@ -139,6 +141,8 @@ $routes->get('/accounts/csv', 'AccountController::csv');
 
 //pos
 $routes->get('/pos', 'PosController::index');
+$routes->get('/scan', 'PosController::scan');
+
 $routes->get('/search', 'PosController::search');
 $routes->post('/addtocart', 'PosController::addtocart');
 $routes->get('/customersearch', 'PosController::customersearch');

@@ -230,8 +230,10 @@ $.ajax({
                         },
                 success: function(response) {
                   $("#responseMessage").html(response);
-                  console.log($pmethod);
-                  exit();
+                  var w = open(BASE_URL + "/invoice/details/13", "InvWindow", "width=600,height=300");
+                  w.print();
+                  //console.log($pmethod);
+                  //exit();
                     // location.reload();
 
                 }
