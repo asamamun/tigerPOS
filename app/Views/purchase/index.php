@@ -76,7 +76,7 @@
 </div>
 <div class=" text-center">
     <button type="button" id="saveBtn" class="btn btn-success m-2">Save</button>
-    <button type="button" class="btn btn-info m-2">Save & Print</button>
+    <!-- <button type="button" class="btn btn-info m-2">Save & Print</button> -->
 </div>
 <h3 id="responseMessage"></h3>
 
